@@ -95,5 +95,15 @@ namespace EmployeeTracker
         {
             dataView();
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult leave;
+            leave = MessageBox.Show("Confirm if you want to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (leave == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
