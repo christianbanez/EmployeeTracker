@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SkyBlue;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.btnPrint);
@@ -144,7 +146,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(689, 428);
+            this.btnExit.Location = new System.Drawing.Point(689, 496);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(132, 28);
             this.btnExit.TabIndex = 8;
@@ -153,7 +155,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(689, 462);
+            this.btnSearch.Location = new System.Drawing.Point(689, 428);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(132, 28);
             this.btnSearch.TabIndex = 9;
@@ -250,6 +252,15 @@
             this.chkActive.Text = "Active";
             this.chkActive.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(689, 462);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 28);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "View";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -290,6 +301,7 @@
         private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkActive;
+        private System.Windows.Forms.Button button1;
     }
 }
 
