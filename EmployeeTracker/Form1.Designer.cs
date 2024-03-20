@@ -49,15 +49,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
+            this.displayData = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SkyBlue;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.displayData);
+            this.panel1.Controls.Add(this.btnView);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.btnPrint);
@@ -252,14 +255,26 @@
             this.chkActive.Text = "Active";
             this.chkActive.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnView
             // 
-            this.button1.Location = new System.Drawing.Point(689, 462);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 28);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "View";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnView.Location = new System.Drawing.Point(689, 462);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(132, 28);
+            this.btnView.TabIndex = 10;
+            this.btnView.Text = "View";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // displayData
+            // 
+            this.displayData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.displayData.Location = new System.Drawing.Point(17, 23);
+            this.displayData.Name = "displayData";
+            this.displayData.RowHeadersWidth = 51;
+            this.displayData.RowTemplate.Height = 24;
+            this.displayData.Size = new System.Drawing.Size(648, 150);
+            this.displayData.TabIndex = 11;
+            this.displayData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayData_CellContentClick);
             // 
             // Form1
             // 
@@ -274,6 +289,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -301,7 +317,8 @@
         private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkActive;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.DataGridView displayData;
     }
 }
 

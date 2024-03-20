@@ -21,9 +21,32 @@ namespace EmployeeTracker
             InitializeComponent();
         }
 
+        void dataView()
+        {
+            try
+            {
+                //adding values into database
+                conn.Open();
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM Employee";
+
+                cmd.ExecuteNonQuery();
+                DataTable dt = new DataTable();
+                OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+                dp.Fill(dt);
+                displayData.DataSource=dt;
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            dataView();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -61,6 +84,16 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void displayData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            dataView();
         }
     }
 }
