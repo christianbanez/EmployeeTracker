@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.OleDb;
+
+
+namespace EmployeeTracker
+{
+    public partial class Form1 : Form
+    {
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\cbanez\OneDrive - Infor\Desktop\dbtk.accdb""");
+        int state;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //Checkbox
+            if (chkActive.Checked == true)
+            {
+                state = -1;
+            }
+            else if (chkActive.Checked == false) 
+            {
+                state = 0;
+            }
+
+            try
+            {
+                //adding values into database
+                conn.Open();
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO Employee(EmployeeID,Name,contactNum,age,email,status)VALUES('" + txtEmployeeID.Text + "','" + txtName.Text + "','" + txtContact.Text + "','" + txtAge.Text + "','" + txtEmail.Text + "', '" + state + "' )";
+                cmd.Parameters.AddWithValue("txtEmployeeID.Text", txtEmployeeID.Text);
+                cmd.Parameters.AddWithValue("txtName.Text", txtName.Text);
+                cmd.Parameters.AddWithValue("txtContact.Text", txtContact.Text);
+                cmd.Parameters.AddWithValue("txtAge.Text", txtAge.Text);
+                cmd.Parameters.AddWithValue("txt.Email.Text", txtEmail.Text);
+                cmd.Parameters.AddWithValue("state", state);
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+    }
+}
