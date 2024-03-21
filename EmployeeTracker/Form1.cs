@@ -65,20 +65,22 @@ namespace EmployeeTracker
             {
                 //adding values into database
                 conn.Open();
+
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO Employee(EmployeeID,Name,contactNum,age,email,status)VALUES('" + txtEmployeeID.Text + "','" + txtName.Text + "','" + txtContact.Text + "','" + txtAge.Text + "','" + txtEmail.Text + "', '" + state + "' )";
-                cmd.Parameters.AddWithValue("txtEmployeeID.Text", txtEmployeeID.Text);
-                cmd.Parameters.AddWithValue("txtName.Text", txtName.Text);
-                cmd.Parameters.AddWithValue("txtContact.Text", txtContact.Text);
-                cmd.Parameters.AddWithValue("txtAge.Text", txtAge.Text);
-                cmd.Parameters.AddWithValue("txt.Email.Text", txtEmail.Text);
-                cmd.Parameters.AddWithValue("state", state);
+                cmd.CommandText = "INSERT INTO Employee(EmployeeID,Name,contactNum,age,email,status)VALUES(@EmployeeID, @Name, @Contact, @Age, @Email, @state)";
+                cmd.Parameters.AddWithValue("@EmployeeID", txtEmployeeID.Text);
+                cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@state", state);
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                
                 conn.Close();
+                dataView();
             }
             catch (Exception ex)
             {
