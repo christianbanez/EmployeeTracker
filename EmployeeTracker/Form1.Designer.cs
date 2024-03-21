@@ -71,7 +71,8 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(7, 12);
+            this.panel1.Location = new System.Drawing.Point(8, 15);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1190, 510);
             this.panel1.TabIndex = 0;
@@ -248,9 +249,9 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 196);
+            this.label3.Location = new System.Drawing.Point(66, 245);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 16);
+            this.label3.Size = new System.Drawing.Size(38, 20);
             this.label3.TabIndex = 17;
             this.label3.Text = "Age";
             // 
@@ -309,6 +310,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1206, 534);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -330,7 +332,6 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label4;

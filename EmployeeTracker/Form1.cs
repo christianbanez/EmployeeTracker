@@ -14,7 +14,7 @@ namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\tdizon\Downloads\dbtk.accdb""");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\cbanez\OneDrive - Infor\Desktop\dbtk.accdb""");
         int state;
         public Form1()
         {
@@ -169,6 +169,75 @@ namespace EmployeeTracker
             if (leave == DialogResult.Yes)
             {
                 Application.Exit();
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Use class-level variable
+                int state = chkActive.Checked ? 1 : 0; 
+
+                conn.Open();
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "UPDATE Employee SET Name = @name, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
+
+                // Parameters
+                cmd.Parameters.AddWithValue("@name", txtName.Text);
+                cmd.Parameters.AddWithValue("@contact", txtContact.Text);
+                cmd.Parameters.AddWithValue("@age", txtAge.Text);
+                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@status", state);
+                cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Record updated in Database", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Employee ID not found or no changes made", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void displayData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // Get the selected row index
+                int rowIndex = e.RowIndex;
+
+                if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
+                {
+                    txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
+                    txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
+                    txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
+                    txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+
+                    // Update checkbox state
+                    bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
+                    chkActive.Checked = isActive;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
