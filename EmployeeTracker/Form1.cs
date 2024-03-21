@@ -14,7 +14,7 @@ namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\cbanez\OneDrive - Infor\Desktop\dbtk.accdb""");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\tdizon\Downloads\dbtk.accdb""");
         int state;
         public Form1()
         {
@@ -123,12 +123,7 @@ namespace EmployeeTracker
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void displayData_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DisplayData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -208,11 +203,6 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void displayData_CellClick(object sender, DataGridViewCellEventArgs e)

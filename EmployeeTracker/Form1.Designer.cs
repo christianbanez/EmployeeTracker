@@ -1,4 +1,6 @@
-﻿namespace EmployeeTracker
+﻿using System.Windows.Forms;
+
+namespace EmployeeTracker
 {
     partial class Form1
     {
@@ -39,19 +41,18 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.chkActive = new System.Windows.Forms.CheckBox();
-            this.txtEmployeeID = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtAge = new System.Windows.Forms.TextBox();
-            this.txtContact = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.txtContact = new System.Windows.Forms.TextBox();
+            this.txtAge = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtEmployeeID = new System.Windows.Forms.TextBox();
+            this.chkActive = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.panel2.SuspendLayout();
@@ -159,6 +160,7 @@
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // textBox1
             // 
@@ -179,35 +181,81 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // panel2
+            // txtName
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.chkActive);
-            this.panel2.Controls.Add(this.txtEmployeeID);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.txtEmail);
-            this.panel2.Controls.Add(this.txtAge);
-            this.panel2.Controls.Add(this.txtContact);
-            this.panel2.Controls.Add(this.txtName);
-            this.panel2.Location = new System.Drawing.Point(759, 70);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(406, 281);
-            this.panel2.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(156, 74);
+            this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(224, 22);
+            this.txtName.TabIndex = 10;
             // 
-            // label6
+            // txtContact
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(52, 157);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 16);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Age";
+            this.txtContact.Location = new System.Drawing.Point(156, 110);
+            this.txtContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(224, 22);
+            this.txtContact.TabIndex = 11;
+            // 
+            // txtAge
+            // 
+            this.txtAge.Location = new System.Drawing.Point(156, 154);
+            this.txtAge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtAge.Name = "txtAge";
+            this.txtAge.Size = new System.Drawing.Size(224, 22);
+            this.txtAge.TabIndex = 12;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(156, 197);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(224, 22);
+            this.txtEmail.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(52, 76);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 16);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(52, 115);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 16);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Contact";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(52, 200);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 16);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Email";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(52, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 16);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Employee ID";
+            // 
+            // txtEmployeeID
+            // 
+            this.txtEmployeeID.Location = new System.Drawing.Point(156, 38);
+            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEmployeeID.Name = "txtEmployeeID";
+            this.txtEmployeeID.Size = new System.Drawing.Size(224, 22);
+            this.txtEmployeeID.TabIndex = 20;
             // 
             // chkActive
             // 
@@ -220,90 +268,34 @@
             this.chkActive.Text = "Active";
             this.chkActive.UseVisualStyleBackColor = true;
             // 
-            // txtEmployeeID
+            // label6
             // 
-            this.txtEmployeeID.Location = new System.Drawing.Point(156, 38);
-            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtEmployeeID.Name = "txtEmployeeID";
-            this.txtEmployeeID.Size = new System.Drawing.Size(224, 22);
-            this.txtEmployeeID.TabIndex = 20;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(52, 157);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 16);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Age";
             // 
-            // label5
+            // panel2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(52, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 16);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Employee ID";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 200);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 16);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Email";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(66, 245);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 20);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Age";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(52, 115);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 16);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Contact";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 76);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Name";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(156, 197);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(224, 22);
-            this.txtEmail.TabIndex = 13;
-            // 
-            // txtAge
-            // 
-            this.txtAge.Location = new System.Drawing.Point(156, 154);
-            this.txtAge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(224, 22);
-            this.txtAge.TabIndex = 12;
-            // 
-            // txtContact
-            // 
-            this.txtContact.Location = new System.Drawing.Point(156, 110);
-            this.txtContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(224, 22);
-            this.txtContact.TabIndex = 11;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(156, 74);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(224, 22);
-            this.txtName.TabIndex = 10;
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.chkActive);
+            this.panel2.Controls.Add(this.txtEmployeeID);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.txtEmail);
+            this.panel2.Controls.Add(this.txtAge);
+            this.panel2.Controls.Add(this.txtContact);
+            this.panel2.Controls.Add(this.txtName);
+            this.panel2.Location = new System.Drawing.Point(759, 70);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(406, 281);
+            this.panel2.TabIndex = 1;
             // 
             // Form1
             // 
@@ -327,27 +319,27 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
+        private TextBox textBox1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtAge;
-        private System.Windows.Forms.TextBox txtContact;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtEmployeeID;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.DataGridView displayData;
-        private System.Windows.Forms.Label label6;
+        private Panel panel2;
+        private Label label6;
+        private CheckBox chkActive;
+        private TextBox txtEmployeeID;
+        private Label label5;
+        private Label label4;
+        private Label label2;
+        private Label label1;
+        private TextBox txtEmail;
+        private TextBox txtAge;
+        private TextBox txtContact;
+        private TextBox txtName;
     }
 }
 
