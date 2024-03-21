@@ -40,6 +40,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -72,27 +73,27 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(7, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(970, 568);
+            this.panel1.Size = new System.Drawing.Size(1190, 510);
             this.panel1.TabIndex = 0;
             // 
             // displayData
             // 
             this.displayData.ColumnHeadersHeight = 34;
-            this.displayData.Location = new System.Drawing.Point(0, 0);
+            this.displayData.Location = new System.Drawing.Point(31, 70);
             this.displayData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.displayData.Name = "displayData";
             this.displayData.RowHeadersWidth = 62;
-            this.displayData.Size = new System.Drawing.Size(576, 120);
+            this.displayData.Size = new System.Drawing.Size(709, 403);
             this.displayData.TabIndex = 11;
             this.displayData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayData_CellClick);
             this.displayData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayData_CellContentClick);
             // 
             // btnView
             // 
-            this.btnView.Location = new System.Drawing.Point(612, 370);
+            this.btnView.Location = new System.Drawing.Point(899, 385);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(117, 22);
+            this.btnView.Size = new System.Drawing.Size(117, 25);
             this.btnView.TabIndex = 10;
             this.btnView.Text = "View";
             this.btnView.UseVisualStyleBackColor = true;
@@ -100,20 +101,20 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(612, 342);
+            this.btnSearch.Location = new System.Drawing.Point(474, 38);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(117, 22);
+            this.btnSearch.Size = new System.Drawing.Size(117, 25);
             this.btnSearch.TabIndex = 9;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(612, 397);
+            this.btnExit.Location = new System.Drawing.Point(1038, 448);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(117, 22);
+            this.btnExit.Size = new System.Drawing.Size(117, 25);
             this.btnExit.TabIndex = 8;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -121,28 +122,28 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(612, 315);
+            this.btnPrint.Location = new System.Drawing.Point(779, 385);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(117, 22);
+            this.btnPrint.Size = new System.Drawing.Size(117, 25);
             this.btnPrint.TabIndex = 7;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(612, 287);
+            this.btnReset.Location = new System.Drawing.Point(1022, 385);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(117, 22);
+            this.btnReset.Size = new System.Drawing.Size(117, 25);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(612, 262);
+            this.btnDelete.Location = new System.Drawing.Point(1022, 356);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(117, 22);
+            this.btnDelete.Size = new System.Drawing.Size(117, 25);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -150,28 +151,28 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(612, 234);
+            this.btnUpdate.Location = new System.Drawing.Point(899, 356);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(117, 22);
+            this.btnUpdate.Size = new System.Drawing.Size(117, 25);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(612, 154);
+            this.textBox1.Location = new System.Drawing.Point(31, 41);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(224, 22);
+            this.textBox1.Size = new System.Drawing.Size(425, 22);
             this.textBox1.TabIndex = 3;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(612, 206);
+            this.btnAdd.Location = new System.Drawing.Point(779, 356);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(117, 22);
+            this.btnAdd.Size = new System.Drawing.Size(117, 25);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -180,6 +181,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.chkActive);
             this.panel2.Controls.Add(this.txtEmployeeID);
             this.panel2.Controls.Add(this.label5);
@@ -191,11 +193,20 @@
             this.panel2.Controls.Add(this.txtAge);
             this.panel2.Controls.Add(this.txtContact);
             this.panel2.Controls.Add(this.txtName);
-            this.panel2.Location = new System.Drawing.Point(13, 154);
+            this.panel2.Location = new System.Drawing.Point(759, 70);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(578, 287);
+            this.panel2.Size = new System.Drawing.Size(406, 281);
             this.panel2.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(52, 157);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 16);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Age";
             // 
             // chkActive
             // 
@@ -295,9 +306,8 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 592);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1206, 534);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -336,6 +346,7 @@
         private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.DataGridView displayData;
+        private System.Windows.Forms.Label label6;
     }
 }
 
