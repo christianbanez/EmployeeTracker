@@ -98,17 +98,14 @@ namespace EmployeeTracker
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // Update Button
-            int state = 0; // Initialize state
-
-            // Checkbox
-            if (chkActive.Checked)
-            {
-                state = -1;
-            }
-
             try
             {
+                // Use class-level variable
+                if (chkActive.Checked)
+                {
+                    state = -1;
+                }
+
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
@@ -131,7 +128,6 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -141,22 +137,25 @@ namespace EmployeeTracker
 
         private void displayData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int state = 0; // Initialize state
-
-            // Checkbox
-            if (chkActive.Checked)
-            {
-                state = -1;
-            }
-
             try
             {
-                txtEmployeeID.Text = displayData.SelectedRows[0].Cells[0].Value.ToString();
-                txtName.Text = displayData.SelectedRows[0].Cells[1].Value.ToString();
-                txtContact.Text = displayData.SelectedRows[0].Cells[2].Value.ToString();
-                txtAge.Text = displayData.SelectedRows[0].Cells[3].Value.ToString();
-                txtEmail.Text = displayData.SelectedRows[0].Cells[4].Value.ToString();
+                // Get the selected row index
+                int rowIndex = e.RowIndex;
 
+                // Ensure a valid row is selected
+                if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
+                {
+                    // Update text fields
+                    txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
+                    txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
+                    txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
+                    txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+
+                    // Update checkbox state
+                    bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
+                    chkActive.Checked = isActive;
+                }
             }
             catch (Exception ex)
             {
