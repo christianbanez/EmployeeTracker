@@ -14,7 +14,7 @@ namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\tdizon\Downloads\dbtk.accdb""");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\asantocildes\OneDrive - Infor\Desktop\dbtk.accdb""");
         int state;
         public Form1()
         {
@@ -68,13 +68,15 @@ namespace EmployeeTracker
 
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO Employee(EmployeeID,Name,contactNum,age,email,status)VALUES(@EmployeeID, @Name, @Contact, @Age, @Email, @state)";
-                cmd.Parameters.AddWithValue("@EmployeeID", txtEmployeeID.Text);
-                cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
+                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@Age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@state", state);
+                cmd.Parameters.AddWithValue("@role", txtrole.Text);
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -92,7 +94,7 @@ namespace EmployeeTracker
         {
             dataView();
             txtEmployeeID.Text = "";
-            txtName.Text = "";
+            txtlName.Text = "";
             txtContact.Text = "";
             txtAge.Text = "";
             txtEmail.Text = "";
@@ -105,22 +107,40 @@ namespace EmployeeTracker
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(mesDel, title, buttons, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {   //to delete the data
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "delete * from Employee where EmployeeID ='" + txtEmployeeID.Text + "'";
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dataView();
+            try
+            {
+                if (result == DialogResult.Yes)
+                {   //to delete the data
+                    conn.Open();
+                    OleDbCommand cmd = conn.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "Delete * from Employee where EmployeeID = @EmployeeID ";
+                    cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataView();
+                    txtEmployeeID.Text = "";
+                    txtlName.Text = "";
+                    txtfName.Text = "";
+                    txtContact.Text = "";
+                    txtAge.Text = "";
+                    txtEmail.Text = "";
+                    txtrole.Text = "";
+
+                }
+                else
+                {   //if the data is not deleted
+                    MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //conn.Close();
+                }
             }
-            else
-            {   //if the data is not deleted
+            catch
+            {
                 MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                conn.Close();
             }
+            
+            conn.Close();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -140,10 +160,12 @@ namespace EmployeeTracker
                 {
                     // Update text fields
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
+                    txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+                    txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
 
                     // Update checkbox state
                     bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
@@ -156,12 +178,6 @@ namespace EmployeeTracker
             }
 
         }
-
-        private void displayData_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult leave;
@@ -170,6 +186,11 @@ namespace EmployeeTracker
             {
                 Application.Exit();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
