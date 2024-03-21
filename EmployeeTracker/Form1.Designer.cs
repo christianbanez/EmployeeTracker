@@ -78,10 +78,13 @@
             // 
             // displayData
             // 
+            this.displayData.AllowUserToAddRows = false;
+            this.displayData.AllowUserToDeleteRows = false;
             this.displayData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.displayData.Location = new System.Drawing.Point(19, 29);
             this.displayData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.displayData.Name = "displayData";
+            this.displayData.ReadOnly = true;
             this.displayData.RowHeadersWidth = 51;
             this.displayData.RowTemplate.Height = 24;
             this.displayData.Size = new System.Drawing.Size(729, 188);

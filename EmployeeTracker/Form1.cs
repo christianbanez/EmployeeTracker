@@ -101,10 +101,7 @@ namespace EmployeeTracker
             try
             {
                 // Use class-level variable
-                if (chkActive.Checked)
-                {
-                    state = -1;
-                }
+                int state = chkActive.Checked ? 1 : 0; 
 
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
@@ -119,8 +116,15 @@ namespace EmployeeTracker
                 cmd.Parameters.AddWithValue("@status", state);
                 cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record updated in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Record updated in Database", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Employee ID not found or no changes made", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
                 conn.Close();
             }
@@ -142,10 +146,8 @@ namespace EmployeeTracker
                 // Get the selected row index
                 int rowIndex = e.RowIndex;
 
-                // Ensure a valid row is selected
                 if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
                 {
-                    // Update text fields
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
                     txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
