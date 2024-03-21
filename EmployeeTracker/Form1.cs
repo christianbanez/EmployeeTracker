@@ -77,7 +77,6 @@ namespace EmployeeTracker
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 conn.Close();
             }
             catch (Exception ex)
@@ -86,14 +85,14 @@ namespace EmployeeTracker
             }
         }
 
-        private void displayData_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void btnView_Click(object sender, EventArgs e)
         {
             dataView();
+            txtEmployeeID.Text = "";
+            txtName.Text = "";
+            txtContact.Text = "";
+            txtAge.Text = "";
+            txtEmail.Text = "";
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -104,7 +103,7 @@ namespace EmployeeTracker
             DialogResult result = MessageBox.Show(mesDel, title, buttons, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
-            {
+            {   //to delete the data
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
@@ -112,9 +111,10 @@ namespace EmployeeTracker
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataView();
             }
             else
-            {
+            {   //if the data is not deleted
                 MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 conn.Close();
             }
@@ -129,18 +129,33 @@ namespace EmployeeTracker
         {
             try
             {
-                txtEmployeeID.Text = displayData.SelectedRows[0].Cells[0].Value.ToString();
-                txtName.Text = displayData.SelectedRows[0].Cells[0].Value.ToString();
-                txtContact.Text = displayData.SelectedRows[0].Cells[0].Value.ToString();
-                txtAge.Text = displayData.SelectedRows[0].Cells[0].Value.ToString();
-                txtEmail.Text = displayData.SelectedRows[0].Cells[0].Value.ToString();
+                // Get the selected row index
+                int rowIndex = e.RowIndex;
+
+                // Ensure a valid row is selected
+                if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
+                {
+                    // Update text fields
+                    txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
+                    txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
+                    txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
+                    txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+
+                    // Update checkbox state
+                    bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
+                    chkActive.Checked = isActive;
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                conn.Close();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
+        }
+
+        private void displayData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
