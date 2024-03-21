@@ -15,13 +15,15 @@ namespace EmployeeTracker
     public partial class Form1 : Form
     {
         OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\tdizon\Downloads\dbtk.accdb""");
+        OleDbDataAdapter dp;
+        DataTable dt;
         int state;
         public Form1()
         {
             InitializeComponent();
         }
 
-        void dataView()
+        void DataView()
         {
             try
             {
@@ -30,9 +32,8 @@ namespace EmployeeTracker
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM Employee";
-
                 cmd.ExecuteNonQuery();
-                DataTable dt = new DataTable();
+                dt = new DataTable();
                 OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
                 dp.Fill(dt);
                 displayData.DataSource=dt;
@@ -46,7 +47,7 @@ namespace EmployeeTracker
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataView();
+            DataView();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace EmployeeTracker
                 MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
                 conn.Close();
-                dataView();
+                DataView();
             }
             catch (Exception ex)
             {
@@ -90,7 +91,7 @@ namespace EmployeeTracker
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            dataView();
+            DataView();
             txtEmployeeID.Text = "";
             txtName.Text = "";
             txtContact.Text = "";
@@ -110,11 +111,19 @@ namespace EmployeeTracker
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "delete * from Employee where EmployeeID ='" + txtEmployeeID.Text + "'";
+                cmd.CommandText = "delete * from Employee where EmployeeID = @EmployeeID";
+                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dataView();
+
+                DataView();
+
+                txtEmployeeID.Text = "";
+                txtName.Text = "";
+                txtContact.Text = "";
+                txtAge.Text = "";
+                txtEmail.Text = "";
             }
             else
             {   //if the data is not deleted
@@ -229,6 +238,38 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    //search values into database
+            //    conn.Open();
+            //    OleDbCommand cmd = conn.CreateCommand();
+            //    cmd.CommandType = CommandType.Text;
+
+            //    cmd.CommandText = "SELECT * FROM Employee WHERE EmployeeID = '%" + textSearch.Text + "%' or Name '" + textSearch.Text + "' ";
+
+            //    cmd.ExecuteNonQuery();
+            //    DataTable dt = new DataTable();
+            //    OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+            //    dp.Fill(dt);
+            //    displayData.DataSource = dt;
+
+            //    conn.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+        }
+
+        private void textSearch_TextChanged(object sender, EventArgs e)
+        {
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = "Name LIKE '%" + textSearch.Text + "%'";
+            displayData.DataSource = dv;
         }
     }
 }
