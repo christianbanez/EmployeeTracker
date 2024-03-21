@@ -195,11 +195,12 @@ namespace EmployeeTracker
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@status", state);
                 cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
-
+                
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Record updated in Database", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                 }
                 else
                 {
@@ -207,6 +208,13 @@ namespace EmployeeTracker
                 }
 
                 conn.Close();
+                DataView();
+
+                txtEmployeeID.Text = "";
+                txtName.Text = "";
+                txtContact.Text = "";
+                txtAge.Text = "";
+                txtEmail.Text = "";
             }
             catch (Exception ex)
             {
