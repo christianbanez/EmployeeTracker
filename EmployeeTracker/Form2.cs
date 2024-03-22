@@ -14,8 +14,10 @@ namespace EmployeeTracker
 {
     public partial class Form2 : Form
     {
+        //HANDLES THE UPDATE TO FORM 1
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
+        //DATABASE CONNECTION
         OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
         int state;
         public Form2()
@@ -23,6 +25,7 @@ namespace EmployeeTracker
             InitializeComponent();
         }
 
+        // HANDLES THE ERROR HANDLING TO EMAIL
         bool IsValidEmail(string eMailchecker)
         {
             bool result = false;
@@ -52,46 +55,47 @@ namespace EmployeeTracker
 
                     //Checkbox
                     if (chkActive.Checked == true)
-            {
-                state = -1;
-            }
-            else if (chkActive.Checked == false)
-            {
-                state = 0;
-            }
+                    {
+                        state = -1;
+                    }
+                    else if (chkActive.Checked == false)
+                    {
+                        state = 0;
+                    }
 
-            try
-            {
-                //adding values into database
-                conn.Open();
+                    try
+                    {
+                        //adding values into database
+                        conn.Open();
 
-                OleDbCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
-                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@role", txtrole.Text);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DataUpdated?.Invoke();
-                this.Close();
-            }
+                        OleDbCommand cmd = conn.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
+                        cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                        cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                        cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                        cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                        cmd.Parameters.AddWithValue("@Age", txtAge.Text);
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@state", state);
+                        cmd.Parameters.AddWithValue("@role", txtrole.Text);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DataUpdated?.Invoke();
+                        this.Close();
+                    }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Please input the correct email format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
             }
             else
             {

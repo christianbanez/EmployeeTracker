@@ -50,16 +50,18 @@ namespace EmployeeTracker
             dataView();
         }
 
+        //Prompts the add form.
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Form2 form = new Form2();
             form.DataUpdated += Form2_DataUpdated;
             form.Show();
         }
+
+        // Refresh or reload your DataGridView
         private void Form2_DataUpdated()
         {
-            // Refresh or reload your DataGridView
-            dataView(); // Assuming dataView() is the method that reloads the DataGridView
+            dataView(); 
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -170,7 +172,7 @@ namespace EmployeeTracker
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE Employee SET fName = @fName, LName = @LName, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
+                cmd.CommandText = "UPDATE Employee SET fName = @fName, LName = @LName, contactNum = @contact, age = @age, email = @email, role = @role, status = @status WHERE EmployeeID = @employeeID";
 
                 // Parameters
                 cmd.Parameters.AddWithValue("@fName", txtfName.Text);
@@ -178,6 +180,7 @@ namespace EmployeeTracker
                 cmd.Parameters.AddWithValue("@contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@role", txtrole.Text);
                 cmd.Parameters.AddWithValue("@status", state);
                 cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
 
@@ -197,6 +200,7 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            dataView();
         }
 
         private void displayData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -214,6 +218,7 @@ namespace EmployeeTracker
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+                    txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
 
                     // Update checkbox state
                     bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
