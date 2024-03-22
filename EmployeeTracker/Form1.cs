@@ -223,6 +223,15 @@ namespace EmployeeTracker
                 }
 
                 conn.Close();
+
+                dataView();
+                txtEmployeeID.Text = "";
+                txtlName.Text = "";
+                txtfName.Text = "";
+                txtContact.Text = "";
+                txtAge.Text = "";
+                txtEmail.Text = "";
+                txtrole.Text = "";
             }
             catch (Exception ex)
             {
