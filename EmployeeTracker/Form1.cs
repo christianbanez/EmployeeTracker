@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Xml.Linq;
 
 
 namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\Downloads\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
         int state;
         public Form1()
         {
@@ -70,8 +71,8 @@ namespace EmployeeTracker
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
                 cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@Age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -155,8 +156,8 @@ namespace EmployeeTracker
                 {
                     // Update text fields
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
                     txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
@@ -201,7 +202,8 @@ namespace EmployeeTracker
                 cmd.CommandText = "UPDATE Employee SET Name = @name, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
 
                 // Parameters
-                cmd.Parameters.AddWithValue("@name", txtName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
                 cmd.Parameters.AddWithValue("@contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
@@ -236,7 +238,8 @@ namespace EmployeeTracker
                 if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
                 {
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
@@ -250,6 +253,10 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }
