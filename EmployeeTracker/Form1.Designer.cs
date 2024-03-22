@@ -175,7 +175,7 @@ namespace EmployeeTracker
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(595, 22);
             this.textSearch.TabIndex = 3;
-            this.textSearch.TextChanged += new System.EventHandler(this.textSearch_TextChanged);
+            this.textSearch.TextChanged += new System.EventHandler(this.textsearch_textchanged);
             // 
             // btnAdd
             // 
@@ -211,7 +211,7 @@ namespace EmployeeTracker
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(442, 306);
             this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_paint);
             // 
             // txtrole
             // 
@@ -332,9 +332,12 @@ namespace EmployeeTracker
             // 
             this.txtContact.Location = new System.Drawing.Point(156, 110);
             this.txtContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtContact.MaxLength = 11;
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(224, 22);
             this.txtContact.TabIndex = 11;
+            this.txtContact.TextChanged += new System.EventHandler(this.txtContact_TextChanged);
+            this.txtContact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcontact_keypress);
             // 
             // txtfName
             // 
@@ -361,6 +364,7 @@ namespace EmployeeTracker
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
 

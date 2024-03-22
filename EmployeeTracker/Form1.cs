@@ -47,6 +47,34 @@ namespace EmployeeTracker
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        bool IsValidEmail(string eMailchecker)
+        {
+            bool result = false;
+
+            try
+            {
+                var eMailValidator = new System.Net.Mail.MailAddress(eMailchecker);
+
+                result = (eMailchecker.LastIndexOf(".") > eMailchecker.LastIndexOf("@"));
+            }
+            catch
+            {
+                result = false;
+            };
+
+            return result;
+        }
+        void refresh()
+        {
+            txtEmployeeID.Text = "";
+            txtfName.Text = "";
+            txtlName.Text = "";
+            txtContact.Text = "";
+            txtAge.Text = "";
+            txtEmail.Text = "";
+            txtrole.Text = "";
+            chkActive.Checked = false;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             dataView();
@@ -54,53 +82,71 @@ namespace EmployeeTracker
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //Checkbox
-            if (chkActive.Checked == true)
-            {
-                state = -1;
-            }
-            else if (chkActive.Checked == false) 
-            {
-                state = 0;
-            }
+            //checking the contact number length
 
-            try
+            if (txtContact.TextLength == 11)
             {
-                //adding values into database
-                conn.Open();
+                //checking email 
+                if (IsValidEmail(txtEmail.Text))
+                {
 
-                OleDbCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
-                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@role", txtrole.Text);
+                    //Checkbox
+                    if (chkActive.Checked == true)
+                    {
+                        state = -1;
+                    }
+                    else if (chkActive.Checked == false)
+                    {
+                        state = 0;
+                    }
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        //adding values into database
+                        conn.Open();
+
+                        OleDbCommand cmd = conn.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role,accDateCreated)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role, Now())";
+                        cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                        cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                        cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                        cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                        cmd.Parameters.AddWithValue("@Age", txtAge.Text);
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@state", state);
+                        cmd.Parameters.AddWithValue("@role", txtrole.Text);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        conn.Close();
+                        dataView();
+                        refresh();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please input the correct email format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 
-                conn.Close();
-                dataView();
+
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please input the correct number format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
             dataView();
-            txtEmployeeID.Text = "";
-            txtfName.Text = "";
-            txtContact.Text = "";
-            txtAge.Text = "";
-            txtEmail.Text = "";
+            refresh();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -123,13 +169,7 @@ namespace EmployeeTracker
                     conn.Close();
                     MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dataView();
-                    txtEmployeeID.Text = "";
-                    txtfName.Text = "";
-                    txtlName.Text = "";
-                    txtContact.Text = "";
-                    txtAge.Text = "";
-                    txtEmail.Text = "";
-                    txtrole.Text = "";
+                    refresh();
 
                 }
                 else
@@ -168,6 +208,7 @@ namespace EmployeeTracker
                     // Update checkbox state
                     bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
                     chkActive.Checked = isActive;
+                    
                 }
             }
             catch (Exception ex)
@@ -212,6 +253,7 @@ namespace EmployeeTracker
                 cmd.Parameters.AddWithValue("@status", state);
                 cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
 
+                
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
@@ -225,13 +267,11 @@ namespace EmployeeTracker
                 conn.Close();
 
                 dataView();
-                txtEmployeeID.Text = "";
-                txtlName.Text = "";
-                txtfName.Text = "";
-                txtContact.Text = "";
-                txtAge.Text = "";
-                txtEmail.Text = "";
-                txtrole.Text = "";
+                refresh();
+                
+
+
+
             }
             catch (Exception ex)
             {
@@ -265,24 +305,48 @@ namespace EmployeeTracker
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void txtContact_TextChanged(object sender, EventArgs e)
+        {
+            if (txtContact.TextLength == 11)
+            {
+                txtContact.ForeColor = Color.Black;
+            }
+            else
+            {
+                txtContact.ForeColor = Color.Red;
+            }
+            
 
-        private void textSearch_TextChanged(object sender, EventArgs e)
+        }
+
+
+        private void textsearch_textchanged(object sender, EventArgs e)
         {
             BindingSource dv = new BindingSource();
             dv.DataSource = displayData.DataSource;
-            //DataView dv = dt.DefaultView;
-            dv.Filter = "fName LIKE  '%" + textSearch.Text + "%' OR lName LIKE '%" + textSearch.Text + "%' ";
+            //dataview dv = dt.defaultview;
+            dv.Filter = "fname like  '%" + textSearch.Text + "%' or lname like '%" + textSearch.Text + "%' ";
             displayData.DataSource = dv;
-            //BindingSource bs = new BindingSource();
-            //bs.DataSource = displayData.DataSource;
-            //bs.Filter = "SELECT * FROM Employee WHERE fName '%" + textSearch.Text + "%'";
-            //displayData.DataSource = bs;
-            //DataView dv = dt.DefaultView;
-            //dv.RowFilter = "SELECT * from EMPLOYEE where fName LIKE  '%" + textSearch.Text + "%' or lName LIKE'%" + textSearch.Text + "%'";
+            //bindingsource bs = new bindingsource();
+            //bs.datasource = displaydata.datasource;
+            //bs.filter = "select * from employee where fname '%" + textsearch.text + "%'";
+            //displaydata.datasource = bs;
+            //dataview dv = dt.defaultview;
+            //dv.rowfilter = "select * from employee where fname like  '%" + textsearch.text + "%' or lname like'%" + textsearch.text + "%'";
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void panel2_paint(object sender, PaintEventArgs e)
         {
+
         }
+        private void txtcontact_keypress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("error, contact number should only contain numbers");
+            }
+        }
+
     }
 }
