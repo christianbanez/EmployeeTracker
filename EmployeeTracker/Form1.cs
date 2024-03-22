@@ -82,65 +82,14 @@ namespace EmployeeTracker
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //checking the contact number length
-
-            if (txtContact.TextLength == 11)
-            {
-                //checking email 
-                if (IsValidEmail(txtEmail.Text))
-                {
-
-                    //Checkbox
-                    if (chkActive.Checked == true)
-                    {
-                        state = -1;
-                    }
-                    else if (chkActive.Checked == false)
-                    {
-                        state = 0;
-                    }
-
-                    try
-                    {
-                        //adding values into database
-                        conn.Open();
-
-                        OleDbCommand cmd = conn.CreateCommand();
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role,accDateCreated)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role, Now())";
-                        cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                        cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                        cmd.Parameters.AddWithValue("@lName", txtlName.Text);
-                        cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                        cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                        cmd.Parameters.AddWithValue("@state", state);
-                        cmd.Parameters.AddWithValue("@role", txtrole.Text);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        conn.Close();
-                        dataView();
-                        refresh();
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Please input the correct email format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                
-
-            }
-            else
-            {
-                MessageBox.Show("Please input the correct number format", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
+            Form2 form = new Form2();
+            form.DataUpdated += Form2_DataUpdated;
+            form.Show();
+        }
+        private void Form2_DataUpdated()
+        {
+            // Refresh or reload your DataGridView
+            dataView(); // Assuming dataView() is the method that reloads the DataGridView
         }
 
         private void btnView_Click(object sender, EventArgs e)
