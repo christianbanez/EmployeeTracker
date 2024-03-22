@@ -109,7 +109,7 @@ namespace EmployeeTracker
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(617, 33);
+            this.btnSearch.Location = new System.Drawing.Point(631, 32);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(117, 25);
@@ -173,7 +173,7 @@ namespace EmployeeTracker
             this.textBox1.Location = new System.Drawing.Point(30, 33);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(566, 22);
+            this.textBox1.Size = new System.Drawing.Size(595, 22);
             this.textBox1.TabIndex = 3;
             // 
             // btnAdd
