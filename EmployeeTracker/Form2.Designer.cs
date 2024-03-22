@@ -202,6 +202,7 @@
             // 
             this.txtContact.Location = new System.Drawing.Point(156, 110);
             this.txtContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtContact.MaxLength = 11;
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(224, 22);
             this.txtContact.TabIndex = 11;

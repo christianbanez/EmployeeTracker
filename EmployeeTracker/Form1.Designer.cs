@@ -33,11 +33,9 @@ namespace EmployeeTracker
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.displayData = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -46,6 +44,7 @@ namespace EmployeeTracker
             this.label6 = new System.Windows.Forms.Label();
             this.txtlName = new System.Windows.Forms.TextBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -65,7 +64,6 @@ namespace EmployeeTracker
             // 
             this.panel1.BackColor = System.Drawing.Color.SkyBlue;
             this.panel1.Controls.Add(this.displayData);
-            this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnDelete);
@@ -81,25 +79,19 @@ namespace EmployeeTracker
             // 
             this.displayData.AllowUserToAddRows = false;
             this.displayData.AllowUserToDeleteRows = false;
+            this.displayData.AllowUserToResizeColumns = false;
+            this.displayData.AllowUserToResizeRows = false;
+            this.displayData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.displayData.ColumnHeadersHeight = 34;
             this.displayData.Location = new System.Drawing.Point(28, 72);
             this.displayData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.displayData.Name = "displayData";
             this.displayData.ReadOnly = true;
             this.displayData.RowHeadersWidth = 62;
+            this.displayData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.displayData.Size = new System.Drawing.Size(720, 406);
             this.displayData.TabIndex = 11;
             this.displayData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayData_CellClick);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(609, 43);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(117, 25);
-            this.btnSearch.TabIndex = 9;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // btnExit
             // 
@@ -133,17 +125,6 @@ namespace EmployeeTracker
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(290, 262);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(117, 25);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // textSearch
             // 
             this.textSearch.Location = new System.Drawing.Point(38, 45);
@@ -151,6 +132,7 @@ namespace EmployeeTracker
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(565, 22);
             this.textSearch.TabIndex = 3;
+            this.textSearch.Text = "Search...";
             this.textSearch.TextChanged += new System.EventHandler(this.textsearch_textchanged);
             // 
             // btnAdd
@@ -235,8 +217,20 @@ namespace EmployeeTracker
             this.chkActive.Text = "Active";
             this.chkActive.UseVisualStyleBackColor = true;
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(290, 262);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(117, 25);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // txtEmployeeID
             // 
+            this.txtEmployeeID.Enabled = false;
             this.txtEmployeeID.Location = new System.Drawing.Point(156, 18);
             this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmployeeID.Name = "txtEmployeeID";
@@ -351,7 +345,6 @@ namespace EmployeeTracker
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox textSearch;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
