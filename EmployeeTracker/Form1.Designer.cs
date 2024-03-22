@@ -101,7 +101,7 @@ namespace EmployeeTracker
             this.btnView.Location = new System.Drawing.Point(790, 418);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(117, 22);
+            this.btnView.Size = new System.Drawing.Size(117, 25);
             this.btnView.TabIndex = 10;
             this.btnView.Text = "View";
             this.btnView.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@ namespace EmployeeTracker
             this.btnSearch.Location = new System.Drawing.Point(617, 33);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(117, 22);
+            this.btnSearch.Size = new System.Drawing.Size(117, 25);
             this.btnSearch.TabIndex = 9;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -133,7 +133,7 @@ namespace EmployeeTracker
             this.btnPrint.Location = new System.Drawing.Point(926, 418);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(117, 22);
+            this.btnPrint.Size = new System.Drawing.Size(117, 25);
             this.btnPrint.TabIndex = 7;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@ namespace EmployeeTracker
             // 
             this.btnReset.Location = new System.Drawing.Point(1058, 418);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(117, 22);
+            this.btnReset.Size = new System.Drawing.Size(117, 25);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@ namespace EmployeeTracker
             // 
             this.btnDelete.Location = new System.Drawing.Point(1058, 382);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(117, 22);
+            this.btnDelete.Size = new System.Drawing.Size(117, 25);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@ namespace EmployeeTracker
             this.btnUpdate.Location = new System.Drawing.Point(926, 382);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(117, 22);
+            this.btnUpdate.Size = new System.Drawing.Size(117, 25);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -181,7 +181,7 @@ namespace EmployeeTracker
             this.btnAdd.Location = new System.Drawing.Point(790, 382);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(117, 22);
+            this.btnAdd.Size = new System.Drawing.Size(117, 25);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
