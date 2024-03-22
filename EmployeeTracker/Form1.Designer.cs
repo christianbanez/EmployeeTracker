@@ -46,7 +46,7 @@ namespace EmployeeTracker
             this.txtrole = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtfName = new System.Windows.Forms.TextBox();
+            this.txtlName = new System.Windows.Forms.TextBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -57,7 +57,7 @@ namespace EmployeeTracker
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtAge = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
-            this.txtlName = new System.Windows.Forms.TextBox();
+            this.txtfName = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.panel2.SuspendLayout();
@@ -122,7 +122,7 @@ namespace EmployeeTracker
             this.btnExit.Location = new System.Drawing.Point(1096, 472);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(117, 22);
+            this.btnExit.Size = new System.Drawing.Size(117, 25);
             this.btnExit.TabIndex = 8;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -193,7 +193,7 @@ namespace EmployeeTracker
             this.panel2.Controls.Add(this.txtrole);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.txtfName);
+            this.panel2.Controls.Add(this.txtlName);
             this.panel2.Controls.Add(this.chkActive);
             this.panel2.Controls.Add(this.txtEmployeeID);
             this.panel2.Controls.Add(this.label5);
@@ -204,7 +204,7 @@ namespace EmployeeTracker
             this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.txtAge);
             this.panel2.Controls.Add(this.txtContact);
-            this.panel2.Controls.Add(this.txtlName);
+            this.panel2.Controls.Add(this.txtfName);
             this.panel2.Location = new System.Drawing.Point(759, 72);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
@@ -238,13 +238,13 @@ namespace EmployeeTracker
             this.label6.TabIndex = 23;
             this.label6.Text = "First Name";
             // 
-            // txtfName
+            // txtlName
             // 
-            this.txtfName.Location = new System.Drawing.Point(156, 79);
-            this.txtfName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtfName.Name = "txtfName";
-            this.txtfName.Size = new System.Drawing.Size(224, 22);
-            this.txtfName.TabIndex = 22;
+            this.txtlName.Location = new System.Drawing.Point(156, 79);
+            this.txtlName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtlName.Name = "txtlName";
+            this.txtlName.Size = new System.Drawing.Size(224, 22);
+            this.txtlName.TabIndex = 22;
             // 
             // chkActive
             // 
@@ -335,13 +335,13 @@ namespace EmployeeTracker
             this.txtContact.Size = new System.Drawing.Size(224, 22);
             this.txtContact.TabIndex = 11;
             // 
-            // txtlName
+            // txtfName
             // 
-            this.txtlName.Location = new System.Drawing.Point(156, 48);
-            this.txtlName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtlName.Name = "txtlName";
-            this.txtlName.Size = new System.Drawing.Size(224, 22);
-            this.txtlName.TabIndex = 10;
+            this.txtfName.Location = new System.Drawing.Point(156, 48);
+            this.txtfName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtfName.Name = "txtfName";
+            this.txtfName.Size = new System.Drawing.Size(224, 22);
+            this.txtfName.TabIndex = 10;
             // 
             // Form1
             // 
@@ -380,16 +380,15 @@ namespace EmployeeTracker
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.TextBox txtContact;
-        private System.Windows.Forms.TextBox txtlName;
+        private System.Windows.Forms.TextBox txtfName;
         private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.DataGridView displayData;
-        private System.Windows.Forms.TextBox txtfName;
+        private System.Windows.Forms.TextBox txtlName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtrole;
         private System.Windows.Forms.Label label8;
     }
 }
-

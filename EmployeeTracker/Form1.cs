@@ -71,8 +71,8 @@ namespace EmployeeTracker
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
                 cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@Age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -95,7 +95,7 @@ namespace EmployeeTracker
         {
             dataView();
             txtEmployeeID.Text = "";
-            txtlName.Text = "";
+            txtfName.Text = "";
             txtContact.Text = "";
             txtAge.Text = "";
             txtEmail.Text = "";
@@ -122,8 +122,8 @@ namespace EmployeeTracker
                     MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dataView();
                     txtEmployeeID.Text = "";
-                    txtlName.Text = "";
                     txtfName.Text = "";
+                    txtlName.Text = "";
                     txtContact.Text = "";
                     txtAge.Text = "";
                     txtEmail.Text = "";
@@ -156,8 +156,8 @@ namespace EmployeeTracker
                 {
                     // Update text fields
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
-                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
+                    txtlName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+                    txtfName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
@@ -199,11 +199,11 @@ namespace EmployeeTracker
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE Employee SET Name = @name, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
+                cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
 
                 // Parameters
-                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
                 cmd.Parameters.AddWithValue("@contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
@@ -238,8 +238,8 @@ namespace EmployeeTracker
                 if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
                 {
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
-                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
+                    txtlName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+                    txtfName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
