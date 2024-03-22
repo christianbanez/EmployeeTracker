@@ -98,7 +98,7 @@ namespace EmployeeTracker
             // 
             // btnView
             // 
-            this.btnView.Location = new System.Drawing.Point(790, 418);
+            this.btnView.Location = new System.Drawing.Point(790, 424);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(117, 25);
@@ -130,7 +130,7 @@ namespace EmployeeTracker
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(926, 418);
+            this.btnPrint.Location = new System.Drawing.Point(926, 424);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(117, 25);
@@ -140,7 +140,7 @@ namespace EmployeeTracker
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(1058, 418);
+            this.btnReset.Location = new System.Drawing.Point(1058, 424);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(117, 25);
             this.btnReset.TabIndex = 6;
@@ -149,7 +149,7 @@ namespace EmployeeTracker
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(1058, 382);
+            this.btnDelete.Location = new System.Drawing.Point(1058, 388);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(117, 25);
             this.btnDelete.TabIndex = 5;
@@ -159,7 +159,7 @@ namespace EmployeeTracker
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(926, 382);
+            this.btnUpdate.Location = new System.Drawing.Point(926, 388);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(117, 25);
@@ -178,7 +178,7 @@ namespace EmployeeTracker
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(790, 382);
+            this.btnAdd.Location = new System.Drawing.Point(790, 388);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(117, 25);
