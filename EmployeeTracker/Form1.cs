@@ -8,15 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Xml.Linq;
 
 
 namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\tdizon\Downloads\dbtk.accdb""");
-        OleDbDataAdapter dp;
-        DataTable dt;
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
         int state;
         public Form1()
         {
@@ -69,13 +68,15 @@ namespace EmployeeTracker
 
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO Employee(EmployeeID,Name,contactNum,age,email,status)VALUES(@EmployeeID, @Name, @Contact, @Age, @Email, @state)";
-                cmd.Parameters.AddWithValue("@EmployeeID", txtEmployeeID.Text);
-                cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
+                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@Age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@state", state);
+                cmd.Parameters.AddWithValue("@role", txtrole.Text);
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -93,7 +94,7 @@ namespace EmployeeTracker
         {
             DataView();
             txtEmployeeID.Text = "";
-            txtName.Text = "";
+            txtlName.Text = "";
             txtContact.Text = "";
             txtAge.Text = "";
             txtEmail.Text = "";
@@ -106,30 +107,40 @@ namespace EmployeeTracker
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(mesDel, title, buttons, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {   //to delete the data
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "delete * from Employee where EmployeeID = @EmployeeID";
-                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                if (result == DialogResult.Yes)
+                {   //to delete the data
+                    conn.Open();
+                    OleDbCommand cmd = conn.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "Delete * from Employee where EmployeeID = @EmployeeID ";
+                    cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataView();
+                    txtEmployeeID.Text = "";
+                    txtlName.Text = "";
+                    txtfName.Text = "";
+                    txtContact.Text = "";
+                    txtAge.Text = "";
+                    txtEmail.Text = "";
+                    txtrole.Text = "";
 
-                DataView();
-
-                txtEmployeeID.Text = "";
-                txtName.Text = "";
-                txtContact.Text = "";
-                txtAge.Text = "";
-                txtEmail.Text = "";
+                }
+                else
+                {   //if the data is not deleted
+                    MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //conn.Close();
+                }
             }
-            else
-            {   //if the data is not deleted
+            catch
+            {
                 MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                conn.Close();
             }
+            
+            conn.Close();
         }
 
         private void DisplayData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -144,10 +155,12 @@ namespace EmployeeTracker
                 {
                     // Update text fields
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+                    txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
 
                     // Update checkbox state
                     bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
@@ -160,12 +173,6 @@ namespace EmployeeTracker
             }
 
         }
-
-        private void displayData_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult leave;
@@ -174,6 +181,11 @@ namespace EmployeeTracker
             {
                 Application.Exit();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -189,7 +201,8 @@ namespace EmployeeTracker
                 cmd.CommandText = "UPDATE Employee SET Name = @name, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
 
                 // Parameters
-                cmd.Parameters.AddWithValue("@name", txtName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
                 cmd.Parameters.AddWithValue("@contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
@@ -232,7 +245,8 @@ namespace EmployeeTracker
                 if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
                 {
                     txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtName.Text = displayData.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+                    txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
@@ -248,36 +262,8 @@ namespace EmployeeTracker
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            //try
-            //{
-            //    //search values into database
-            //    conn.Open();
-            //    OleDbCommand cmd = conn.CreateCommand();
-            //    cmd.CommandType = CommandType.Text;
-
-            //    cmd.CommandText = "SELECT * FROM Employee WHERE EmployeeID = '%" + textSearch.Text + "%' or Name '" + textSearch.Text + "' ";
-
-            //    cmd.ExecuteNonQuery();
-            //    DataTable dt = new DataTable();
-            //    OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
-            //    dp.Fill(dt);
-            //    displayData.DataSource = dt;
-
-            //    conn.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-        }
-
-        private void textSearch_TextChanged(object sender, EventArgs e)
-        {
-            DataView dv = dt.DefaultView;
-            dv.RowFilter = "Name LIKE '%" + textSearch.Text + "%'";
-            displayData.DataSource = dv;
         }
     }
 }
