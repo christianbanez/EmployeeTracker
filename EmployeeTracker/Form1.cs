@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace EmployeeTracker
@@ -16,6 +17,7 @@ namespace EmployeeTracker
     public partial class Form1 : Form
     {
         OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
+        DataTable dt;
         int state;
         public Form1()
         {
@@ -253,6 +255,21 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void textSearch_TextChanged(object sender, EventArgs e)
+        {
+            BindingSource dv = new BindingSource();
+            dv.DataSource = displayData.DataSource;
+            //DataView dv = dt.DefaultView;
+            dv.Filter = "fName LIKE  '%" + textSearch.Text + "%' OR lName LIKE '%" + textSearch.Text + "%' ";
+            displayData.DataSource = dv;
+            //BindingSource bs = new BindingSource();
+            //bs.DataSource = displayData.DataSource;
+            //bs.Filter = "SELECT * FROM Employee WHERE fName '%" + textSearch.Text + "%'";
+            //displayData.DataSource = bs;
+            //DataView dv = dt.DefaultView;
+            //dv.RowFilter = "SELECT * from EMPLOYEE where fName LIKE  '%" + textSearch.Text + "%' or lName LIKE'%" + textSearch.Text + "%'";
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)

@@ -40,7 +40,7 @@ namespace EmployeeTracker
             this.btnReset = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textSearch = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtrole = new System.Windows.Forms.TextBox();
@@ -74,7 +74,7 @@ namespace EmployeeTracker
             this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnUpdate);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textSearch);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(7, 12);
@@ -168,13 +168,14 @@ namespace EmployeeTracker
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // textBox1
+            // textSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(30, 33);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(595, 22);
-            this.textBox1.TabIndex = 3;
+            this.textSearch.Location = new System.Drawing.Point(30, 33);
+            this.textSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textSearch.Name = "textSearch";
+            this.textSearch.Size = new System.Drawing.Size(595, 22);
+            this.textSearch.TabIndex = 3;
+            this.textSearch.TextChanged += new System.EventHandler(this.textSearch_TextChanged);
             // 
             // btnAdd
             // 
@@ -370,7 +371,7 @@ namespace EmployeeTracker
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label4;
