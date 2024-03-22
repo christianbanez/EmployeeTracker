@@ -15,7 +15,7 @@ namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
         int state;
         public Form1()
         {
@@ -52,43 +52,14 @@ namespace EmployeeTracker
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //Checkbox
-            if (chkActive.Checked == true)
-            {
-                state = -1;
-            }
-            else if (chkActive.Checked == false) 
-            {
-                state = 0;
-            }
-
-            try
-            {
-                //adding values into database
-                conn.Open();
-
-                OleDbCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
-                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@role", txtrole.Text);
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                conn.Close();
-                dataView();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            Form2 form = new Form2();
+            form.DataUpdated += Form2_DataUpdated;
+            form.Show();
+        }
+        private void Form2_DataUpdated()
+        {
+            // Refresh or reload your DataGridView
+            dataView(); // Assuming dataView() is the method that reloads the DataGridView
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -199,7 +170,7 @@ namespace EmployeeTracker
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE Employee SET Name = @name, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
+                cmd.CommandText = "UPDATE Employee SET fName = @fName, LName = @LName, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
 
                 // Parameters
                 cmd.Parameters.AddWithValue("@fName", txtfName.Text);

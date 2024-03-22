@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace EmployeeTracker
+﻿namespace EmployeeTracker
 {
-    partial class Form1
+    partial class Form2
     {
         /// <summary>
         /// Required designer variable.
@@ -31,16 +28,6 @@ namespace EmployeeTracker
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.displayData = new System.Windows.Forms.DataGridView();
-            this.btnView = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtrole = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -58,130 +45,13 @@ namespace EmployeeTracker
             this.txtContact = new System.Windows.Forms.TextBox();
             this.txtlName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.SkyBlue;
-            this.panel1.Controls.Add(this.displayData);
-            this.panel1.Controls.Add(this.btnView);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Controls.Add(this.btnPrint);
-            this.panel1.Controls.Add(this.btnReset);
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.btnUpdate);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(8, 15);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1387, 656);
-            this.panel1.TabIndex = 0;
-            // 
-            // displayData
-            // 
-            this.displayData.AllowUserToAddRows = false;
-            this.displayData.AllowUserToDeleteRows = false;
-            this.displayData.ColumnHeadersHeight = 34;
-            this.displayData.Location = new System.Drawing.Point(32, 90);
-            this.displayData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.displayData.Name = "displayData";
-            this.displayData.ReadOnly = true;
-            this.displayData.RowHeadersWidth = 62;
-            this.displayData.Size = new System.Drawing.Size(810, 508);
-            this.displayData.TabIndex = 11;
-            this.displayData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayData_CellClick);
-            // 
-            // btnView
-            // 
-            this.btnView.Location = new System.Drawing.Point(889, 522);
-            this.btnView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(132, 28);
-            this.btnView.TabIndex = 10;
-            this.btnView.Text = "View";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(694, 41);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(132, 28);
-            this.btnSearch.TabIndex = 9;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Location = new System.Drawing.Point(1233, 590);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(132, 28);
-            this.btnExit.TabIndex = 8;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(1042, 522);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(132, 28);
-            this.btnPrint.TabIndex = 7;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(1190, 522);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(132, 28);
-            this.btnReset.TabIndex = 6;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(1190, 478);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(132, 28);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(1042, 478);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(132, 28);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(34, 41);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(636, 26);
-            this.textBox1.TabIndex = 3;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.txtrole);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label6);
@@ -197,12 +67,11 @@ namespace EmployeeTracker
             this.panel2.Controls.Add(this.txtAge);
             this.panel2.Controls.Add(this.txtContact);
             this.panel2.Controls.Add(this.txtlName);
-            this.panel2.Location = new System.Drawing.Point(854, 90);
+            this.panel2.Location = new System.Drawing.Point(12, 11);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(497, 382);
-            this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.panel2.TabIndex = 2;
             // 
             // txtrole
             // 
@@ -301,7 +170,6 @@ namespace EmployeeTracker
             this.label1.Size = new System.Drawing.Size(86, 20);
             this.label1.TabIndex = 15;
             this.label1.Text = "Last Name";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtEmail
             // 
@@ -337,28 +205,23 @@ namespace EmployeeTracker
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(889, 478);
+            this.btnAdd.Location = new System.Drawing.Point(296, 315);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(132, 28);
-            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabIndex = 27;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // Form1
+            // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1403, 686);
-            this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();
+            this.ClientSize = new System.Drawing.Size(517, 403);
+            this.Controls.Add(this.panel2);
+            this.Name = "Form2";
+            this.Text = "Form2";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -367,15 +230,14 @@ namespace EmployeeTracker
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.TextBox txtrole;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtfName;
+        private System.Windows.Forms.CheckBox chkActive;
+        private System.Windows.Forms.TextBox txtEmployeeID;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -384,16 +246,6 @@ namespace EmployeeTracker
         private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.TextBox txtlName;
-        private System.Windows.Forms.TextBox txtEmployeeID;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox chkActive;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.DataGridView displayData;
-        private System.Windows.Forms.TextBox txtfName;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtrole;
-        private System.Windows.Forms.Label label8;
-        private Button btnAdd;
+        private System.Windows.Forms.Button btnAdd;
     }
 }
-
