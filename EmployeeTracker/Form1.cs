@@ -16,7 +16,7 @@ namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
         DataTable dt;
         int state;
         public Form1()
@@ -297,5 +297,9 @@ namespace EmployeeTracker
             }
         }
 
+        private void textSearch_Click(object sender, EventArgs e)
+        {
+            textSearch.Text = "";
+        }
     }
 }
