@@ -33,7 +33,7 @@
             this.txtrole = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtfName = new System.Windows.Forms.TextBox();
+            this.txtlName = new System.Windows.Forms.TextBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtAge = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
-            this.txtlName = new System.Windows.Forms.TextBox();
+            this.txtfName = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             this.panel2.Controls.Add(this.txtrole);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.txtfName);
+            this.panel2.Controls.Add(this.txtlName);
             this.panel2.Controls.Add(this.chkActive);
             this.panel2.Controls.Add(this.txtEmployeeID);
             this.panel2.Controls.Add(this.label5);
@@ -66,9 +66,9 @@
             this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.txtAge);
             this.panel2.Controls.Add(this.txtContact);
-            this.panel2.Controls.Add(this.txtlName);
+            this.panel2.Controls.Add(this.txtfName);
             this.panel2.Location = new System.Drawing.Point(8, 7);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(332, 249);
             this.panel2.TabIndex = 2;
@@ -76,7 +76,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(197, 205);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 20);
             this.btnAdd.TabIndex = 27;
@@ -87,7 +87,7 @@
             // txtrole
             // 
             this.txtrole.Location = new System.Drawing.Point(117, 170);
-            this.txtrole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtrole.Margin = new System.Windows.Forms.Padding(2);
             this.txtrole.Name = "txtrole";
             this.txtrole.Size = new System.Drawing.Size(169, 20);
             this.txtrole.TabIndex = 26;
@@ -112,19 +112,19 @@
             this.label6.TabIndex = 23;
             this.label6.Text = "First Name";
             // 
-            // txtfName
+            // txtlName
             // 
-            this.txtfName.Location = new System.Drawing.Point(117, 64);
-            this.txtfName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtfName.Name = "txtfName";
-            this.txtfName.Size = new System.Drawing.Size(169, 20);
-            this.txtfName.TabIndex = 22;
+            this.txtlName.Location = new System.Drawing.Point(117, 64);
+            this.txtlName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtlName.Name = "txtlName";
+            this.txtlName.Size = new System.Drawing.Size(169, 20);
+            this.txtlName.TabIndex = 22;
             // 
             // chkActive
             // 
             this.chkActive.AutoSize = true;
             this.chkActive.Location = new System.Drawing.Point(117, 207);
-            this.chkActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkActive.Margin = new System.Windows.Forms.Padding(2);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(56, 17);
             this.chkActive.TabIndex = 21;
@@ -134,7 +134,7 @@
             // txtEmployeeID
             // 
             this.txtEmployeeID.Location = new System.Drawing.Point(117, 15);
-            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.Size = new System.Drawing.Size(169, 20);
             this.txtEmployeeID.TabIndex = 20;
@@ -192,7 +192,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(117, 143);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(169, 20);
             this.txtEmail.TabIndex = 13;
@@ -200,7 +200,7 @@
             // txtAge
             // 
             this.txtAge.Location = new System.Drawing.Point(117, 115);
-            this.txtAge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAge.Margin = new System.Windows.Forms.Padding(2);
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(169, 20);
             this.txtAge.TabIndex = 12;
@@ -208,19 +208,19 @@
             // txtContact
             // 
             this.txtContact.Location = new System.Drawing.Point(117, 89);
-            this.txtContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtContact.Margin = new System.Windows.Forms.Padding(2);
             this.txtContact.MaxLength = 11;
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(169, 20);
             this.txtContact.TabIndex = 11;
             // 
-            // txtlName
+            // txtfName
             // 
-            this.txtlName.Location = new System.Drawing.Point(117, 39);
-            this.txtlName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtlName.Name = "txtlName";
-            this.txtlName.Size = new System.Drawing.Size(169, 20);
-            this.txtlName.TabIndex = 10;
+            this.txtfName.Location = new System.Drawing.Point(117, 39);
+            this.txtfName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtfName.Name = "txtfName";
+            this.txtfName.Size = new System.Drawing.Size(169, 20);
+            this.txtfName.TabIndex = 10;
             // 
             // Form2
             // 
@@ -228,7 +228,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(345, 262);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.panel2.ResumeLayout(false);
@@ -243,7 +243,7 @@
         private System.Windows.Forms.TextBox txtrole;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtfName;
+        private System.Windows.Forms.TextBox txtlName;
         private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.Label label5;
@@ -254,7 +254,7 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.TextBox txtContact;
-        private System.Windows.Forms.TextBox txtlName;
+        private System.Windows.Forms.TextBox txtfName;
         private System.Windows.Forms.Button btnAdd;
     }
 }

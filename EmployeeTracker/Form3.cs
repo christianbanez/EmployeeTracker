@@ -90,8 +90,8 @@ namespace EmployeeTracker
                 cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
 
                 // Parameters
-                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
                 cmd.Parameters.AddWithValue("@contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);

@@ -69,8 +69,8 @@ namespace EmployeeTracker
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
                 cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@Age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);

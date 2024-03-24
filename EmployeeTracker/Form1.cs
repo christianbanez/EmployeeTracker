@@ -197,9 +197,20 @@ namespace EmployeeTracker
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Form3 form = new Form3();
-            form.DataUpdated += Form3_DataUpdated;
-            form.Show();
+            //Form3 form = new Form3();
+            //form.DataUpdated += Form3_DataUpdated;
+            //form.Show();
+
+            Form3 form3 = new Form3();
+            //form3.txtfName.Text = displayData.CurrentRow.Cells[0].Value.ToString();
+            form3.txtEmployeeID.Text = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
+            form3.txtlName.Text = displayData.CurrentRow.Cells["fName"].Value.ToString();
+            form3.txtfName.Text = displayData.CurrentRow.Cells["lName"].Value.ToString();
+            form3.txtContact.Text = displayData.CurrentRow.Cells["contactNum"].Value.ToString();
+            form3.txtAge.Text = displayData.CurrentRow.Cells["age"].Value.ToString();
+            form3.txtEmail.Text = displayData.CurrentRow.Cells["email"].Value.ToString();
+            form3.Show();
+
             //            try
             //            {
             //                Use class-level variable
