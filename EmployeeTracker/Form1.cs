@@ -16,7 +16,7 @@ namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\Downloads\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
         DataTable dt;
         int state;
         public Form1()
@@ -79,6 +79,7 @@ namespace EmployeeTracker
             dataView();
         }
 
+        //opens modal form 2 for inserting data
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Form2 form = new Form2();
@@ -91,12 +92,13 @@ namespace EmployeeTracker
             dataView(); // Assuming dataView() is the method that reloads the DataGridView
         }
 
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            dataView();
-            //refresh();
-        }
+        //private void btnView_Click(object sender, EventArgs e)
+        //{
+        //    dataView();
+        //    //refresh();
+        //}
 
+        //Delete function
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string mesDel = "Are you sure you want to delete?";
@@ -108,11 +110,13 @@ namespace EmployeeTracker
             {
                 if (result == DialogResult.Yes)
                 {   //to delete the data
+                    string employeeID;
                     conn.Open();
                     OleDbCommand cmd = conn.CreateCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "Delete * from Employee where EmployeeID = @EmployeeID ";
-                    //cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                    employeeID = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
+                    cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(employeeID));
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -165,6 +169,8 @@ namespace EmployeeTracker
         //    }
 
         //}
+
+        //Exit method
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult leave;
@@ -175,16 +181,18 @@ namespace EmployeeTracker
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        //private void label1_Click(object sender, EventArgs e)
+        //{
 
-        }
- 
+        //}
+
+        //opens modal form 3 for updating data
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
             Form3 form3 = new Form3();
 
+            //displays data to form3
             form3.txtEmployeeID.Text = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
             form3.txtfName.Text = displayData.CurrentRow.Cells["fName"].Value.ToString();
             form3.txtlName.Text = displayData.CurrentRow.Cells["lName"].Value.ToString();
@@ -192,7 +200,6 @@ namespace EmployeeTracker
             form3.txtAge.Text = displayData.CurrentRow.Cells["age"].Value.ToString();
             form3.txtEmail.Text = displayData.CurrentRow.Cells["email"].Value.ToString();
             form3.txtrole.Text = displayData.CurrentRow.Cells["role"].Value.ToString();
-
 
             // Update checkbox state
             bool isActive = Convert.ToInt32(displayData.CurrentRow.Cells["status"].Value) == 1;
@@ -246,11 +253,17 @@ namespace EmployeeTracker
         //    {
         //        txtContact.ForeColor = Color.Red;
         //    }
-            
+
 
         //}
 
+        //resets search bar when clicked
+        private void textSearch_Click(object sender, EventArgs e)
+        {
+            textSearch.Text = "";
+        }
 
+        //Search method
         private void textsearch_textchanged(object sender, EventArgs e)
         {
             BindingSource dv = new BindingSource();
@@ -266,10 +279,7 @@ namespace EmployeeTracker
             //dv.rowfilter = "select * from employee where fname like  '%" + textsearch.text + "%' or lname like'%" + textsearch.text + "%'";
         }
 
-        private void panel2_paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        //Contact number requirement matching
         private void txtcontact_keypress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -279,9 +289,6 @@ namespace EmployeeTracker
             }
         }
 
-        private void textSearch_Click(object sender, EventArgs e)
-        {
-            textSearch.Text = "";
-        }
+
     }
 }
