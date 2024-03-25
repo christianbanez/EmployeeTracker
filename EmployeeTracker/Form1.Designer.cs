@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace EmployeeTracker
+﻿namespace EmployeeTracker
 {
-    partial class Form1
+    partial class frmAddTask
     {
         /// <summary>
         /// Required designer variable.
@@ -31,144 +28,238 @@ namespace EmployeeTracker
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.textSearch = new System.Windows.Forms.TextBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbxColor = new System.Windows.Forms.ComboBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.displayData = new System.Windows.Forms.DataGridView();
+            this.lStartD = new System.Windows.Forms.Label();
+            this.lProj = new System.Windows.Forms.Label();
+            this.lAssign = new System.Windows.Forms.Label();
+            this.ltskDesc = new System.Windows.Forms.Label();
+            this.lbtskTitle = new System.Windows.Forms.Label();
+            this.cmbxProj = new System.Windows.Forms.ComboBox();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cmbxAssign = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.employeeTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.EmployeeTableAdapter();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.SkyBlue;
-            this.panel1.Controls.Add(this.displayData);
-            this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Controls.Add(this.btnPrint);
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.textSearch);
-            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.cmbxColor);
+            this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(5, 10);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Controls.Add(this.lStartD);
+            this.panel1.Controls.Add(this.lProj);
+            this.panel1.Controls.Add(this.lAssign);
+            this.panel1.Controls.Add(this.ltskDesc);
+            this.panel1.Controls.Add(this.lbtskTitle);
+            this.panel1.Controls.Add(this.cmbxProj);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.cmbxAssign);
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Location = new System.Drawing.Point(13, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(699, 427);
+            this.panel1.Size = new System.Drawing.Size(738, 531);
             this.panel1.TabIndex = 0;
             // 
-            // btnExit
+            // label1
             // 
-            this.btnExit.Location = new System.Drawing.Point(588, 368);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(88, 20);
-            this.btnExit.TabIndex = 8;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(566, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 25);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Color:";
             // 
-            // btnPrint
+            // cmbxColor
             // 
-            this.btnPrint.Location = new System.Drawing.Point(588, 140);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(88, 20);
-            this.btnPrint.TabIndex = 7;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
+            this.cmbxColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxColor.FormattingEnabled = true;
+            this.cmbxColor.Location = new System.Drawing.Point(571, 65);
+            this.cmbxColor.Name = "cmbxColor";
+            this.cmbxColor.Size = new System.Drawing.Size(139, 33);
+            this.cmbxColor.TabIndex = 12;
             // 
-            // btnDelete
+            // btnCancel
             // 
-            this.btnDelete.Location = new System.Drawing.Point(588, 116);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 20);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // textSearch
-            // 
-            this.textSearch.Location = new System.Drawing.Point(28, 37);
-            this.textSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(425, 20);
-            this.textSearch.TabIndex = 3;
-            this.textSearch.Text = "Search...";
-            this.textSearch.Click += new System.EventHandler(this.textSearch_Click);
-            this.textSearch.TextChanged += new System.EventHandler(this.textsearch_textchanged);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(588, 92);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 20);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnCancel.Location = new System.Drawing.Point(592, 481);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(128, 25);
+            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(588, 68);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Location = new System.Drawing.Point(431, 481);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(88, 20);
-            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Size = new System.Drawing.Size(128, 25);
+            this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // displayData
+            // lStartD
             // 
-            this.displayData.AllowUserToAddRows = false;
-            this.displayData.AllowUserToDeleteRows = false;
-            this.displayData.AllowUserToResizeColumns = false;
-            this.displayData.AllowUserToResizeRows = false;
-            this.displayData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.displayData.ColumnHeadersHeight = 34;
-            this.displayData.Location = new System.Drawing.Point(21, 58);
-            this.displayData.Margin = new System.Windows.Forms.Padding(2);
-            this.displayData.Name = "displayData";
-            this.displayData.ReadOnly = true;
-            this.displayData.RowHeadersWidth = 62;
-            this.displayData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.displayData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.displayData.Size = new System.Drawing.Size(540, 330);
-            this.displayData.TabIndex = 11;
+            this.lStartD.AutoSize = true;
+            this.lStartD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lStartD.Location = new System.Drawing.Point(12, 98);
+            this.lStartD.Name = "lStartD";
+            this.lStartD.Size = new System.Drawing.Size(105, 25);
+            this.lStartD.TabIndex = 8;
+            this.lStartD.Text = "Start Date:";
             // 
-            // Form1
+            // lProj
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.lProj.AutoSize = true;
+            this.lProj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lProj.Location = new System.Drawing.Point(387, 380);
+            this.lProj.Name = "lProj";
+            this.lProj.Size = new System.Drawing.Size(78, 25);
+            this.lProj.TabIndex = 9;
+            this.lProj.Text = "Project:";
+            // 
+            // lAssign
+            // 
+            this.lAssign.AutoSize = true;
+            this.lAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lAssign.Location = new System.Drawing.Point(12, 380);
+            this.lAssign.Name = "lAssign";
+            this.lAssign.Size = new System.Drawing.Size(129, 25);
+            this.lAssign.TabIndex = 7;
+            this.lAssign.Text = "Assigned To:";
+            // 
+            // ltskDesc
+            // 
+            this.ltskDesc.AutoSize = true;
+            this.ltskDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltskDesc.Location = new System.Drawing.Point(12, 163);
+            this.ltskDesc.Name = "ltskDesc";
+            this.ltskDesc.Size = new System.Drawing.Size(164, 25);
+            this.ltskDesc.TabIndex = 8;
+            this.ltskDesc.Text = "Task Description:";
+            // 
+            // lbtskTitle
+            // 
+            this.lbtskTitle.AutoSize = true;
+            this.lbtskTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtskTitle.Location = new System.Drawing.Point(12, 33);
+            this.lbtskTitle.Name = "lbtskTitle";
+            this.lbtskTitle.Size = new System.Drawing.Size(104, 25);
+            this.lbtskTitle.TabIndex = 6;
+            this.lbtskTitle.Text = "Task Title:";
+            // 
+            // cmbxProj
+            // 
+            this.cmbxProj.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxProj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxProj.FormattingEnabled = true;
+            this.cmbxProj.Location = new System.Drawing.Point(392, 412);
+            this.cmbxProj.Name = "cmbxProj";
+            this.cmbxProj.Size = new System.Drawing.Size(293, 33);
+            this.cmbxProj.TabIndex = 5;
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataMember = "Employee";
+            this.employeeBindingSource.DataSource = this.dbtkDataSet;
+            // 
+            // dbtkDataSet
+            // 
+            this.dbtkDataSet.DataSetName = "dbtkDataSet";
+            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "ddd, MM/dd/yyyy";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(17, 130);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(212, 30);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
+            // cmbxAssign
+            // 
+            this.cmbxAssign.DataSource = this.employeeBindingSource;
+            this.cmbxAssign.DisplayMember = "fName";
+            this.cmbxAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxAssign.FormattingEnabled = true;
+            this.cmbxAssign.Location = new System.Drawing.Point(17, 412);
+            this.cmbxAssign.Name = "cmbxAssign";
+            this.cmbxAssign.Size = new System.Drawing.Size(316, 33);
+            this.cmbxAssign.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(17, 195);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(703, 182);
+            this.textBox2.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(17, 65);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(542, 30);
+            this.textBox1.TabIndex = 0;
+            // 
+            // employeeTableAdapter
+            // 
+            this.employeeTableAdapter.ClearBeforeFill = true;
+            // 
+            // frmAddTask
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(709, 446);
+            this.ClientSize = new System.Drawing.Size(763, 556);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmAddTask";
+            this.Text = "Add Task";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
 
-
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox textSearch;
-        private System.Windows.Forms.Button btnExit;
-        private Button btnAdd;
-        private DataGridView displayData;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbxAssign;
+        private dbtkDataSet dbtkDataSet;
+        private System.Windows.Forms.BindingSource employeeBindingSource;
+        private dbtkDataSetTableAdapters.EmployeeTableAdapter employeeTableAdapter;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox cmbxProj;
+        private System.Windows.Forms.Label lbtskTitle;
+        private System.Windows.Forms.Label ltskDesc;
+        private System.Windows.Forms.Label lAssign;
+        private System.Windows.Forms.Label lProj;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Label lStartD;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbxColor;
     }
 }
