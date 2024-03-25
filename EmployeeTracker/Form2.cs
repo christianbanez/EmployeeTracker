@@ -17,7 +17,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
         int state;
         string pattern = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
         public Form2()
@@ -150,22 +150,22 @@ namespace EmployeeTracker
                         //adding values into database
                         conn.Open();
 
-                OleDbCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
-                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@role", txtrole.Text);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DataUpdated?.Invoke();
-                this.Close();
-            }
+                        OleDbCommand cmd = conn.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
+                        cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                        cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                        cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                        cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                        cmd.Parameters.AddWithValue("@Age", txtAge.Text);
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@state", state);
+                        cmd.Parameters.AddWithValue("@role", txtrole.Text);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DataUpdated?.Invoke();
+                        this.Close();
+                        }
 
                     catch (Exception ex)
                     {
@@ -184,14 +184,14 @@ namespace EmployeeTracker
         private void txtEmployeeID_Leave(object sender, EventArgs e)
         {
                 
-            if ( string.IsNullOrEmpty( txtEmployeeID.Text ) == true)
-            {
-                errorProvider1.SetError(this.txtEmployeeID, "Please Fill the Employee ID");
-            }
-            else 
-            {
-                errorProvider1.Clear();
-            }
+            //if ( string.IsNullOrEmpty( txtEmployeeID.Text ) == true)
+            //{
+            //    errorProvider1.SetError(this.txtEmployeeID, "Please Fill the Employee ID");
+            //}
+            //else 
+            //{
+            //    errorProvider1.Clear();
+            //}
             
         }
 
