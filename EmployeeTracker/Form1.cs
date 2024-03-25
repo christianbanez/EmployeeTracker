@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using ClosedXML.Excel;
 
 
 namespace EmployeeTracker
@@ -286,7 +288,54 @@ namespace EmployeeTracker
                 MessageBox.Show("error, contact number should only contain numbers");
             }
         }
+        private string ConvertToCellAddress(int row, int column)
+        {
+            // Columns in Excel are labeled as A, B, C, ..., Z, AA, AB, ..., etc.
+            // The following code converts a column index to this format.
+            string columnLabel = "";
+            while (column >= 0)
+            {
+                columnLabel = (char)('A' + column % 26) + columnLabel;
+                column = column / 26 - 1;
+            }
+            // Rows in Excel are labeled as 1, 2, 3, ..., n
+            // Adding 1 because Excel is 1-based and our loop is 0-based.
+            string rowLabel = (row + 1).ToString();
+            return columnLabel + rowLabel;
+        }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            //using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            //{
+            //    if (sfd.ShowDialog() == DialogResult.OK)
+            //    {
+            //        try
+            //        {
+            //            conn.Open();
+            //            OleDbCommand cmd = conn.CreateCommand();
+            //            cmd.CommandType = CommandType.Text;
+            //            cmd.CommandText = "SELECT * FROM Employee";
+
+            //            cmd.ExecuteNonQuery();
+            //            DataTable dt = new DataTable();
+            //            OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+            //            dp.Fill(dt);
+            //            displayData.DataSource = dt;
+
+            //            conn.Close();
+            //            using (XLWorkbook workbook = new XLWorkbook())
+            //            {
+            //                workbook.Worksheets.Add(this.appData.Employees.CopyToDataTable)
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //}
+        }
 
     }
 }
