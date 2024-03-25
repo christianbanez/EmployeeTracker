@@ -16,7 +16,7 @@ namespace EmployeeTracker
 {
     public partial class Form1 : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Christian\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
         DataTable dt;
         int state;
         public Form1()
@@ -47,23 +47,8 @@ namespace EmployeeTracker
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        bool IsValidEmail(string eMailchecker)
-        {
-            bool result = false;
 
-            try
-            {
-                var eMailValidator = new System.Net.Mail.MailAddress(eMailchecker);
-
-                result = (eMailchecker.LastIndexOf(".") > eMailchecker.LastIndexOf("@"));
-            }
-            catch
-            {
-                result = false;
-            };
-
-            return result;
-        }
+        //to refresh the data view
         void refresh()
         {
             txtEmployeeID.Text = "";
@@ -137,33 +122,33 @@ namespace EmployeeTracker
 
         private void DisplayData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                // Get the selected row index
-                int rowIndex = e.RowIndex;
+            //try
+            //{
+            //    // Get the selected row index
+            //    int rowIndex = e.RowIndex;
 
-                // Ensure a valid row is selected
-                if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
-                {
-                    // Update text fields
-                    txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtlName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
-                    txtfName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
-                    txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
-                    txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
-                    txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
-                    txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
+            //    // Ensure a valid row is selected
+            //    if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
+            //    {
+            //        // Update text fields
+            //        txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
+            //        txtlName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+            //        txtfName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
+            //        txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
+            //        txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
+            //        txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+            //        txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
 
-                    // Update checkbox state
-                    bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
-                    chkActive.Checked = isActive;
+            //        // Update checkbox state
+            //        bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
+            //        chkActive.Checked = isActive;
                     
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
         }
         private void btnExit_Click(object sender, EventArgs e)
@@ -191,7 +176,7 @@ namespace EmployeeTracker
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
+                cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, status = @status, role = @role WHERE EmployeeID = @employeeID";
 
                 // Parameters
                 cmd.Parameters.AddWithValue("@fName", txtlName.Text);
@@ -200,6 +185,7 @@ namespace EmployeeTracker
                 cmd.Parameters.AddWithValue("@age", txtAge.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@status", state);
+                cmd.Parameters.AddWithValue("@role", txtrole.Text);
                 cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
 
                 
@@ -243,6 +229,7 @@ namespace EmployeeTracker
                     txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
                     txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
                     txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+                    txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
 
                     // Update checkbox state
                     bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
