@@ -152,7 +152,7 @@ namespace EmployeeTracker
 
                         OleDbCommand cmd = conn.CreateCommand();
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
+                        cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role,accDateCreated)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role, Now())";
                         cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
                         cmd.Parameters.AddWithValue("@fName", txtfName.Text);
                         cmd.Parameters.AddWithValue("@lName", txtlName.Text);
