@@ -150,22 +150,22 @@ namespace EmployeeTracker
                         //adding values into database
                         conn.Open();
 
-                        OleDbCommand cmd = conn.CreateCommand();
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
-                        cmd.Parameters.AddWithValue("@EmployeeID", txtEmployeeID.Text);
-                        cmd.Parameters.AddWithValue("@fName", txtlName.Text);
-                        cmd.Parameters.AddWithValue("@lName", txtfName.Text);
-                        cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                        cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                        cmd.Parameters.AddWithValue("@state", state);
-                        cmd.Parameters.AddWithValue("@role", txtrole.Text);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DataUpdated?.Invoke();
-                        this.Close();
-                    }
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role)";
+                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@state", state);
+                cmd.Parameters.AddWithValue("@role", txtrole.Text);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DataUpdated?.Invoke();
+                this.Close();
+            }
 
                     catch (Exception ex)
                     {

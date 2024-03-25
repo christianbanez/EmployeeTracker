@@ -23,7 +23,6 @@ namespace EmployeeTracker
         {
             InitializeComponent();
         }
-
         void dataView()
         {
             try
@@ -64,22 +63,23 @@ namespace EmployeeTracker
 
             return result;
         }
-        void refresh()
-        {
-            txtEmployeeID.Text = "";
-            txtfName.Text = "";
-            txtlName.Text = "";
-            txtContact.Text = "";
-            txtAge.Text = "";
-            txtEmail.Text = "";
-            txtrole.Text = "";
-            chkActive.Checked = false;
-        }
+        //void refresh()
+        //{
+        //    txtEmployeeID.Text = "";
+        //    txtfName.Text = "";
+        //    txtlName.Text = "";
+        //    txtContact.Text = "";
+        //    txtAge.Text = "";
+        //    txtEmail.Text = "";
+        //    txtrole.Text = "";
+        //    chkActive.Checked = false;
+        //}
         private void Form1_Load(object sender, EventArgs e)
         {
             dataView();
         }
 
+        //opens modal form 2 for inserting data
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Form2 form = new Form2();
@@ -92,12 +92,13 @@ namespace EmployeeTracker
             dataView(); // Assuming dataView() is the method that reloads the DataGridView
         }
 
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            dataView();
-            refresh();
-        }
+        //private void btnView_Click(object sender, EventArgs e)
+        //{
+        //    dataView();
+        //    //refresh();
+        //}
 
+        //Delete function
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string mesDel = "Are you sure you want to delete?";
@@ -109,16 +110,18 @@ namespace EmployeeTracker
             {
                 if (result == DialogResult.Yes)
                 {   //to delete the data
+                    string employeeID;
                     conn.Open();
                     OleDbCommand cmd = conn.CreateCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "Delete * from Employee where EmployeeID = @EmployeeID ";
-                    cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                    employeeID = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
+                    cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(employeeID));
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dataView();
-                    refresh();
+                    //refresh();
 
                 }
                 else
@@ -135,37 +138,39 @@ namespace EmployeeTracker
             conn.Close();
         }
 
-        private void DisplayData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // Get the selected row index
-                int rowIndex = e.RowIndex;
+        //private void DisplayData_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Get the selected row index
+        //        int rowIndex = e.RowIndex;
 
-                // Ensure a valid row is selected
-                if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
-                {
-                    // Update text fields
-                    txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtlName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
-                    txtfName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
-                    txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
-                    txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
-                    txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
-                    txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
+        //        // Ensure a valid row is selected
+        //        if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
+        //        {
+        //            // Update text fields
+        //            txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
+        //            txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+        //            txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
+        //            txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
+        //            txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
+        //            txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+        //            txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
 
-                    // Update checkbox state
-                    bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
-                    chkActive.Checked = isActive;
+        //            // Update checkbox state
+        //            bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
+        //            chkActive.Checked = isActive;
                     
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
 
-        }
+        //}
+
+        //Exit method
         private void btnExit_Click(object sender, EventArgs e)
         {
             DialogResult leave;
@@ -176,99 +181,89 @@ namespace EmployeeTracker
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        //private void label1_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
+        //opens modal form 3 for updating data
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Use class-level variable
-                int state = chkActive.Checked ? 1 : 0; 
 
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
+            Form3 form3 = new Form3();
 
-                // Parameters
-                cmd.Parameters.AddWithValue("@fName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@lName", txtfName.Text);
-                cmd.Parameters.AddWithValue("@contact", txtContact.Text);
-                cmd.Parameters.AddWithValue("@age", txtAge.Text);
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@status", state);
-                cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
+            //displays data to form3
+            form3.txtEmployeeID.Text = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
+            form3.txtfName.Text = displayData.CurrentRow.Cells["fName"].Value.ToString();
+            form3.txtlName.Text = displayData.CurrentRow.Cells["lName"].Value.ToString();
+            form3.txtContact.Text = displayData.CurrentRow.Cells["contactNum"].Value.ToString();
+            form3.txtAge.Text = displayData.CurrentRow.Cells["age"].Value.ToString();
+            form3.txtEmail.Text = displayData.CurrentRow.Cells["email"].Value.ToString();
+            form3.txtrole.Text = displayData.CurrentRow.Cells["role"].Value.ToString();
 
-                
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Record updated in Database", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Employee ID not found or no changes made", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+            // Update checkbox state
+            bool isActive = Convert.ToInt32(displayData.CurrentRow.Cells["status"].Value) == 1;
+            form3.chkActive.Checked = isActive;
 
-                conn.Close();
-
-                dataView();
-                refresh();
-                
-
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            form3.DataUpdated += Form3_DataUpdated;
+            form3.Show();
         }
 
-        private void displayData_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Form3_DataUpdated()
         {
-            try
-            {
-                // Get the selected row index
-                int rowIndex = e.RowIndex;
-
-                if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
-                {
-                    txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
-                    txtlName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
-                    txtfName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
-                    txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
-                    txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
-                    txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
-
-                    // Update checkbox state
-                    bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
-                    chkActive.Checked = isActive;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            // Refresh or reload your DataGridView
+            dataView(); // Assuming dataView() is the method that reloads the DataGridView
         }
-        private void txtContact_TextChanged(object sender, EventArgs e)
+
+        //private void displayData_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Get the selected row index
+        //        int rowIndex = e.RowIndex;
+
+        //        if (rowIndex >= 0 && rowIndex < displayData.Rows.Count)
+        //        {
+        //            txtEmployeeID.Text = displayData.Rows[rowIndex].Cells["EmployeeID"].Value.ToString();
+        //            txtfName.Text = displayData.Rows[rowIndex].Cells["fName"].Value.ToString();
+        //            txtlName.Text = displayData.Rows[rowIndex].Cells["lName"].Value.ToString();
+        //            txtContact.Text = displayData.Rows[rowIndex].Cells["contactNum"].Value.ToString();
+        //            txtAge.Text = displayData.Rows[rowIndex].Cells["age"].Value.ToString();
+        //            txtEmail.Text = displayData.Rows[rowIndex].Cells["email"].Value.ToString();
+        //            txtrole.Text = displayData.Rows[rowIndex].Cells["role"].Value.ToString();
+
+
+        //            // Update checkbox state
+        //            bool isActive = Convert.ToInt32(displayData.Rows[rowIndex].Cells["status"].Value) == 1;
+        //            chkActive.Checked = isActive;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+        //private void txtContact_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (txtContact.TextLength == 11)
+        //    {
+        //        txtContact.ForeColor = Color.Black;
+        //    }
+        //    else
+        //    {
+        //        txtContact.ForeColor = Color.Red;
+        //    }
+
+
+        //}
+
+        //resets search bar when clicked
+        private void textSearch_Click(object sender, EventArgs e)
         {
-            if (txtContact.TextLength == 11)
-            {
-                txtContact.ForeColor = Color.Black;
-            }
-            else
-            {
-                txtContact.ForeColor = Color.Red;
-            }
-            
-
+            textSearch.Text = "";
         }
 
-
+        //Search method
         private void textsearch_textchanged(object sender, EventArgs e)
         {
             BindingSource dv = new BindingSource();
@@ -284,10 +279,7 @@ namespace EmployeeTracker
             //dv.rowfilter = "select * from employee where fname like  '%" + textsearch.text + "%' or lname like'%" + textsearch.text + "%'";
         }
 
-        private void panel2_paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        //Contact number requirement matching
         private void txtcontact_keypress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -296,6 +288,7 @@ namespace EmployeeTracker
                 MessageBox.Show("error, contact number should only contain numbers");
             }
         }
+
 
     }
 }
