@@ -16,7 +16,7 @@ namespace EmployeeTracker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAddTask());
+            Application.Run(new frmDashboard());
         }
     }
 }

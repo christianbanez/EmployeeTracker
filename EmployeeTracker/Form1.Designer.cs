@@ -1,6 +1,6 @@
 ﻿namespace EmployeeTracker
 {
-    partial class frmAddTask
+    partial class frmDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,215 +28,184 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbxColor = new System.Windows.Forms.ComboBox();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.lStartD = new System.Windows.Forms.Label();
-            this.lProj = new System.Windows.Forms.Label();
-            this.lAssign = new System.Windows.Forms.Label();
-            this.ltskDesc = new System.Windows.Forms.Label();
-            this.lbtskTitle = new System.Windows.Forms.Label();
-            this.cmbxProj = new System.Windows.Forms.ComboBox();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.cmbxAssign = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.employeeTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.EmployeeTableAdapter();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnOverV = new System.Windows.Forms.Button();
+            this.btnToday = new System.Windows.Forms.Button();
+            this.btnCalendar = new System.Windows.Forms.Button();
+            this.btnTeam = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btnAddEm = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnAddTsk = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.cmbxColor);
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.lStartD);
-            this.panel1.Controls.Add(this.lProj);
-            this.panel1.Controls.Add(this.lAssign);
-            this.panel1.Controls.Add(this.ltskDesc);
-            this.panel1.Controls.Add(this.lbtskTitle);
-            this.panel1.Controls.Add(this.cmbxProj);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.cmbxAssign);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(13, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(738, 531);
+            this.panel1.Size = new System.Drawing.Size(1237, 648);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // monthCalendar1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(566, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 25);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Color:";
+            this.monthCalendar1.Location = new System.Drawing.Point(9, 12);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
             // 
-            // cmbxColor
+            // panel2
             // 
-            this.cmbxColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxColor.FormattingEnabled = true;
-            this.cmbxColor.Location = new System.Drawing.Point(571, 65);
-            this.cmbxColor.Name = "cmbxColor";
-            this.cmbxColor.Size = new System.Drawing.Size(139, 33);
-            this.cmbxColor.TabIndex = 12;
+            this.panel2.Controls.Add(this.btnExport);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1237, 46);
+            this.panel2.TabIndex = 1;
             // 
-            // btnCancel
+            // panel3
             // 
-            this.btnCancel.Location = new System.Drawing.Point(592, 481);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(128, 25);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.panel3.Controls.Add(this.monthCalendar1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 46);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(280, 602);
+            this.panel3.TabIndex = 2;
             // 
-            // btnAdd
+            // panel4
             // 
-            this.btnAdd.Location = new System.Drawing.Point(431, 481);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(128, 25);
-            this.btnAdd.TabIndex = 10;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(972, 46);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(265, 602);
+            this.panel4.TabIndex = 3;
             // 
-            // lStartD
+            // panel5
             // 
-            this.lStartD.AutoSize = true;
-            this.lStartD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lStartD.Location = new System.Drawing.Point(12, 98);
-            this.lStartD.Name = "lStartD";
-            this.lStartD.Size = new System.Drawing.Size(105, 25);
-            this.lStartD.TabIndex = 8;
-            this.lStartD.Text = "Start Date:";
+            this.panel5.Controls.Add(this.btnAddTsk);
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(280, 46);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(692, 602);
+            this.panel5.TabIndex = 4;
             // 
-            // lProj
+            // panel6
             // 
-            this.lProj.AutoSize = true;
-            this.lProj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lProj.Location = new System.Drawing.Point(387, 380);
-            this.lProj.Name = "lProj";
-            this.lProj.Size = new System.Drawing.Size(78, 25);
-            this.lProj.TabIndex = 9;
-            this.lProj.Text = "Project:";
+            this.panel6.Controls.Add(this.btnTeam);
+            this.panel6.Controls.Add(this.btnCalendar);
+            this.panel6.Controls.Add(this.btnToday);
+            this.panel6.Controls.Add(this.btnOverV);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(692, 45);
+            this.panel6.TabIndex = 0;
             // 
-            // lAssign
+            // btnOverV
             // 
-            this.lAssign.AutoSize = true;
-            this.lAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lAssign.Location = new System.Drawing.Point(12, 380);
-            this.lAssign.Name = "lAssign";
-            this.lAssign.Size = new System.Drawing.Size(129, 25);
-            this.lAssign.TabIndex = 7;
-            this.lAssign.Text = "Assigned To:";
+            this.btnOverV.Location = new System.Drawing.Point(6, 12);
+            this.btnOverV.Name = "btnOverV";
+            this.btnOverV.Size = new System.Drawing.Size(75, 30);
+            this.btnOverV.TabIndex = 0;
+            this.btnOverV.Text = "Overview";
+            this.btnOverV.UseVisualStyleBackColor = true;
             // 
-            // ltskDesc
+            // btnToday
             // 
-            this.ltskDesc.AutoSize = true;
-            this.ltskDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ltskDesc.Location = new System.Drawing.Point(12, 163);
-            this.ltskDesc.Name = "ltskDesc";
-            this.ltskDesc.Size = new System.Drawing.Size(164, 25);
-            this.ltskDesc.TabIndex = 8;
-            this.ltskDesc.Text = "Task Description:";
+            this.btnToday.Location = new System.Drawing.Point(87, 12);
+            this.btnToday.Name = "btnToday";
+            this.btnToday.Size = new System.Drawing.Size(75, 30);
+            this.btnToday.TabIndex = 1;
+            this.btnToday.Text = "Today";
+            this.btnToday.UseVisualStyleBackColor = true;
             // 
-            // lbtskTitle
+            // btnCalendar
             // 
-            this.lbtskTitle.AutoSize = true;
-            this.lbtskTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtskTitle.Location = new System.Drawing.Point(12, 33);
-            this.lbtskTitle.Name = "lbtskTitle";
-            this.lbtskTitle.Size = new System.Drawing.Size(104, 25);
-            this.lbtskTitle.TabIndex = 6;
-            this.lbtskTitle.Text = "Task Title:";
+            this.btnCalendar.Location = new System.Drawing.Point(168, 12);
+            this.btnCalendar.Name = "btnCalendar";
+            this.btnCalendar.Size = new System.Drawing.Size(75, 30);
+            this.btnCalendar.TabIndex = 2;
+            this.btnCalendar.Text = "Calendar";
+            this.btnCalendar.UseVisualStyleBackColor = true;
             // 
-            // cmbxProj
+            // btnTeam
             // 
-            this.cmbxProj.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxProj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxProj.FormattingEnabled = true;
-            this.cmbxProj.Location = new System.Drawing.Point(392, 412);
-            this.cmbxProj.Name = "cmbxProj";
-            this.cmbxProj.Size = new System.Drawing.Size(293, 33);
-            this.cmbxProj.TabIndex = 5;
+            this.btnTeam.Location = new System.Drawing.Point(249, 12);
+            this.btnTeam.Name = "btnTeam";
+            this.btnTeam.Size = new System.Drawing.Size(75, 30);
+            this.btnTeam.TabIndex = 3;
+            this.btnTeam.Text = "Team";
+            this.btnTeam.UseVisualStyleBackColor = true;
             // 
-            // employeeBindingSource
+            // panel7
             // 
-            this.employeeBindingSource.DataMember = "Employee";
-            this.employeeBindingSource.DataSource = this.dbtkDataSet;
+            this.panel7.Controls.Add(this.btnAddEm);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(265, 45);
+            this.panel7.TabIndex = 0;
             // 
-            // dbtkDataSet
+            // btnAddEm
             // 
-            this.dbtkDataSet.DataSetName = "dbtkDataSet";
-            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.btnAddEm.Location = new System.Drawing.Point(148, 12);
+            this.btnAddEm.Name = "btnAddEm";
+            this.btnAddEm.Size = new System.Drawing.Size(106, 30);
+            this.btnAddEm.TabIndex = 4;
+            this.btnAddEm.Text = "Add Employee";
+            this.btnAddEm.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // btnExport
             // 
-            this.dateTimePicker1.CustomFormat = "ddd, MM/dd/yyyy";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(17, 130);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(212, 30);
-            this.dateTimePicker1.TabIndex = 4;
+            this.btnExport.Location = new System.Drawing.Point(1125, 12);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 30);
+            this.btnExport.TabIndex = 4;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
             // 
-            // cmbxAssign
+            // btnAddTsk
             // 
-            this.cmbxAssign.DataSource = this.employeeBindingSource;
-            this.cmbxAssign.DisplayMember = "fName";
-            this.cmbxAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxAssign.FormattingEnabled = true;
-            this.cmbxAssign.Location = new System.Drawing.Point(17, 412);
-            this.cmbxAssign.Name = "cmbxAssign";
-            this.cmbxAssign.Size = new System.Drawing.Size(316, 33);
-            this.cmbxAssign.TabIndex = 3;
+            this.btnAddTsk.Location = new System.Drawing.Point(15, 59);
+            this.btnAddTsk.Name = "btnAddTsk";
+            this.btnAddTsk.Size = new System.Drawing.Size(121, 30);
+            this.btnAddTsk.TabIndex = 5;
+            this.btnAddTsk.Text = "Add Task";
+            this.btnAddTsk.UseVisualStyleBackColor = true;
             // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(17, 195);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(703, 182);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(17, 65);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(542, 30);
-            this.textBox1.TabIndex = 0;
-            // 
-            // employeeTableAdapter
-            // 
-            this.employeeTableAdapter.ClearBeforeFill = true;
-            // 
-            // frmAddTask
+            // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 556);
+            this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.panel1);
-            this.Name = "frmAddTask";
-            this.Text = "Add Task";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "frmDashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Employee Tracker";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -244,22 +213,19 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox cmbxAssign;
-        private dbtkDataSet dbtkDataSet;
-        private System.Windows.Forms.BindingSource employeeBindingSource;
-        private dbtkDataSetTableAdapters.EmployeeTableAdapter employeeTableAdapter;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox cmbxProj;
-        private System.Windows.Forms.Label lbtskTitle;
-        private System.Windows.Forms.Label ltskDesc;
-        private System.Windows.Forms.Label lAssign;
-        private System.Windows.Forms.Label lProj;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Label lStartD;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbxColor;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnTeam;
+        private System.Windows.Forms.Button btnCalendar;
+        private System.Windows.Forms.Button btnToday;
+        private System.Windows.Forms.Button btnOverV;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btnAddEm;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnAddTsk;
     }
 }
