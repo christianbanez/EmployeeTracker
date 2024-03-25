@@ -70,7 +70,7 @@ namespace EmployeeTracker
                         conn.Open();
                         OleDbCommand cmd = conn.CreateCommand();
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, status = @status WHERE EmployeeID = @employeeID";
+                        cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, role = @role, status = @status WHERE EmployeeID = @employeeID";
 
                         // Parameters
                         cmd.Parameters.AddWithValue("@fName", txtfName.Text);
@@ -78,6 +78,7 @@ namespace EmployeeTracker
                         cmd.Parameters.AddWithValue("@contact", txtContact.Text);
                         cmd.Parameters.AddWithValue("@age", txtAge.Text);
                         cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@role", txtrole.Text);
                         cmd.Parameters.AddWithValue("@status", state);
                         cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
 

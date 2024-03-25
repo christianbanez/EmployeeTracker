@@ -302,21 +302,22 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtrole;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtlName;
-        private System.Windows.Forms.CheckBox chkActive;
-        private System.Windows.Forms.TextBox txtEmployeeID;
+
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtAge;
-        private System.Windows.Forms.TextBox txtContact;
+        private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.TextBox txtfName;
+        private System.Windows.Forms.TextBox txtlName;
+        private System.Windows.Forms.TextBox txtContact;
+        private System.Windows.Forms.TextBox txtAge;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtrole;
+        private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
