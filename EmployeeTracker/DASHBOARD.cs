@@ -51,52 +51,5 @@ namespace EmployeeTracker
             AddTabs(tb);
         }
 
-        /* private void panel5_Paint(object sender, PaintEventArgs e)
-         {
-             tabOVERVIEW1.Hide();
-             tabTODAY1.Hide();
-             tabCALENDAR1.Hide();
-             tabTEAM1.Hide();
-         }
-
-         private void btnOverV_Click(object sender, EventArgs e)
-         {
-             tabTODAY1.Hide();
-             tabCALENDAR1.Hide();
-             tabTEAM1.Hide();
-
-             tabOVERVIEW1.Show();
-             tabOVERVIEW1.BringToFront();
-         }
-
-         private void btnToday_Click(object sender, EventArgs e)
-         {
-             tabOVERVIEW1.Hide();
-             tabCALENDAR1.Hide();
-             tabTEAM1.Hide();
-
-             tabTODAY1.Show();
-             tabTODAY1.BringToFront();
-         }
-
-         private void btnTeam_Click(object sender, EventArgs e)
-         {
-             tabOVERVIEW1.Hide();
-             tabTODAY1.Hide();
-             tabCALENDAR1.Hide();
-
-             tabTEAM1.Show();
-             tabTEAM1.BringToFront();
-         }
-
-         private void btnCalendar_Click(object sender, EventArgs e)
-         {
-             tabOVERVIEW1.Hide();
-             tabTODAY1.Hide();
-             tabTEAM1.Hide();
-
-             tabCALENDAR1.Show();
-             tabCALENDAR1.BringToFront();
-         }*/
     }
 }

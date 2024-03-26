@@ -38,20 +38,20 @@
             this.btnOverV = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.EmployeeList = new System.Windows.Forms.DataGridView();
-            this.dbtkDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.panel3 = new System.Windows.Forms.Panel();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExport = new System.Windows.Forms.Button();
+            this.dbtkDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -63,12 +63,11 @@
             this.panel5.Controls.Add(this.panel2);
             this.panel5.Location = new System.Drawing.Point(12, 12);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1292, 648);
+            this.panel5.Size = new System.Drawing.Size(1238, 648);
             this.panel5.TabIndex = 5;
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.btnAddTsk);
             this.panel6.Controls.Add(this.btnCalendar);
             this.panel6.Controls.Add(this.btnTeam);
             this.panel6.Controls.Add(this.btnToday);
@@ -76,12 +75,12 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(312, 40);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(715, 73);
+            this.panel6.Size = new System.Drawing.Size(667, 40);
             this.panel6.TabIndex = 9;
             // 
             // btnAddTsk
             // 
-            this.btnAddTsk.Location = new System.Drawing.Point(6, 40);
+            this.btnAddTsk.Location = new System.Drawing.Point(1011, 3);
             this.btnAddTsk.Name = "btnAddTsk";
             this.btnAddTsk.Size = new System.Drawing.Size(134, 30);
             this.btnAddTsk.TabIndex = 13;
@@ -132,9 +131,9 @@
             // 
             this.panel4.Controls.Add(this.EmployeeList);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1027, 40);
+            this.panel4.Location = new System.Drawing.Point(979, 40);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(265, 608);
+            this.panel4.Size = new System.Drawing.Size(259, 608);
             this.panel4.TabIndex = 12;
             // 
             // EmployeeList
@@ -144,23 +143,13 @@
             this.EmployeeList.BackgroundColor = System.Drawing.SystemColors.Control;
             this.EmployeeList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EmployeeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.EmployeeList.Location = new System.Drawing.Point(6, 6);
+            this.EmployeeList.Location = new System.Drawing.Point(15, 40);
             this.EmployeeList.Name = "EmployeeList";
             this.EmployeeList.ReadOnly = true;
             this.EmployeeList.RowHeadersWidth = 51;
             this.EmployeeList.RowTemplate.Height = 24;
-            this.EmployeeList.Size = new System.Drawing.Size(256, 587);
+            this.EmployeeList.Size = new System.Drawing.Size(238, 553);
             this.EmployeeList.TabIndex = 1;
-            // 
-            // dbtkDataSetBindingSource
-            // 
-            this.dbtkDataSetBindingSource.DataSource = this.dbtkDataSet;
-            this.dbtkDataSetBindingSource.Position = 0;
-            // 
-            // dbtkDataSet
-            // 
-            this.dbtkDataSet.DataSetName = "dbtkDataSet";
-            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel3
             // 
@@ -180,28 +169,40 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnAddTsk);
             this.panel2.Controls.Add(this.btnExport);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1292, 40);
+            this.panel2.Size = new System.Drawing.Size(1238, 40);
             this.panel2.TabIndex = 10;
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(1204, 4);
+            this.btnExport.Location = new System.Drawing.Point(1151, 5);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 30);
             this.btnExport.TabIndex = 4;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
             // 
+            // dbtkDataSetBindingSource
+            // 
+            this.dbtkDataSetBindingSource.DataSource = this.dbtkDataSet;
+            this.dbtkDataSetBindingSource.Position = 0;
+            // 
+            // dbtkDataSet
+            // 
+            this.dbtkDataSet.DataSetName = "dbtkDataSet";
+            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1316, 673);
+            this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.panel5);
+            this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Tracker";
@@ -209,10 +210,10 @@
             this.panel6.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
