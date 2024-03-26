@@ -51,12 +51,18 @@ namespace EmployeeTracker
             }
         }
 
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddPopup addTab = new AddPopup();
-            //addTab.DataUpdated += addTab_DataUpdated;
+            addTab.DataUpdated += addTab_DataUpdated;
             addTab.Show();
             addTab.BringToFront();
+        }
+
+        private void addTab_DataUpdated()
+        {
+            dataView();
         }
 
         //private void btnUpdate_Click(object sender, EventArgs e)
