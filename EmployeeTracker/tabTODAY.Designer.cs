@@ -1,6 +1,6 @@
 ﻿namespace EmployeeTracker
 {
-    partial class UserControl3
+    partial class tabTODAY
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,14 +39,14 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 54);
             this.label1.TabIndex = 1;
-            this.label1.Text = "label3";
+            this.label1.Text = "label2";
             // 
-            // UserControl3
+            // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
-            this.Name = "UserControl3";
+            this.Name = "UserControl2";
             this.Size = new System.Drawing.Size(692, 557);
             this.ResumeLayout(false);
             this.PerformLayout();

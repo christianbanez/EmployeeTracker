@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace EmployeeTracker
 {
-    public partial class UserControl2 : UserControl
+    public partial class tabTEAM : UserControl
     {
-        public UserControl2()
+        public tabTEAM()
         {
             InitializeComponent();
         }
