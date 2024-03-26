@@ -14,9 +14,8 @@ namespace EmployeeTracker
     public partial class Form4 : Form
     {
         OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\asantocildes\OneDrive - Infor\Desktop\dbtk.accdb""");
-        DataTable dt;
         int state;
-        string pattern = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
+        
         public Form4()
         {
             InitializeComponent();
@@ -38,11 +37,15 @@ namespace EmployeeTracker
                 dp.Fill(dt);
                 displayTimeLogs.DataSource = dt;
 
-                conn.Close();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
         private void Form4_Load(object sender, EventArgs e)

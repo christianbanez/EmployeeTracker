@@ -43,7 +43,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(368, 32);
+            this.btnSave.Location = new System.Drawing.Point(559, 45);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(116, 43);
             this.btnSave.TabIndex = 17;
@@ -99,20 +99,22 @@
             // 
             // dateTimeOut
             // 
-            this.dateTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeOut.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
+            this.dateTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeOut.Location = new System.Drawing.Point(143, 62);
             this.dateTimeOut.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dateTimeOut.Name = "dateTimeOut";
-            this.dateTimeOut.Size = new System.Drawing.Size(200, 26);
+            this.dateTimeOut.Size = new System.Drawing.Size(348, 26);
             this.dateTimeOut.TabIndex = 12;
             // 
             // dateTimeIn
             // 
-            this.dateTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeIn.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
+            this.dateTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeIn.Location = new System.Drawing.Point(143, 27);
             this.dateTimeIn.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dateTimeIn.Name = "dateTimeIn";
-            this.dateTimeIn.Size = new System.Drawing.Size(200, 26);
+            this.dateTimeIn.Size = new System.Drawing.Size(348, 26);
             this.dateTimeIn.TabIndex = 11;
             // 
             // label2
@@ -149,6 +151,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form4";
             this.Text = "Form4";
+            this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.displayCTOhours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.displayTimeLogs)).EndInit();
             this.ResumeLayout(false);

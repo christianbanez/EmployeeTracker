@@ -17,7 +17,6 @@ namespace EmployeeTracker
     public partial class Form1 : Form
     {
         OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\asantocildes\OneDrive - Infor\Desktop\dbtk.accdb""");
-        DataTable dt;
         int state;
         public Form1()
         {
