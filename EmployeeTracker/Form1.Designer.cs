@@ -76,6 +76,7 @@ namespace EmployeeTracker
             this.displayData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.displayData.Size = new System.Drawing.Size(720, 406);
             this.displayData.TabIndex = 11;
+            this.displayData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayData_CellContentClick);
             // 
             // btnExit
             // 

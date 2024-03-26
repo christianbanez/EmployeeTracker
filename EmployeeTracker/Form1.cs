@@ -336,5 +336,9 @@ namespace EmployeeTracker
             }
         }
 
+        private void displayData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
