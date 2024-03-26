@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPopup.Designer.cs">
+      <DependentUpon>AddPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="dbtkDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -57,6 +63,11 @@
     </Compile>
     <Compile Include="DASHBOARD.Designer.cs">
       <DependentUpon>DASHBOARD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dbtkDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbtkDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +95,9 @@
     <Compile Include="tabTEAM.Designer.cs">
       <DependentUpon>tabTEAM.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddPopup.resx">
+      <DependentUpon>AddPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DASHBOARD.resx">
       <DependentUpon>DASHBOARD.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +132,17 @@
     </None>
     <None Include="dbtkDataSet.xss">
       <DependentUpon>dbtkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbtkDataSet1.xsc">
+      <DependentUpon>dbtkDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="dbtkDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbtkDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbtkDataSet1.xss">
+      <DependentUpon>dbtkDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

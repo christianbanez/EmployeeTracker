@@ -13,40 +13,72 @@ namespace EmployeeTracker
 {
     public partial class tabTEAM : UserControl
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\Downloads\dbtk.accdb");
 
         public tabTEAM()
         {
             InitializeComponent();
         }
 
+        //private void AddTabs(UserControl userControl)
+        //{
+        //    userControl.Dock = DockStyle.Fill;
+        //    //panel5.Controls.Clear();
+        //    tabTEAM.Controls.Add(userControl);
+        //    userControl.BringToFront();
+        //}
+        void dataView()
+        {
+            try
+            {
+                //adding values into database
+                conn.Open();
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM Employee";
+
+                cmd.ExecuteNonQuery();
+                DataTable dt = new DataTable();
+                OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+                dp.Fill(dt);
+                displayData.DataSource = dt;
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Form2 form = new Form2();
-            form.DataUpdated += Form2_DataUpdated;
-            form.Show();
+            AddPopup addTab = new AddPopup();
+            //addTab.DataUpdated += addTab_DataUpdated;
+            addTab.Show();
+            addTab.BringToFront();
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            Form3 form3 = new Form3();
+        //private void btnUpdate_Click(object sender, EventArgs e)
+        //{
+        //    Form3 form3 = new Form3();
 
-            //displays data to form3
-            form3.txtEmployeeID.Text = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
-            form3.txtfName.Text = displayData.CurrentRow.Cells["fName"].Value.ToString();
-            form3.txtlName.Text = displayData.CurrentRow.Cells["lName"].Value.ToString();
-            form3.txtContact.Text = displayData.CurrentRow.Cells["contactNum"].Value.ToString();
-            form3.txtAge.Text = displayData.CurrentRow.Cells["age"].Value.ToString();
-            form3.txtEmail.Text = displayData.CurrentRow.Cells["email"].Value.ToString();
-            form3.txtrole.Text = displayData.CurrentRow.Cells["role"].Value.ToString();
+        //    //displays data to form3
+        //    form3.txtEmployeeID.Text = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
+        //    form3.txtfName.Text = displayData.CurrentRow.Cells["fName"].Value.ToString();
+        //    form3.txtlName.Text = displayData.CurrentRow.Cells["lName"].Value.ToString();
+        //    form3.txtContact.Text = displayData.CurrentRow.Cells["contactNum"].Value.ToString();
+        //    form3.txtAge.Text = displayData.CurrentRow.Cells["age"].Value.ToString();
+        //    form3.txtEmail.Text = displayData.CurrentRow.Cells["email"].Value.ToString();
+        //    form3.txtrole.Text = displayData.CurrentRow.Cells["role"].Value.ToString();
 
-            // Update checkbox state
-            bool isActive = Convert.ToInt32(displayData.CurrentRow.Cells["status"].Value) == 1;
-            form3.chkActive.Checked = isActive;
+        //    // Update checkbox state
+        //    bool isActive = Convert.ToInt32(displayData.CurrentRow.Cells["status"].Value) == 1;
+        //    form3.chkActive.Checked = isActive;
 
-            form3.DataUpdated += Form3_DataUpdated;
-            form3.Show();
-        }
+        //    form3.DataUpdated += Form3_DataUpdated;
+        //    form3.Show();
+        //}
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -69,7 +101,7 @@ namespace EmployeeTracker
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dataView();
+                    //dataView();
                     //refresh();
 
                 }
@@ -100,6 +132,21 @@ namespace EmployeeTracker
             //displaydata.datasource = bs;
             //dataview dv = dt.defaultview;
             //dv.rowfilter = "select * from employee where fname like  '%" + textsearch.text + "%' or lname like'%" + textsearch.text + "%'";
+        }
+
+        private void displayData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tabTEAM_Load(object sender, EventArgs e)
+        {
+            dataView();
         }
     }
 }
@@ -376,3 +423,4 @@ namespace EmployeeTracker
             e.Handled = true;
             MessageBox.Show("error, contact number should only contain numbers");
         }
+*/
