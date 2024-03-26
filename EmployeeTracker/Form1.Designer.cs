@@ -38,20 +38,20 @@
             this.btnOverV = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.EmployeeList = new System.Windows.Forms.DataGridView();
-            this.dbtkDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.panel3 = new System.Windows.Forms.Panel();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExport = new System.Windows.Forms.Button();
+            this.dbtkDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -65,6 +65,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1292, 648);
             this.panel5.TabIndex = 5;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // panel6
             // 
@@ -151,16 +152,8 @@
             this.EmployeeList.RowTemplate.Height = 24;
             this.EmployeeList.Size = new System.Drawing.Size(256, 587);
             this.EmployeeList.TabIndex = 1;
-            // 
-            // dbtkDataSetBindingSource
-            // 
-            this.dbtkDataSetBindingSource.DataSource = this.dbtkDataSet;
-            this.dbtkDataSetBindingSource.Position = 0;
-            // 
-            // dbtkDataSet
-            // 
-            this.dbtkDataSet.DataSetName = "dbtkDataSet";
-            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.EmployeeList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList_CellClick);
+            this.EmployeeList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList_CellContentClick);
             // 
             // panel3
             // 
@@ -196,6 +189,16 @@
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
             // 
+            // dbtkDataSetBindingSource
+            // 
+            this.dbtkDataSetBindingSource.DataSource = this.dbtkDataSet;
+            this.dbtkDataSetBindingSource.Position = 0;
+            // 
+            // dbtkDataSet
+            // 
+            this.dbtkDataSet.DataSetName = "dbtkDataSet";
+            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -205,14 +208,15 @@
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Tracker";
+            this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

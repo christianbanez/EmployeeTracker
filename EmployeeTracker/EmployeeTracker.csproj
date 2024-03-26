@@ -52,6 +52,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbtkDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeList.Designer.cs">
+      <DependentUpon>EmployeeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
