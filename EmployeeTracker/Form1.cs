@@ -306,35 +306,34 @@ namespace EmployeeTracker
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            //using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
-            //{
-            //    if (sfd.ShowDialog() == DialogResult.OK)
-            //    {
-            //        try
-            //        {
-            //            conn.Open();
-            //            OleDbCommand cmd = conn.CreateCommand();
-            //            cmd.CommandType = CommandType.Text;
-            //            cmd.CommandText = "SELECT * FROM Employee";
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        conn.Open();
+                        OleDbCommand cmd = conn.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT * FROM Employee";
+                        DataTable dt = new DataTable();
+                        OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+                        dp.Fill(dt);
 
-            //            cmd.ExecuteNonQuery();
-            //            DataTable dt = new DataTable();
-            //            OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
-            //            dp.Fill(dt);
-            //            displayData.DataSource = dt;
-
-            //            conn.Close();
-            //            using (XLWorkbook workbook = new XLWorkbook())
-            //            {
-            //                workbook.Worksheets.Add(this.appData.Employees.CopyToDataTable)
-            //            }
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //    }
-            //}
+                        conn.Close();
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            workbook.Worksheets.Add(dt, "DataEmployee");
+                            workbook.SaveAs(sfd.FileName);
+                        }
+                        MessageBox.Show("You have exported the data to an excel file", "Message", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
     }
