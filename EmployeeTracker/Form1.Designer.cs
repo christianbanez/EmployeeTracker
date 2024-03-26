@@ -47,6 +47,8 @@
             this.txtTaskDesc = new System.Windows.Forms.TextBox();
             this.txtTaskName = new System.Windows.Forms.TextBox();
             this.employeeTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.EmployeeTableAdapter();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
@@ -54,6 +56,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dateTimePickerEndDate);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cmbxColor);
             this.panel1.Controls.Add(this.btnCancel);
@@ -104,6 +108,7 @@
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
@@ -235,6 +240,27 @@
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(406, 122);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(118, 29);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "End Date:";
+            // 
+            // dateTimePickerEndDate
+            // 
+            this.dateTimePickerEndDate.CustomFormat = "ddd, MM/dd/yyyy, hh:mm tt";
+            this.dateTimePickerEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(411, 162);
+            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
+            this.dateTimePickerEndDate.Size = new System.Drawing.Size(355, 35);
+            this.dateTimePickerEndDate.TabIndex = 14;
+            // 
             // frmAddTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -273,5 +299,7 @@
         private System.Windows.Forms.Label lStartD;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbxColor;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
     }
 }

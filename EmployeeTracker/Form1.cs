@@ -58,6 +58,7 @@ namespace EmployeeTracker
             string taskName = txtTaskName.Text;
             string taskDesc = txtTaskDesc.Text;
             DateTime taskStartDate = dateTimePickerStartDate.Value;
+            DateTime taskEndDate = dateTimePickerEndDate.Value;
 
             if (cmbxAssign.SelectedItem != null)
             {
@@ -67,12 +68,12 @@ namespace EmployeeTracker
                     
                     int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
 
-                    InsertTask(taskName, taskDesc, taskStartDate, employeeID);
+                    InsertTask(taskName, taskDesc, taskStartDate, taskEndDate, employeeID);
                 }
             }
         }
 
-        private void InsertTask(string taskName, string taskDesc, DateTime taskStartDate, int employeeID)
+        private void InsertTask(string taskName, string taskDesc, DateTime taskStartDate, DateTime taskEndDate, int employeeID)
         {
             try
             {
@@ -81,24 +82,31 @@ namespace EmployeeTracker
                 OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = "INSERT INTO Task(taskName, taskDesc, taskStartDate, EmployeeID) VALUES(@taskName, @taskDesc, @taskStartDate, @EmployeeID)";
+                cmd.CommandText = "INSERT INTO Task(taskName, taskDesc, taskStartDate, taskEndDate, EmployeeID) VALUES(@taskName, @taskDesc, @taskStartDate, @taskEndDate, @EmployeeID)";
 
                 cmd.Parameters.AddWithValue("@taskName", taskName);
                 cmd.Parameters.AddWithValue("@taskDesc", taskDesc);
                 cmd.Parameters.AddWithValue("@taskStartDate", taskStartDate);
+                cmd.Parameters.AddWithValue("@taskEndDate", taskEndDate);
                 cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
 
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Task inserted successfully!");
-
-                connection.Close();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
+            connection.Close();
+            this.Close();
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
