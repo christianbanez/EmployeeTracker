@@ -21,7 +21,9 @@ namespace EmployeeTracker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cmbxAssign.Items.Clear(); 
             PopulateComboBox();
+
         }
 
         private void PopulateComboBox()
@@ -29,14 +31,21 @@ namespace EmployeeTracker
             try
             {
                 connection.Open();
-                string query = "SELECT EmployeeID, fName FROM Employee";
+                string query = "SELECT ID, Projects FROM Project";
                 OleDbCommand command = new OleDbCommand(query, connection);
                 OleDbDataAdapter adapter = new OleDbDataAdapter(command);
                 DataTable dataTable = new DataTable();
+
+                dataTable.Columns.Add("ID", typeof(int));
+                dataTable.Columns.Add("Projects", typeof(string));
+                dataTable.Rows.Add(-1, ""); 
+
                 adapter.Fill(dataTable);
+
                 cmbxAssign.DataSource = dataTable;
-                cmbxAssign.DisplayMember = "fName"; 
-                cmbxAssign.ValueMember = "EmployeeID";
+                cmbxAssign.DisplayMember = "Projects";
+                cmbxAssign.ValueMember = "Projects";
+
                 connection.Close();
             }
             catch (Exception ex)
@@ -50,30 +59,45 @@ namespace EmployeeTracker
             DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
             if (selectedRow != null)
             {
-                string selectedItem = selectedRow["fname"].ToString();
+                string selectedItem = selectedRow["Projects"].ToString();
             }
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string taskName = txtTaskName.Text;
             string taskDesc = txtTaskDesc.Text;
-            DateTime taskStartDate = dateTimePickerStartDate.Value;
-            DateTime taskEndDate = dateTimePickerEndDate.Value;
+            string project = "";
 
             if (cmbxAssign.SelectedItem != null)
             {
                 DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
                 if (selectedRow != null)
                 {
-                    
-                    int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
-
-                    InsertTask(taskName, taskDesc, taskStartDate, taskEndDate, employeeID);
+                    project = selectedRow["Projects"].ToString();
                 }
             }
-        }
+            else
+            {
+                project = cmbxAssign.Text.Trim(); 
+                if (string.IsNullOrWhiteSpace(project))
+                {
+                    MessageBox.Show("Please select or enter a project.");
+                    return;
+                }
 
-        private void InsertTask(string taskName, string taskDesc, DateTime taskStartDate, DateTime taskEndDate, int employeeID)
+            }
+
+            if (string.IsNullOrWhiteSpace(taskName) || string.IsNullOrWhiteSpace(taskDesc))
+            {
+                MessageBox.Show("Please enter task name and description.");
+            }
+            else
+            {
+                InsertTask(taskName, taskDesc, project);
+            }
+        }
+        private void InsertTask(string taskName, string taskDesc, string project)
         {
             try
             {
@@ -82,31 +106,54 @@ namespace EmployeeTracker
                 OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = "INSERT INTO Task(taskName, taskDesc, taskStartDate, taskEndDate, EmployeeID) VALUES(@taskName, @taskDesc, @taskStartDate, @taskEndDate, @EmployeeID)";
+                cmd.CommandText = "INSERT INTO Task (taskName, taskDesc, project) VALUES (@taskName, @taskDesc, @project)";
+                cmd.Parameters.AddWithValue("@taskName", taskName); 
+                cmd.Parameters.AddWithValue("@taskDesc", taskDesc); 
 
-                cmd.Parameters.AddWithValue("@taskName", taskName);
-                cmd.Parameters.AddWithValue("@taskDesc", taskDesc);
-                cmd.Parameters.AddWithValue("@taskStartDate", taskStartDate);
-                cmd.Parameters.AddWithValue("@taskEndDate", taskEndDate);
-                cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+                if (project != null)
+                    cmd.Parameters.AddWithValue("@project", project);
+                else
+                    cmd.Parameters.AddWithValue("@project", DBNull.Value); 
 
-                cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Task inserted successfully!");
-                
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Task inserted successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to insert task.");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
-            connection.Close();
-            this.Close();
+            finally
+            {
+                connection.Close();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmbxProj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
