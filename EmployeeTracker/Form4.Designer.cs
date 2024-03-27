@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.displayCTOhours = new System.Windows.Forms.DataGridView();
@@ -37,8 +38,15 @@
             this.dateTimeIn = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
+            this.scheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.scheduleTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.ScheduleTableAdapter();
+            this.timeInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.displayCTOhours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.displayTimeLogs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -88,7 +96,12 @@
             this.displayTimeLogs.AllowUserToDeleteRows = false;
             this.displayTimeLogs.AllowUserToResizeColumns = false;
             this.displayTimeLogs.AllowUserToResizeRows = false;
+            this.displayTimeLogs.AutoGenerateColumns = false;
             this.displayTimeLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.displayTimeLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.timeInDataGridViewTextBoxColumn,
+            this.timeOutDataGridViewTextBoxColumn});
+            this.displayTimeLogs.DataSource = this.scheduleBindingSource;
             this.displayTimeLogs.Location = new System.Drawing.Point(40, 147);
             this.displayTimeLogs.Name = "displayTimeLogs";
             this.displayTimeLogs.ReadOnly = true;
@@ -99,7 +112,7 @@
             // 
             // dateTimeOut
             // 
-            this.dateTimeOut.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
+            this.dateTimeOut.CustomFormat = "MM/dd/yyyy, hh:mm tt";
             this.dateTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeOut.Location = new System.Drawing.Point(143, 62);
             this.dateTimeOut.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
@@ -109,7 +122,7 @@
             // 
             // dateTimeIn
             // 
-            this.dateTimeIn.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
+            this.dateTimeIn.CustomFormat = "mm/dd/yyyy hh:mm tt";
             this.dateTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeIn.Location = new System.Drawing.Point(143, 27);
             this.dateTimeIn.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
@@ -135,6 +148,38 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Date Started";
             // 
+            // dbtkDataSet
+            // 
+            this.dbtkDataSet.DataSetName = "dbtkDataSet";
+            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // scheduleBindingSource
+            // 
+            this.scheduleBindingSource.DataMember = "Schedule";
+            this.scheduleBindingSource.DataSource = this.dbtkDataSet;
+            // 
+            // scheduleTableAdapter
+            // 
+            this.scheduleTableAdapter.ClearBeforeFill = true;
+            // 
+            // timeInDataGridViewTextBoxColumn
+            // 
+            this.timeInDataGridViewTextBoxColumn.DataPropertyName = "timeIn";
+            this.timeInDataGridViewTextBoxColumn.HeaderText = "timeIn";
+            this.timeInDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.timeInDataGridViewTextBoxColumn.Name = "timeInDataGridViewTextBoxColumn";
+            this.timeInDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeInDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // timeOutDataGridViewTextBoxColumn
+            // 
+            this.timeOutDataGridViewTextBoxColumn.DataPropertyName = "timeOut";
+            this.timeOutDataGridViewTextBoxColumn.HeaderText = "timeOut";
+            this.timeOutDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.timeOutDataGridViewTextBoxColumn.Name = "timeOutDataGridViewTextBoxColumn";
+            this.timeOutDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeOutDataGridViewTextBoxColumn.Width = 200;
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -154,6 +199,8 @@
             this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.displayCTOhours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.displayTimeLogs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +217,10 @@
         private System.Windows.Forms.DateTimePicker dateTimeIn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private dbtkDataSet dbtkDataSet;
+        private System.Windows.Forms.BindingSource scheduleBindingSource;
+        private dbtkDataSetTableAdapters.ScheduleTableAdapter scheduleTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeInDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeOutDataGridViewTextBoxColumn;
     }
 }

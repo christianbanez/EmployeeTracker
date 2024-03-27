@@ -13,6 +13,8 @@ namespace EmployeeTracker
 {
     public partial class Form4 : Form
     {
+        public delegate void DataUpdatedEventHandler();
+        public event DataUpdatedEventHandler DataUpdated;
         OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""C:\Users\asantocildes\OneDrive - Infor\Desktop\dbtk.accdb""");
         int state;
         
@@ -20,8 +22,7 @@ namespace EmployeeTracker
         {
             InitializeComponent();
         }
-
-        void viewCto()
+        void dataView()
         {
             try
             {
@@ -36,21 +37,23 @@ namespace EmployeeTracker
                 OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
                 dp.Fill(dt);
                 displayTimeLogs.DataSource = dt;
-
                 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            finally
-            {
+            finally 
+            { 
                 conn.Close();
+                
             }
         }
         private void Form4_Load(object sender, EventArgs e)
         {
-            viewCto();
+            // TODO: This line of code loads data into the 'dbtkDataSet.Schedule' table. You can move, or remove it, as needed.
+            //this.scheduleTableAdapter.Fill(this.dbtkDataSet.Schedule);
+            dataView();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -61,10 +64,14 @@ namespace EmployeeTracker
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "INSERT INTO Schedule(timeIn, timeOut)VALUES(@timeIn, @timeOut)";
-                cmd.Parameters.AddWithValue("@timeIn", dateTimeIn.Text);
-                cmd.Parameters.AddWithValue("@timeOut", dateTimeOut.Text);
+                cmd.Parameters.AddWithValue("@timeIn", dateTimeIn.Value.ToString());
+                cmd.Parameters.AddWithValue("@timeOut", dateTimeOut.Value.ToString());
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Time saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                
+                
+                
                 //this.Close();
             }
             catch (Exception ex)
@@ -72,8 +79,13 @@ namespace EmployeeTracker
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //this.Close();
             }
+            finally
+            {
 
+                conn.Close();
+                dataView();
+            }
+   
         }
     }
-
 }

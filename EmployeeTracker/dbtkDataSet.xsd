@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dbtkDataSet" targetNamespace="http://tempuri.org/dbtkDataSet.xsd" xmlns:mstns="http://tempuri.org/dbtkDataSet.xsd" xmlns="http://tempuri.org/dbtkDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="dbtkConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbtkConnectionString (Settings)" PropertyReference="ApplicationSettings.EmployeeTracker.Properties.Settings.GlobalReference.Default.dbtkConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ScheduleTableAdapter" GeneratorDataComponentClassName="ScheduleTableAdapter" Name="Schedule" UserDataComponentName="ScheduleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbtkConnectionString (Settings)" DbObjectName="Schedule" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT timeIn, timeOut FROM Schedule</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="timeIn" DataSetColumn="timeIn" />
+              <Mapping SourceColumn="timeOut" DataSetColumn="timeOut" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dbtkDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="dbtkDataSet" msprop:Generator_DataSetName="dbtkDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Schedule" msprop:Generator_RowEvHandlerName="ScheduleRowChangeEventHandler" msprop:Generator_RowDeletedName="ScheduleRowDeleted" msprop:Generator_RowDeletingName="ScheduleRowDeleting" msprop:Generator_RowEvArgName="ScheduleRowChangeEvent" msprop:Generator_TablePropName="Schedule" msprop:Generator_RowChangedName="ScheduleRowChanged" msprop:Generator_RowChangingName="ScheduleRowChanging" msprop:Generator_TableClassName="ScheduleDataTable" msprop:Generator_RowClassName="ScheduleRow" msprop:Generator_TableVarName="tableSchedule" msprop:Generator_UserTableName="Schedule">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="timeIn" msprop:Generator_ColumnPropNameInRow="timeIn" msprop:Generator_ColumnPropNameInTable="timeInColumn" msprop:Generator_ColumnVarNameInTable="columntimeIn" msprop:Generator_UserColumnName="timeIn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="timeOut" msprop:Generator_ColumnPropNameInRow="timeOut" msprop:Generator_ColumnPropNameInTable="timeOutColumn" msprop:Generator_ColumnVarNameInTable="columntimeOut" msprop:Generator_UserColumnName="timeOut" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
