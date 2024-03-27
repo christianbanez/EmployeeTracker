@@ -24,106 +24,8 @@ namespace EmployeeTracker
         {
             InitializeComponent();
         }
-        /*
-        private bool ValidateEmployeeID()
-        {
-            bool bStatus = true;
-            if (txtEmployeeID.Text == "")
-            {
-                errorProvider1.SetError(txtEmployeeID, "Please enter the Employee ID");
-                bStatus = false;
-            }
-            else
-                errorProvider1.Clear();
 
-            return bStatus;
-        }
-
-        private bool ValidatefName()
-        {
-            bool bStatus = true;
-            if (txtfName.Text == "")
-            {
-                errorProvider2.SetError(txtfName, "Please enter the First Name");
-                bStatus = false;
-            }
-            else
-                errorProvider2.Clear();
-            return bStatus;
-        }
-        private bool ValidatelName()
-        {
-            bool bStatus = true;
-            if (txtlName.Text == "")
-            {
-                errorProvider3.SetError(txtlName, "Please enter the Last Name");
-                bStatus = false;
-            }
-            else
-                errorProvider3.Clear();
-            return bStatus;
-        }
-        private bool Validatecontact()
-        {
-            bool bStatus = true;
-            if (txtContact.Text == "")
-            {
-                errorProvider4.SetError(txtContact, "Please enter the Contact Number");
-                bStatus = false;
-            }
-            else
-                errorProvider4.Clear();
-            return bStatus;
-        }
-        private bool ValidateAge()
-        {
-            bool bStatus = true;
-            if (txtAge.Text == "")
-            {
-                errorProvider5.SetError(txtAge, "Please enter the Age");
-                bStatus = false;
-            }
-            else
-                errorProvider5.Clear();
-            return bStatus;
-        }
-        private bool ValidateEmail()
-        {
-            bool bStatus = true;
-            if (txtEmail.Text == "")
-            {
-                errorProvider6.SetError(txtEmail, "Please enter the Email");
-                bStatus = false;
-            }
-            else if (Regex.IsMatch(txtEmail.Text, pattern) == false)
-            {
-                errorProvider6.SetError(txtEmail, "Please enter the correct format");
-                bStatus = false;
-            }
-            else
-            {
-                errorProvider6.Clear();
-            }
-
-            return bStatus;
-        }
-        private bool ValidateRole()
-        {
-            bool bStatus = true;
-            if (txtrole.Text == "")
-            {
-                errorProvider7.SetError(txtrole, "Please enter the Role");
-                bStatus = false;
-            }
-            else
-            {
-                errorProvider7.Clear();
-            }
-
-            return bStatus;
-        }
-        */
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //bool bValidateEmployeeID = ValidateEmployeeID();
             //bool bValidfName = ValidatefName();
@@ -144,43 +46,139 @@ namespace EmployeeTracker
             }
 
 
-           // if (bValidateEmployeeID && bValidfName && bValidlName && bValidatecontact && bValidAge && bValidEmail && bValidRole)
-           //{
-                try
-                {
-                    //adding values into database
-                    conn.Open();
+            // if (bValidateEmployeeID && bValidfName && bValidlName && bValidatecontact && bValidAge && bValidEmail && bValidRole)
+            //{
+            try
+            {
+                //adding values into database
+                conn.Open();
 
-                    OleDbCommand cmd = conn.CreateCommand();
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role,accDateCreated)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role, Now())";
-                    cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
-                    cmd.Parameters.AddWithValue("@fName", txtfName.Text);
-                    cmd.Parameters.AddWithValue("@lName", txtlName.Text);
-                    cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                    cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@state", state);
-                    cmd.Parameters.AddWithValue("@role", txtrole.Text);
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DataUpdated?.Invoke();
-                    this.Close();
-                }
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "UPSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role,accDateCreated)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role, Now())";
+                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+                cmd.Parameters.AddWithValue("@fName", txtfName.Text);
+                cmd.Parameters.AddWithValue("@lName", txtlName.Text);
+                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@state", state);
+                cmd.Parameters.AddWithValue("@role", txtrole.Text);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DataUpdated?.Invoke();
+                this.Close();
+            }
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-           // }
-           // else
-           // {
-           //     MessageBox.Show("Error in filling up the form! Please try again!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-           // }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
 
         }
+        /*
+private bool ValidateEmployeeID()
+{
+   bool bStatus = true;
+   if (txtEmployeeID.Text == "")
+   {
+       errorProvider1.SetError(txtEmployeeID, "Please enter the Employee ID");
+       bStatus = false;
+   }
+   else
+       errorProvider1.Clear();
+
+   return bStatus;
+}
+
+private bool ValidatefName()
+{
+   bool bStatus = true;
+   if (txtfName.Text == "")
+   {
+       errorProvider2.SetError(txtfName, "Please enter the First Name");
+       bStatus = false;
+   }
+   else
+       errorProvider2.Clear();
+   return bStatus;
+}
+private bool ValidatelName()
+{
+   bool bStatus = true;
+   if (txtlName.Text == "")
+   {
+       errorProvider3.SetError(txtlName, "Please enter the Last Name");
+       bStatus = false;
+   }
+   else
+       errorProvider3.Clear();
+   return bStatus;
+}
+private bool Validatecontact()
+{
+   bool bStatus = true;
+   if (txtContact.Text == "")
+   {
+       errorProvider4.SetError(txtContact, "Please enter the Contact Number");
+       bStatus = false;
+   }
+   else
+       errorProvider4.Clear();
+   return bStatus;
+}
+private bool ValidateAge()
+{
+   bool bStatus = true;
+   if (txtAge.Text == "")
+   {
+       errorProvider5.SetError(txtAge, "Please enter the Age");
+       bStatus = false;
+   }
+   else
+       errorProvider5.Clear();
+   return bStatus;
+}
+private bool ValidateEmail()
+{
+   bool bStatus = true;
+   if (txtEmail.Text == "")
+   {
+       errorProvider6.SetError(txtEmail, "Please enter the Email");
+       bStatus = false;
+   }
+   else if (Regex.IsMatch(txtEmail.Text, pattern) == false)
+   {
+       errorProvider6.SetError(txtEmail, "Please enter the correct format");
+       bStatus = false;
+   }
+   else
+   {
+       errorProvider6.Clear();
+   }
+
+   return bStatus;
+}
+private bool ValidateRole()
+{
+   bool bStatus = true;
+   if (txtrole.Text == "")
+   {
+       errorProvider7.SetError(txtrole, "Please enter the Role");
+       bStatus = false;
+   }
+   else
+   {
+       errorProvider7.Clear();
+   }
+
+   return bStatus;
+}
+*/
+
+
+
         /*
                 private void txtEmployeeID_Leave(object sender, EventArgs e)
                 {

@@ -65,6 +65,29 @@ namespace EmployeeTracker
             dataView();
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            AddPopup addTab = new AddPopup();
+            //displays data to form3
+            addTab.txtEmployeeID.Text = displayData.CurrentRow.Cells[0].Value.ToString();
+            addTab.txtfName.Text = displayData.CurrentRow.Cells[1].Value.ToString();
+            addTab.txtlName.Text = displayData.CurrentRow.Cells[2].Value.ToString();
+            addTab.txtContact.Text = displayData.CurrentRow.Cells[3].Value.ToString();
+            addTab.txtAge.Text = displayData.CurrentRow.Cells[4].Value.ToString();
+            addTab.txtEmail.Text = displayData.CurrentRow.Cells[5].Value.ToString();
+            addTab.txtrole.Text = displayData.CurrentRow.Cells[6].Value.ToString();
+
+            // Update checkbox state
+            bool isActive = Convert.ToInt32(displayData.CurrentRow.Cells["status"].Value) == 1;
+            addTab.chkActive.Checked = isActive;
+
+            addTab.DataUpdated += addTab_DataUpdated;
+
+            addTab.Show();
+            addTab.BringToFront();
+
+        }
+
         //private void btnUpdate_Click(object sender, EventArgs e)
         //{
         //    Form3 form3 = new Form3();
@@ -154,6 +177,8 @@ namespace EmployeeTracker
         {
             dataView();
         }
+
+
     }
 }
 
