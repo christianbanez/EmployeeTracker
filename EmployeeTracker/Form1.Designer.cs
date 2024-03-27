@@ -184,7 +184,7 @@
             // 
             // dateTimePickerStartDate
             // 
-            this.dateTimePickerStartDate.CustomFormat = "ddd, MM/dd/yyyy, hh:mm tt";
+            this.dateTimePickerStartDate.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
             this.dateTimePickerStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerStartDate.Location = new System.Drawing.Point(19, 162);
@@ -252,7 +252,7 @@
             // 
             // dateTimePickerEndDate
             // 
-            this.dateTimePickerEndDate.CustomFormat = "ddd, MM/dd/yyyy, hh:mm tt";
+            this.dateTimePickerEndDate.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
             this.dateTimePickerEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerEndDate.Location = new System.Drawing.Point(411, 162);
