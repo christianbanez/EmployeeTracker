@@ -56,6 +56,7 @@ namespace EmployeeTracker
             dataView();
         }
 
+        //inserting details to the database and reflecting on the data grid view
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -68,11 +69,6 @@ namespace EmployeeTracker
                 cmd.Parameters.AddWithValue("@timeOut", dateTimeOut.Value.ToString());
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Time saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                
-                
-                
-                //this.Close();
             }
             catch (Exception ex)
             {

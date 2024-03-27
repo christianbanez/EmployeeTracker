@@ -34,19 +34,19 @@
             this.displayCTOhours = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.displayTimeLogs = new System.Windows.Forms.DataGridView();
+            this.timeInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.dateTimeOut = new System.Windows.Forms.DateTimePicker();
             this.dateTimeIn = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
-            this.scheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.scheduleTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.ScheduleTableAdapter();
-            this.timeInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.displayCTOhours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.displayTimeLogs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -73,18 +73,18 @@
             this.displayCTOhours.AllowUserToAddRows = false;
             this.displayCTOhours.AllowUserToDeleteRows = false;
             this.displayCTOhours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.displayCTOhours.Location = new System.Drawing.Point(40, 346);
+            this.displayCTOhours.Location = new System.Drawing.Point(40, 477);
             this.displayCTOhours.Name = "displayCTOhours";
             this.displayCTOhours.ReadOnly = true;
             this.displayCTOhours.RowHeadersWidth = 62;
             this.displayCTOhours.RowTemplate.Height = 28;
-            this.displayCTOhours.Size = new System.Drawing.Size(707, 150);
+            this.displayCTOhours.Size = new System.Drawing.Size(707, 184);
             this.displayCTOhours.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 314);
+            this.label3.Location = new System.Drawing.Point(36, 444);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(223, 20);
             this.label3.TabIndex = 14;
@@ -107,8 +107,36 @@
             this.displayTimeLogs.ReadOnly = true;
             this.displayTimeLogs.RowHeadersWidth = 62;
             this.displayTimeLogs.RowTemplate.Height = 28;
-            this.displayTimeLogs.Size = new System.Drawing.Size(707, 150);
+            this.displayTimeLogs.Size = new System.Drawing.Size(707, 281);
             this.displayTimeLogs.TabIndex = 13;
+            // 
+            // timeInDataGridViewTextBoxColumn
+            // 
+            this.timeInDataGridViewTextBoxColumn.DataPropertyName = "timeIn";
+            this.timeInDataGridViewTextBoxColumn.HeaderText = "timeIn";
+            this.timeInDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.timeInDataGridViewTextBoxColumn.Name = "timeInDataGridViewTextBoxColumn";
+            this.timeInDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeInDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // timeOutDataGridViewTextBoxColumn
+            // 
+            this.timeOutDataGridViewTextBoxColumn.DataPropertyName = "timeOut";
+            this.timeOutDataGridViewTextBoxColumn.HeaderText = "timeOut";
+            this.timeOutDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.timeOutDataGridViewTextBoxColumn.Name = "timeOutDataGridViewTextBoxColumn";
+            this.timeOutDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeOutDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // scheduleBindingSource
+            // 
+            this.scheduleBindingSource.DataMember = "Schedule";
+            this.scheduleBindingSource.DataSource = this.dbtkDataSet;
+            // 
+            // dbtkDataSet
+            // 
+            this.dbtkDataSet.DataSetName = "dbtkDataSet";
+            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dateTimeOut
             // 
@@ -148,37 +176,9 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Date Started";
             // 
-            // dbtkDataSet
-            // 
-            this.dbtkDataSet.DataSetName = "dbtkDataSet";
-            this.dbtkDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // scheduleBindingSource
-            // 
-            this.scheduleBindingSource.DataMember = "Schedule";
-            this.scheduleBindingSource.DataSource = this.dbtkDataSet;
-            // 
             // scheduleTableAdapter
             // 
             this.scheduleTableAdapter.ClearBeforeFill = true;
-            // 
-            // timeInDataGridViewTextBoxColumn
-            // 
-            this.timeInDataGridViewTextBoxColumn.DataPropertyName = "timeIn";
-            this.timeInDataGridViewTextBoxColumn.HeaderText = "timeIn";
-            this.timeInDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.timeInDataGridViewTextBoxColumn.Name = "timeInDataGridViewTextBoxColumn";
-            this.timeInDataGridViewTextBoxColumn.ReadOnly = true;
-            this.timeInDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // timeOutDataGridViewTextBoxColumn
-            // 
-            this.timeOutDataGridViewTextBoxColumn.DataPropertyName = "timeOut";
-            this.timeOutDataGridViewTextBoxColumn.HeaderText = "timeOut";
-            this.timeOutDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.timeOutDataGridViewTextBoxColumn.Name = "timeOutDataGridViewTextBoxColumn";
-            this.timeOutDataGridViewTextBoxColumn.ReadOnly = true;
-            this.timeOutDataGridViewTextBoxColumn.Width = 200;
             // 
             // Form4
             // 
@@ -199,8 +199,8 @@
             this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.displayCTOhours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.displayTimeLogs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

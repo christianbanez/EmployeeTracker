@@ -22,6 +22,8 @@ namespace EmployeeTracker
         {
             InitializeComponent();
         }
+
+
         void dataView()
         {
             try
