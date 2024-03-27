@@ -1,6 +1,6 @@
 ﻿namespace EmployeeTracker
 {
-    partial class AddPopup
+    partial class EditPop
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
@@ -53,6 +54,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.btnSave);
@@ -76,6 +78,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(441, 411);
             this.panel2.TabIndex = 4;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(161, 361);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(117, 35);
+            this.btnAdd.TabIndex = 30;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnCancel
             // 
@@ -277,7 +291,6 @@
 
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -295,5 +308,7 @@
         public System.Windows.Forms.CheckBox chkActive;
 
         private System.Windows.Forms.Button btnCancel;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnAdd;
     }
 }

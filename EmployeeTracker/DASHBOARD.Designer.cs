@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnAddTsk = new System.Windows.Forms.Button();
             this.btnCalendar = new System.Windows.Forms.Button();
             this.btnTeam = new System.Windows.Forms.Button();
             this.btnToday = new System.Windows.Forms.Button();
@@ -41,6 +40,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAddTsk = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.dbtkDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
@@ -77,15 +77,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(667, 40);
             this.panel6.TabIndex = 9;
-            // 
-            // btnAddTsk
-            // 
-            this.btnAddTsk.Location = new System.Drawing.Point(1011, 3);
-            this.btnAddTsk.Name = "btnAddTsk";
-            this.btnAddTsk.Size = new System.Drawing.Size(134, 30);
-            this.btnAddTsk.TabIndex = 13;
-            this.btnAddTsk.Text = "Add Task";
-            this.btnAddTsk.UseVisualStyleBackColor = true;
             // 
             // btnCalendar
             // 
@@ -143,7 +134,7 @@
             this.EmployeeList.BackgroundColor = System.Drawing.SystemColors.Control;
             this.EmployeeList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EmployeeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.EmployeeList.Location = new System.Drawing.Point(15, 40);
+            this.EmployeeList.Location = new System.Drawing.Point(9, 40);
             this.EmployeeList.Name = "EmployeeList";
             this.EmployeeList.ReadOnly = true;
             this.EmployeeList.RowHeadersWidth = 51;
@@ -176,6 +167,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1238, 40);
             this.panel2.TabIndex = 10;
+            // 
+            // btnAddTsk
+            // 
+            this.btnAddTsk.Location = new System.Drawing.Point(1011, 3);
+            this.btnAddTsk.Name = "btnAddTsk";
+            this.btnAddTsk.Size = new System.Drawing.Size(134, 30);
+            this.btnAddTsk.TabIndex = 13;
+            this.btnAddTsk.Text = "Add Task";
+            this.btnAddTsk.UseVisualStyleBackColor = true;
             // 
             // btnExport
             // 
