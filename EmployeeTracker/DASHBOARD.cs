@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace EmployeeTracker
 {
     public partial class frmDashboard : Form
     {
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
         public frmDashboard()
         {
             InitializeComponent();
@@ -50,5 +52,47 @@ namespace EmployeeTracker
             AddTabs(tb);
         }
 
+        void employeeView()
+        {
+            try
+            {
+                //adding values into database
+                conn.Open();
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM Employee";
+                cmd.ExecuteNonQuery();
+                DataTable dt = new DataTable();
+
+                OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+                dp.Fill(dt);
+                EmployeeList.DataSource = dt;
+                EmployeeList.Columns[1].HeaderText = "First Name";
+                EmployeeList.Columns[2].HeaderText = "Last Name";
+                this.EmployeeList.Columns["EmployeeID"].Visible = false;
+                this.EmployeeList.Columns["contactNum"].Visible = false;
+                this.EmployeeList.Columns["email"].Visible = false;
+                this.EmployeeList.Columns["age"].Visible = false;
+                this.EmployeeList.Columns["status"].Visible = false;
+                this.EmployeeList.Columns["role"].Visible = false;
+                this.EmployeeList.Columns["accDateCreated"].Visible = false;
+                this.EmployeeList.Columns["accDateEnded"].Visible = false;
+                //EmployeeList.DataSource = //dt.AsEnumerable().Select(obj => new {  }).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void frmDashboard_Load(object sender, EventArgs e)
+        {
+            employeeView();
+        }
     }
 }

@@ -206,6 +206,7 @@
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Tracker";
+            this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
