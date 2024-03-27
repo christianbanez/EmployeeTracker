@@ -43,27 +43,37 @@ namespace EmployeeTracker
             {
                 //updating values into database
                 conn.Open();
-
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, role = @role, status = @status WHERE EmployeeID = @employeeID";
-                cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));
+
+                // Parameters
                 cmd.Parameters.AddWithValue("@fName", txtfName.Text);
                 cmd.Parameters.AddWithValue("@lName", txtlName.Text);
-                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                cmd.Parameters.AddWithValue("@Age", txtAge.Text);
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@contact", txtContact.Text);
+                cmd.Parameters.AddWithValue("@age", txtAge.Text);
+                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@role", txtrole.Text);
-                 cmd.Parameters.AddWithValue("@state", state);
-               cmd.ExecuteNonQuery();
-                MessageBox.Show("Record saved in Database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DataUpdated?.Invoke();
-                this.Close();
+                cmd.Parameters.AddWithValue("@status", state);
+                cmd.Parameters.AddWithValue("@employeeID", txtEmployeeID.Text);
+
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Record updated in Database", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataUpdated?.Invoke();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Employee ID not found or no changes made", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
 

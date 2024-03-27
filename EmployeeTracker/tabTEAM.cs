@@ -113,14 +113,14 @@ namespace EmployeeTracker
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //dataView();
+                    dataView();
                     //refresh();
 
                 }
                 else
                 {   //if the data is not deleted
                     MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //conn.Close();
+                    conn.Close();
                 }
             }
             catch
