@@ -24,7 +24,8 @@ namespace EmployeeTracker
         private void AddTabs(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
-            panel5.Controls.Add(userControl);
+            panelTabs.Controls.Add(userControl);
+            //this.Location = new System.Drawing.Point(1000, 1000);
             userControl.BringToFront();
         }
 
@@ -62,14 +63,17 @@ namespace EmployeeTracker
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM Employee";
                 cmd.ExecuteNonQuery();
-                DataTable dt = new DataTable();
+                //string fullName = EmployeeList.Columns[1].Value, EmployeeList.Columns[2].Value;
+
+                DataTable dt = new DataTable ();
 
                 OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
                 dp.Fill(dt);
                 EmployeeList.DataSource = dt;
-                EmployeeList.Columns[1].HeaderText = "First Name";
-                EmployeeList.Columns[2].HeaderText = "Last Name";
+
                 this.EmployeeList.Columns[0].Visible = false;
+                this.EmployeeList.Columns[1].Visible = false;
+                this.EmployeeList.Columns[2].Visible = false;                
                 this.EmployeeList.Columns[3].Visible = false;
                 this.EmployeeList.Columns[4].Visible = false;
                 this.EmployeeList.Columns[5].Visible = false;
@@ -77,8 +81,31 @@ namespace EmployeeTracker
                 this.EmployeeList.Columns[7].Visible = false;
                 this.EmployeeList.Columns[8].Visible = false;
                 this.EmployeeList.Columns[9].Visible = false;
-                //EmployeeList.DataSource = //dt.AsEnumerable().Select(obj => new {  }).ToList();
+                this.EmployeeList.Columns[10].Visible = false;
+                this.EmployeeList.Columns[11].Visible = false;
+                this.EmployeeList.Columns[12].Visible = false;
+                this.EmployeeList.Columns[13].Visible = false;
+                // EmployeeList.DataSource = dt.AsEnumerable().Select(obj => new {  }).ToList();
 
+                // Create a new column for the concatenated names
+                if (!dt.Columns.Contains("FullName"))
+                {
+                    // Add a new column for the concatenated full name
+                    dt.Columns.Add("FullName", typeof(string));
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    string firstName = row["fName"].ToString(); 
+                    string lastName = row["lName"].ToString(); 
+
+                    // Concatenate first name and last name with a space in between
+                    string fullName = $"{firstName} {lastName}";
+
+                    // Set the concatenated full name to the new column
+                    row["FullName"] = fullName;
+                }
+
+                EmployeeList.DataSource = dt; // Bind the DataTable to DataGridView
             }
             catch (Exception ex)
             {
@@ -90,21 +117,9 @@ namespace EmployeeTracker
             }
         }
 
-        //private void frmDashboard_Load(object sender, EventArgs e)
-        //{
-        //    employeeView();
-        //}
-
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
             employeeView();
-        }
-
-        private void frmDashboard_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'dbtkDataSet.Employee' table. You can move, or remove it, as needed.
-            this.employeeTableAdapter.Fill(this.dbtkDataSet.Employee);
-
         }
     }
 }

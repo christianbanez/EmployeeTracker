@@ -119,7 +119,7 @@ namespace EmployeeTracker
                 }
                 else
                 {   //if the data is not deleted
-                    MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   //MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     conn.Close();
                 }
             }

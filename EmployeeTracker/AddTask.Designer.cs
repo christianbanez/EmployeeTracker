@@ -82,7 +82,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(271, 79);
+            this.label2.Location = new System.Drawing.Point(271, 83);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 20);
@@ -104,7 +104,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(425, 27);
+            this.label1.Location = new System.Drawing.Point(425, 30);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 20);
@@ -148,7 +148,7 @@
             // 
             this.lStartD.AutoSize = true;
             this.lStartD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lStartD.Location = new System.Drawing.Point(9, 79);
+            this.lStartD.Location = new System.Drawing.Point(9, 83);
             this.lStartD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lStartD.Name = "lStartD";
             this.lStartD.Size = new System.Drawing.Size(87, 20);
@@ -159,7 +159,7 @@
             // 
             this.lProj.AutoSize = true;
             this.lProj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lProj.Location = new System.Drawing.Point(290, 309);
+            this.lProj.Location = new System.Drawing.Point(290, 312);
             this.lProj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lProj.Name = "lProj";
             this.lProj.Size = new System.Drawing.Size(62, 20);
@@ -170,7 +170,7 @@
             // 
             this.lAssign.AutoSize = true;
             this.lAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lAssign.Location = new System.Drawing.Point(9, 309);
+            this.lAssign.Location = new System.Drawing.Point(9, 312);
             this.lAssign.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lAssign.Name = "lAssign";
             this.lAssign.Size = new System.Drawing.Size(101, 20);
@@ -181,7 +181,7 @@
             // 
             this.ltskDesc.AutoSize = true;
             this.ltskDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ltskDesc.Location = new System.Drawing.Point(9, 133);
+            this.ltskDesc.Location = new System.Drawing.Point(9, 136);
             this.ltskDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ltskDesc.Name = "ltskDesc";
             this.ltskDesc.Size = new System.Drawing.Size(131, 20);
@@ -192,7 +192,7 @@
             // 
             this.lbtskTitle.AutoSize = true;
             this.lbtskTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtskTitle.Location = new System.Drawing.Point(9, 27);
+            this.lbtskTitle.Location = new System.Drawing.Point(9, 30);
             this.lbtskTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbtskTitle.Name = "lbtskTitle";
             this.lbtskTitle.Size = new System.Drawing.Size(80, 20);

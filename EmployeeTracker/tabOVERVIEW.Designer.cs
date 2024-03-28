@@ -41,6 +41,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.displayData);
             this.panel1.Controls.Add(this.btnPrint);
@@ -48,10 +49,11 @@
             this.panel1.Controls.Add(this.textSearch);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(0, 2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 440);
+            this.panel1.Size = new System.Drawing.Size(758, 585);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -61,7 +63,11 @@
             this.displayData.AllowUserToDeleteRows = false;
             this.displayData.AllowUserToResizeColumns = false;
             this.displayData.AllowUserToResizeRows = false;
+            this.displayData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.displayData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.displayData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.displayData.ColumnHeadersHeight = 34;
             this.displayData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.displayData.Location = new System.Drawing.Point(12, 54);
@@ -72,7 +78,7 @@
             this.displayData.RowHeadersWidth = 62;
             this.displayData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.displayData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.displayData.Size = new System.Drawing.Size(485, 368);
+            this.displayData.Size = new System.Drawing.Size(724, 513);
             this.displayData.TabIndex = 11;
             // 
             // btnPrint
@@ -127,16 +133,17 @@
             // 
             // tabOVERVIEW
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "tabOVERVIEW";
-            this.Size = new System.Drawing.Size(519, 453);
+            this.Size = new System.Drawing.Size(758, 585);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

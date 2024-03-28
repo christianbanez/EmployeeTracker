@@ -28,7 +28,7 @@ namespace EmployeeTracker
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM Task";
+                cmd.CommandText = "SELECT * FROM Schedule";
 
                 cmd.ExecuteNonQuery();
                 DataTable dt = new DataTable();
