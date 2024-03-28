@@ -16,5 +16,10 @@ namespace EmployeeTracker
         {
             InitializeComponent();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

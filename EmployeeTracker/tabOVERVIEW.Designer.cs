@@ -30,11 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.displayData = new System.Windows.Forms.DataGridView();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.SuspendLayout();
@@ -48,10 +48,10 @@
             this.panel1.Controls.Add(this.textSearch);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(0, 3);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(692, 541);
+            this.panel1.Size = new System.Drawing.Size(519, 440);
             this.panel1.TabIndex = 3;
             // 
             // displayData
@@ -62,72 +62,74 @@
             this.displayData.AllowUserToResizeRows = false;
             this.displayData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.displayData.ColumnHeadersHeight = 34;
-            this.displayData.Location = new System.Drawing.Point(16, 67);
-            this.displayData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.displayData.Location = new System.Drawing.Point(12, 54);
+            this.displayData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.displayData.Name = "displayData";
             this.displayData.ReadOnly = true;
             this.displayData.RowHeadersWidth = 62;
             this.displayData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.displayData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.displayData.Size = new System.Drawing.Size(647, 453);
+            this.displayData.Size = new System.Drawing.Size(485, 368);
             this.displayData.TabIndex = 11;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(289, 18);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(88, 20);
+            this.btnPrint.TabIndex = 7;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(262, 22);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Location = new System.Drawing.Point(196, 18);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(117, 25);
+            this.btnDelete.Size = new System.Drawing.Size(88, 20);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(517, 25);
-            this.textSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textSearch.Location = new System.Drawing.Point(388, 20);
+            this.textSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(146, 22);
+            this.textSearch.Size = new System.Drawing.Size(110, 20);
             this.textSearch.TabIndex = 3;
             this.textSearch.Text = "Search...";
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(139, 22);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUpdate.Location = new System.Drawing.Point(104, 18);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(117, 25);
+            this.btnUpdate.Size = new System.Drawing.Size(88, 20);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(16, 22);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Location = new System.Drawing.Point(12, 18);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(117, 25);
+            this.btnAdd.Size = new System.Drawing.Size(88, 20);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(385, 22);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(117, 25);
-            this.btnPrint.TabIndex = 7;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // tabOVERVIEW
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "tabOVERVIEW";
-            this.Size = new System.Drawing.Size(692, 557);
+            this.Size = new System.Drawing.Size(519, 453);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();

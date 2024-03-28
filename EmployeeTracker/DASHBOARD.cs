@@ -13,7 +13,7 @@ namespace EmployeeTracker
 {
     public partial class frmDashboard : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
         public frmDashboard()
         {
             InitializeComponent();
@@ -69,14 +69,14 @@ namespace EmployeeTracker
                 EmployeeList.DataSource = dt;
                 EmployeeList.Columns[1].HeaderText = "First Name";
                 EmployeeList.Columns[2].HeaderText = "Last Name";
-                this.EmployeeList.Columns["EmployeeID"].Visible = false;
-                this.EmployeeList.Columns["contactNum"].Visible = false;
-                this.EmployeeList.Columns["email"].Visible = false;
-                this.EmployeeList.Columns["age"].Visible = false;
-                this.EmployeeList.Columns["status"].Visible = false;
-                this.EmployeeList.Columns["role"].Visible = false;
-                this.EmployeeList.Columns["accDateCreated"].Visible = false;
-                this.EmployeeList.Columns["accDateEnded"].Visible = false;
+                this.EmployeeList.Columns[0].Visible = false;
+                this.EmployeeList.Columns[3].Visible = false;
+                this.EmployeeList.Columns[4].Visible = false;
+                this.EmployeeList.Columns[5].Visible = false;
+                this.EmployeeList.Columns[6].Visible = false;
+                this.EmployeeList.Columns[7].Visible = false;
+                this.EmployeeList.Columns[8].Visible = false;
+                this.EmployeeList.Columns[9].Visible = false;
                 //EmployeeList.DataSource = //dt.AsEnumerable().Select(obj => new {  }).ToList();
 
             }
@@ -90,9 +90,21 @@ namespace EmployeeTracker
             }
         }
 
-        private void frmDashboard_Load(object sender, EventArgs e)
+        //private void frmDashboard_Load(object sender, EventArgs e)
+        //{
+        //    employeeView();
+        //}
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
             employeeView();
+        }
+
+        private void frmDashboard_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dbtkDataSet.Employee' table. You can move, or remove it, as needed.
+            this.employeeTableAdapter.Fill(this.dbtkDataSet.Employee);
+
         }
     }
 }
