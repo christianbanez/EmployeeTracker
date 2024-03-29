@@ -19,6 +19,7 @@ namespace EmployeeTracker
             InitializeComponent();
             tabOVERVIEW tb = new tabOVERVIEW();
             AddTabs(tb);
+            
         }
 
         private void AddTabs(UserControl userControl)
@@ -26,6 +27,7 @@ namespace EmployeeTracker
             userControl.Dock = DockStyle.Fill;
             panelTabs.Controls.Add(userControl);
             //this.Location = new System.Drawing.Point(1000, 1000);
+            panelCalendar.SendToBack();
             userControl.BringToFront();
         }
 
@@ -44,7 +46,10 @@ namespace EmployeeTracker
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             tabCALENDAR tb = new tabCALENDAR();
-            AddTabs(tb);
+            panelCalendar.BringToFront();
+            //tb.Show();
+            //tb.Dock = DockStyle.Fill;
+            //panelCalendar.Add(tb);
         }
 
         private void btnTeam_Click(object sender, EventArgs e)
@@ -120,6 +125,30 @@ namespace EmployeeTracker
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
             employeeView();
+        }
+
+        private void btnCdOv_Click(object sender, EventArgs e)
+        {
+            tabOVERVIEW tb = new tabOVERVIEW();
+            AddTabs(tb);
+        }
+
+        private void btnCdTd_Click(object sender, EventArgs e)
+        {
+            tabTODAY tb = new tabTODAY();
+            AddTabs(tb);
+        }
+
+        private void btnCdTm_Click(object sender, EventArgs e)
+        {
+            tabTEAM tb = new tabTEAM();
+            AddTabs(tb);
+        }
+
+        private void btnCdCd_Click(object sender, EventArgs e)
+        {
+            tabCALENDAR tb = new tabCALENDAR();
+            panelCalendar.Show();
         }
     }
 }
