@@ -15,7 +15,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Christian\source\repos\EmployeeTracker\dbtk.accdb");
         public AddTask()
         {
             InitializeComponent();
@@ -31,13 +31,13 @@ namespace EmployeeTracker
             try
             {
                 connection.Open();
-                string query = "SELECT EmployeeID, fName FROM Employee";
+                string query = "SELECT EmployeeID, fName, lName FROM Employee";
                 OleDbCommand command = new OleDbCommand(query, connection);
                 OleDbDataAdapter adapter = new OleDbDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
                 cmbxAssign.DataSource = dataTable;
-                cmbxAssign.DisplayMember = "fName";
+                cmbxAssign.DisplayMember = "fName" + "lName";
                 cmbxAssign.ValueMember = "EmployeeID";
                 connection.Close();
             }
@@ -57,10 +57,8 @@ namespace EmployeeTracker
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string taskName = txtTaskName.Text;
-            string taskDesc = txtTaskDesc.Text;
-            DateTime taskStartDate = dateTimePickerStartDate.Value;
-            DateTime taskEndDate = dateTimePickerEndDate.Value;
+            DateTime schedStartDate = dateTimePickerStartDate.Value;
+            DateTime schedEndDate = dateTimePickerEndDate.Value;
 
             if (cmbxAssign.SelectedItem != null)
             {
@@ -70,12 +68,12 @@ namespace EmployeeTracker
 
                     int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
 
-                    InsertTask(taskName, taskDesc, taskStartDate, taskEndDate, employeeID);
+                    InsertTask(schedStartDate, schedEndDate, employeeID);
                 }
             }
         }
 
-        private void InsertTask(string taskName, string taskDesc, DateTime taskStartDate, DateTime taskEndDate, int employeeID)
+        private void InsertTask(DateTime schedStartDate, DateTime schedEndDate, int employeeID)
         {
             try
             {
@@ -84,12 +82,11 @@ namespace EmployeeTracker
                 OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = "INSERT INTO Task(taskName, taskDesc, taskStartDate, taskEndDate, EmployeeID) VALUES(@taskName, @taskDesc, @taskStartDate, @taskEndDate, @EmployeeID)";
+                cmd.CommandText = "INSERT INTO Schedule(timeIn, timeOut, EmployeeID) VALUES(@taskName, @taskDesc, @taskStartDate, @taskEndDate, @EmployeeID)";
 
-                cmd.Parameters.AddWithValue("@taskName", taskName);
-                cmd.Parameters.AddWithValue("@taskDesc", taskDesc);
-                cmd.Parameters.AddWithValue("@taskStartDate", taskStartDate);
-                cmd.Parameters.AddWithValue("@taskEndDate", taskEndDate);
+
+                cmd.Parameters.AddWithValue("@taskStartDate", schedStartDate);
+                cmd.Parameters.AddWithValue("@taskEndDate", schedEndDate);
                 cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
 
                 cmd.ExecuteNonQuery();

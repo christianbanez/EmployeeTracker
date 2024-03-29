@@ -13,7 +13,7 @@ namespace EmployeeTracker
 {
     public partial class frmDashboard : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Christian\source\repos\EmployeeTracker\dbtk.accdb");
         public frmDashboard()
         {
             InitializeComponent();
@@ -120,6 +120,12 @@ namespace EmployeeTracker
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
             employeeView();
+        }
+
+        private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            EmployeeListCTO form = new EmployeeListCTO();
+            form.Show();
         }
     }
 }
