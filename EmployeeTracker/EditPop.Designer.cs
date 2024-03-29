@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -48,7 +49,21 @@
             this.txtAge = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.txtfName = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -74,7 +89,7 @@
             this.panel2.Controls.Add(this.txtContact);
             this.panel2.Controls.Add(this.txtfName);
             this.panel2.Location = new System.Drawing.Point(2, 1);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(331, 334);
             this.panel2.TabIndex = 4;
@@ -83,7 +98,7 @@
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(121, 293);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 28);
             this.btnAdd.TabIndex = 30;
@@ -93,9 +108,10 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(220, 293);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 28);
             this.btnCancel.TabIndex = 29;
@@ -118,7 +134,7 @@
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(121, 293);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(88, 28);
             this.btnSave.TabIndex = 27;
@@ -130,10 +146,11 @@
             // 
             this.txtrole.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtrole.Location = new System.Drawing.Point(129, 221);
-            this.txtrole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtrole.Margin = new System.Windows.Forms.Padding(2);
             this.txtrole.Name = "txtrole";
             this.txtrole.Size = new System.Drawing.Size(169, 24);
             this.txtrole.TabIndex = 26;
+            this.txtrole.Validating += new System.ComponentModel.CancelEventHandler(this.txtrole_Validating);
             // 
             // label8
             // 
@@ -161,17 +178,18 @@
             // 
             this.txtlName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtlName.Location = new System.Drawing.Point(129, 98);
-            this.txtlName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtlName.Margin = new System.Windows.Forms.Padding(2);
             this.txtlName.Name = "txtlName";
             this.txtlName.Size = new System.Drawing.Size(169, 24);
             this.txtlName.TabIndex = 22;
+            this.txtlName.Validating += new System.ComponentModel.CancelEventHandler(this.txtlName_Validating);
             // 
             // chkActive
             // 
             this.chkActive.AutoSize = true;
             this.chkActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkActive.Location = new System.Drawing.Point(129, 256);
-            this.chkActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkActive.Margin = new System.Windows.Forms.Padding(2);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(66, 22);
             this.chkActive.TabIndex = 21;
@@ -182,10 +200,13 @@
             // 
             this.txtEmployeeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmployeeID.Location = new System.Drawing.Point(129, 36);
-            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.Size = new System.Drawing.Size(169, 24);
             this.txtEmployeeID.TabIndex = 20;
+            this.txtEmployeeID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContact_KeyPress);
+            this.txtEmployeeID.Leave += new System.EventHandler(this.txtEmployeeID_Leave);
+            this.txtEmployeeID.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmployeeID_Validating);
             // 
             // label5
             // 
@@ -246,38 +267,72 @@
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(129, 191);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(169, 24);
             this.txtEmail.TabIndex = 13;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // txtAge
             // 
             this.txtAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAge.Location = new System.Drawing.Point(129, 159);
-            this.txtAge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAge.Margin = new System.Windows.Forms.Padding(2);
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(169, 24);
             this.txtAge.TabIndex = 12;
+            this.txtAge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
+            this.txtAge.Validating += new System.ComponentModel.CancelEventHandler(this.txtAge_Validating);
             // 
             // txtContact
             // 
             this.txtContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContact.Location = new System.Drawing.Point(129, 129);
-            this.txtContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtContact.Margin = new System.Windows.Forms.Padding(2);
             this.txtContact.MaxLength = 11;
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(169, 24);
             this.txtContact.TabIndex = 11;
+            this.txtContact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContact_KeyPress);
+            this.txtContact.Validating += new System.ComponentModel.CancelEventHandler(this.txtContact_Validating);
             // 
             // txtfName
             // 
             this.txtfName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtfName.Location = new System.Drawing.Point(129, 66);
-            this.txtfName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtfName.Margin = new System.Windows.Forms.Padding(2);
             this.txtfName.Name = "txtfName";
             this.txtfName.Size = new System.Drawing.Size(169, 24);
             this.txtfName.TabIndex = 10;
+            this.txtfName.Validating += new System.ComponentModel.CancelEventHandler(this.txtfName_Validating);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
+            // errorProvider5
+            // 
+            this.errorProvider5.ContainerControl = this;
+            // 
+            // errorProvider6
+            // 
+            this.errorProvider6.ContainerControl = this;
+            // 
+            // errorProvider7
+            // 
+            this.errorProvider7.ContainerControl = this;
             // 
             // EditPop
             // 
@@ -289,7 +344,7 @@
             this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(350, 383);
             this.MinimizeBox = false;
@@ -300,6 +355,13 @@
             this.Text = "AddPopup";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -327,5 +389,12 @@
         private System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.ErrorProvider errorProvider5;
+        private System.Windows.Forms.ErrorProvider errorProvider6;
+        private System.Windows.Forms.ErrorProvider errorProvider7;
     }
 }
