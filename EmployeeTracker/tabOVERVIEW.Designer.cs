@@ -34,7 +34,8 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnLogs = new System.Windows.Forms.Button();
+            this.btnTasks = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.SuspendLayout();
@@ -43,12 +44,13 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.btnTasks);
             this.panel1.Controls.Add(this.displayData);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.textSearch);
             this.panel1.Controls.Add(this.btnUpdate);
-            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Controls.Add(this.btnLogs);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -83,27 +85,29 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(289, 18);
+            this.btnPrint.AutoSize = true;
+            this.btnPrint.Location = new System.Drawing.Point(383, 24);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(88, 20);
+            this.btnPrint.Size = new System.Drawing.Size(88, 23);
             this.btnPrint.TabIndex = 7;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(196, 18);
+            this.btnDelete.AutoSize = true;
+            this.btnDelete.Location = new System.Drawing.Point(290, 24);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 20);
+            this.btnDelete.Size = new System.Drawing.Size(88, 23);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(388, 20);
+            this.textSearch.Location = new System.Drawing.Point(482, 26);
             this.textSearch.Margin = new System.Windows.Forms.Padding(2);
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(110, 20);
@@ -112,24 +116,37 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(104, 18);
+            this.btnUpdate.AutoSize = true;
+            this.btnUpdate.Location = new System.Drawing.Point(198, 24);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 20);
+            this.btnUpdate.Size = new System.Drawing.Size(88, 23);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
-            // btnAdd
+            // btnLogs
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 18);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(88, 20);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnLogs.AutoSize = true;
+            this.btnLogs.Location = new System.Drawing.Point(105, 24);
+            this.btnLogs.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(88, 23);
+            this.btnLogs.TabIndex = 2;
+            this.btnLogs.Text = "Add Logs";
+            this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
+            // 
+            // btnTasks
+            // 
+            this.btnTasks.AutoSize = true;
+            this.btnTasks.Location = new System.Drawing.Point(12, 24);
+            this.btnTasks.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTasks.Name = "btnTasks";
+            this.btnTasks.Size = new System.Drawing.Size(88, 23);
+            this.btnTasks.TabIndex = 12;
+            this.btnTasks.Text = "Add Tasks";
+            this.btnTasks.UseVisualStyleBackColor = true;
             // 
             // tabOVERVIEW
             // 
@@ -154,7 +171,8 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textSearch;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnLogs;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnTasks;
     }
 }

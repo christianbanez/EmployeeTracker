@@ -1,6 +1,6 @@
 ﻿namespace EmployeeTracker
 {
-    partial class AddTask
+    partial class AddLogs
     {
         /// <summary>
         /// Required designer variable.
@@ -267,15 +267,15 @@
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
             // 
-            // AddTask
+            // AddLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 452);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "AddTask";
-            this.Text = "Add Task";
+            this.Name = "AddLogs";
+            this.Text = "Add Log";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

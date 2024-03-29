@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace EmployeeTracker
 {
-    public partial class AddTask : Form
+    public partial class AddLogs : Form
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
         OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
-        public AddTask()
+        public AddLogs()
         {
             InitializeComponent();
         }

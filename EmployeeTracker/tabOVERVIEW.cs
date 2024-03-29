@@ -51,11 +51,11 @@ namespace EmployeeTracker
         }
 
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnLogs_Click(object sender, EventArgs e)
         {
-            AddTask addTask = new AddTask();
-            addTask.DataUpdated += addTask_DataUpdated;
-            addTask.Show();
+            AddLogs addLog = new AddLogs();
+            addLog.DataUpdated += addTask_DataUpdated;
+            addLog.Show();
             //addTask.btnSave.Hide();
             //editTab.BringToFront();
         }
