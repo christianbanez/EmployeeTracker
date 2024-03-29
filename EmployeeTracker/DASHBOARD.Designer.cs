@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExport = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -47,10 +47,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.EmployeeList = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.btnCdOv = new System.Windows.Forms.Button();
-            this.btnCdTd = new System.Windows.Forms.Button();
-            this.btnCdTm = new System.Windows.Forms.Button();
             this.btnCdCd = new System.Windows.Forms.Button();
+            this.btnCdTm = new System.Windows.Forms.Button();
+            this.btnCdTd = new System.Windows.Forms.Button();
+            this.btnCdOv = new System.Windows.Forms.Button();
             this.tabCALENDAR1 = new EmployeeTracker.tabCALENDAR();
             this.panelCalendar = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
@@ -216,30 +216,30 @@
             this.EmployeeList.AllowUserToDeleteRows = false;
             this.EmployeeList.AllowUserToResizeColumns = false;
             this.EmployeeList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmployeeList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.EmployeeList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.EmployeeList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.EmployeeList.BackgroundColor = System.Drawing.SystemColors.Control;
             this.EmployeeList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.EmployeeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.EmployeeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.EmployeeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.EmployeeList.ColumnHeadersVisible = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.EmployeeList.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.EmployeeList.DefaultCellStyle = dataGridViewCellStyle11;
             this.EmployeeList.GridColor = System.Drawing.SystemColors.Control;
             this.EmployeeList.Location = new System.Drawing.Point(6, 39);
             this.EmployeeList.Name = "EmployeeList";
@@ -247,8 +247,8 @@
             this.EmployeeList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.EmployeeList.RowHeadersVisible = false;
             this.EmployeeList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmployeeList.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmployeeList.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.EmployeeList.Size = new System.Drawing.Size(228, 554);
             this.EmployeeList.TabIndex = 0;
             // 
@@ -265,29 +265,17 @@
             this.panel7.Size = new System.Drawing.Size(1005, 32);
             this.panel7.TabIndex = 14;
             // 
-            // btnCdOv
+            // btnCdCd
             // 
-            this.btnCdOv.AutoSize = true;
-            this.btnCdOv.Location = new System.Drawing.Point(3, 3);
-            this.btnCdOv.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCdOv.Name = "btnCdOv";
-            this.btnCdOv.Size = new System.Drawing.Size(66, 24);
-            this.btnCdOv.TabIndex = 0;
-            this.btnCdOv.Text = "Overview";
-            this.btnCdOv.UseVisualStyleBackColor = true;
-            this.btnCdOv.Click += new System.EventHandler(this.btnCdOv_Click);
-            // 
-            // btnCdTd
-            // 
-            this.btnCdTd.AutoSize = true;
-            this.btnCdTd.Location = new System.Drawing.Point(72, 3);
-            this.btnCdTd.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCdTd.Name = "btnCdTd";
-            this.btnCdTd.Size = new System.Drawing.Size(64, 24);
-            this.btnCdTd.TabIndex = 1;
-            this.btnCdTd.Text = "Today";
-            this.btnCdTd.UseVisualStyleBackColor = true;
-            this.btnCdTd.Click += new System.EventHandler(this.btnCdTd_Click);
+            this.btnCdCd.AutoSize = true;
+            this.btnCdCd.Location = new System.Drawing.Point(141, 3);
+            this.btnCdCd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCdCd.Name = "btnCdCd";
+            this.btnCdCd.Size = new System.Drawing.Size(65, 24);
+            this.btnCdCd.TabIndex = 6;
+            this.btnCdCd.Text = "Calendar";
+            this.btnCdCd.UseVisualStyleBackColor = true;
+            this.btnCdCd.Click += new System.EventHandler(this.btnCdCd_Click);
             // 
             // btnCdTm
             // 
@@ -301,24 +289,36 @@
             this.btnCdTm.UseVisualStyleBackColor = true;
             this.btnCdTm.Click += new System.EventHandler(this.btnCdTm_Click);
             // 
-            // btnCdCd
+            // btnCdTd
             // 
-            this.btnCdCd.AutoSize = true;
-            this.btnCdCd.Location = new System.Drawing.Point(141, 3);
-            this.btnCdCd.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCdCd.Name = "btnCdCd";
-            this.btnCdCd.Size = new System.Drawing.Size(65, 24);
-            this.btnCdCd.TabIndex = 6;
-            this.btnCdCd.Text = "Calendar";
-            this.btnCdCd.UseVisualStyleBackColor = true;
-            this.btnCdCd.Click += new System.EventHandler(this.btnCdCd_Click);
+            this.btnCdTd.AutoSize = true;
+            this.btnCdTd.Location = new System.Drawing.Point(72, 3);
+            this.btnCdTd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCdTd.Name = "btnCdTd";
+            this.btnCdTd.Size = new System.Drawing.Size(64, 24);
+            this.btnCdTd.TabIndex = 1;
+            this.btnCdTd.Text = "Today";
+            this.btnCdTd.UseVisualStyleBackColor = true;
+            this.btnCdTd.Click += new System.EventHandler(this.btnCdTd_Click);
+            // 
+            // btnCdOv
+            // 
+            this.btnCdOv.AutoSize = true;
+            this.btnCdOv.Location = new System.Drawing.Point(3, 3);
+            this.btnCdOv.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCdOv.Name = "btnCdOv";
+            this.btnCdOv.Size = new System.Drawing.Size(66, 24);
+            this.btnCdOv.TabIndex = 0;
+            this.btnCdOv.Text = "Overview";
+            this.btnCdOv.UseVisualStyleBackColor = true;
+            this.btnCdOv.Click += new System.EventHandler(this.btnCdOv_Click);
             // 
             // tabCALENDAR1
             // 
             this.tabCALENDAR1.Location = new System.Drawing.Point(3, 34);
             this.tabCALENDAR1.Margin = new System.Windows.Forms.Padding(2);
             this.tabCALENDAR1.Name = "tabCALENDAR1";
-            this.tabCALENDAR1.Size = new System.Drawing.Size(1000, 590);
+            this.tabCALENDAR1.Size = new System.Drawing.Size(998, 590);
             this.tabCALENDAR1.TabIndex = 15;
             // 
             // panelCalendar
@@ -338,8 +338,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.panelCalendar);
             this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panelCalendar);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "frmDashboard";

@@ -107,6 +107,12 @@
     <Compile Include="tabTEAM.Designer.cs">
       <DependentUpon>tabTEAM.cs</DependentUpon>
     </Compile>
+    <Compile Include="CdDay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CdDay.Designer.cs">
+      <DependentUpon>CdDay.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddTask.resx">
       <DependentUpon>AddTask.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +130,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="tabOVERVIEW.resx">
       <DependentUpon>tabOVERVIEW.cs</DependentUpon>
@@ -136,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="tabCALENDAR.resx">
       <DependentUpon>tabCALENDAR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CdDay.resx">
+      <DependentUpon>CdDay.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="dbtkDataSet.xsc">
       <DependentUpon>dbtkDataSet.xsd</DependentUpon>
@@ -176,6 +186,8 @@
     <Content Include="dbtk.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\right-arrow-png-file.png" />
+    <None Include="Resources\left-arrow-png-file.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
