@@ -15,7 +15,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Christian\source\repos\EmployeeTracker\dbtk.accdb");
         public AddTask()
         {
             InitializeComponent();
@@ -62,20 +62,23 @@ namespace EmployeeTracker
             DateTime taskStartDate = dateTimePickerStartDate.Value;
             DateTime taskEndDate = dateTimePickerEndDate.Value;
 
+            // Calculate hours needed
             if (cmbxAssign.SelectedItem != null)
             {
                 DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
                 if (selectedRow != null)
                 {
+                    
 
                     int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
 
-                    InsertTask(taskName, taskDesc, taskStartDate, taskEndDate, employeeID);
+                    InsertTask(taskStartDate, taskEndDate, employeeID);
+                 
                 }
             }
         }
 
-        private void InsertTask(string taskName, string taskDesc, DateTime taskStartDate, DateTime taskEndDate, int employeeID)
+        private void InsertTask(DateTime taskStartDate, DateTime taskEndDate, int employeeID)
         {
             try
             {
@@ -84,13 +87,14 @@ namespace EmployeeTracker
                 OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = "INSERT INTO Task(taskName, taskDesc, taskStartDate, taskEndDate, EmployeeID) VALUES(@taskName, @taskDesc, @taskStartDate, @taskEndDate, @EmployeeID)";
+                TimeSpan timeDifference = taskEndDate - taskStartDate;
+                double hoursNeeded = timeDifference.TotalHours / 10;
 
-                cmd.Parameters.AddWithValue("@taskName", taskName);
-                cmd.Parameters.AddWithValue("@taskDesc", taskDesc);
+                cmd.CommandText = "INSERT INTO Schedule(timeIn, timeOut, EmployeeID, EmployeeID.ctoEarned) VALUES(@taskStartDate, @taskEndDate, @EmployeeID, @hoursNeeded)";
                 cmd.Parameters.AddWithValue("@taskStartDate", taskStartDate);
                 cmd.Parameters.AddWithValue("@taskEndDate", taskEndDate);
                 cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+                cmd.Parameters.AddWithValue("@hoursNeeded", hoursNeeded);
 
                 cmd.ExecuteNonQuery();
 
