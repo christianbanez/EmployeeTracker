@@ -48,7 +48,7 @@ namespace EmployeeTracker
 
         private void showDays(int month, int year)
         {
-            flowLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.Controls.Clear();
             _year = year;
             _month = month;
 
@@ -56,18 +56,33 @@ namespace EmployeeTracker
             lblMonth.Text = monthName.ToUpper() + " " + year;
             DateTime startofTheMonth = new DateTime(year, month, 1);
             int day = DateTime.DaysInMonth(year, month);
-            int week = Convert.ToInt32(startofTheMonth.DayOfWeek.ToString("d"));
+            int week = Convert.ToInt32(startofTheMonth.DayOfWeek.ToString("d")) + 1;
+
+            tableLayoutPanel1.ColumnStyles.Clear(); // Clear existing column styles
+            tableLayoutPanel1.RowStyles.Clear(); // Clear existing row styles
+            tableLayoutPanel1.ColumnCount = 7; // Assuming 7 days in a week
+            tableLayoutPanel1.RowCount = week; // No header row
 
             for (int i = 1; i < week; i++)
             {
                 CdDay cd = new CdDay(" ");
-                flowLayoutPanel1.Controls.Add(cd);
+                tableLayoutPanel1.Controls.Add(cd);
             }
 
-            for (int i = 1; i < day; i++)
+            for (int i = 1; i <= day; i++)
             {
                 CdDay cd = new CdDay(i + " ");
-                flowLayoutPanel1.Controls.Add(cd);
+                tableLayoutPanel1.Controls.Add(cd);
+            }
+
+            for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
+            {
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent));
+            }
+
+            for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
+            {
+                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
             }
         }
     }

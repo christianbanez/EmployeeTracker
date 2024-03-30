@@ -91,20 +91,22 @@
             // 
             // btnPrint
             // 
+            this.btnPrint.AutoSize = true;
             this.btnPrint.Location = new System.Drawing.Point(289, 18);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(88, 20);
+            this.btnPrint.Size = new System.Drawing.Size(88, 23);
             this.btnPrint.TabIndex = 7;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
+            this.btnDelete.AutoSize = true;
             this.btnDelete.Location = new System.Drawing.Point(196, 18);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 20);
+            this.btnDelete.Size = new System.Drawing.Size(88, 23);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -123,10 +125,11 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.AutoSize = true;
             this.btnUpdate.Location = new System.Drawing.Point(104, 18);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 20);
+            this.btnUpdate.Size = new System.Drawing.Size(88, 23);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -134,10 +137,11 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.AutoSize = true;
             this.btnAdd.Location = new System.Drawing.Point(12, 18);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(88, 20);
+            this.btnAdd.Size = new System.Drawing.Size(88, 23);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;

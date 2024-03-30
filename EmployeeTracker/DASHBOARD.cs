@@ -27,7 +27,7 @@ namespace EmployeeTracker
             userControl.Dock = DockStyle.Fill;
             panelTabs.Controls.Add(userControl);
             //this.Location = new System.Drawing.Point(1000, 1000);
-            panelCalendar.SendToBack();
+            panelCalPage.Hide();
             userControl.BringToFront();
         }
 
@@ -46,7 +46,7 @@ namespace EmployeeTracker
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             tabCALENDAR tb = new tabCALENDAR();
-            panelCalendar.BringToFront();
+            panelCalPage.Show();
             //tb.Show();
             //tb.Dock = DockStyle.Fill;
             //panelCalendar.Add(tb);
@@ -58,7 +58,12 @@ namespace EmployeeTracker
             AddTabs(tb);
         }
 
-        void employeeView()
+       public void employeeView()
+       {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
             try
             {
@@ -70,7 +75,7 @@ namespace EmployeeTracker
                 cmd.ExecuteNonQuery();
                 //string fullName = EmployeeList.Columns[1].Value, EmployeeList.Columns[2].Value;
 
-                DataTable dt = new DataTable ();
+                DataTable dt = new DataTable();
 
                 OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
                 dp.Fill(dt);
@@ -78,7 +83,7 @@ namespace EmployeeTracker
 
                 this.EmployeeList.Columns[0].Visible = false;
                 this.EmployeeList.Columns[1].Visible = false;
-                this.EmployeeList.Columns[2].Visible = false;                
+                this.EmployeeList.Columns[2].Visible = false;
                 this.EmployeeList.Columns[3].Visible = false;
                 this.EmployeeList.Columns[4].Visible = false;
                 this.EmployeeList.Columns[5].Visible = false;
@@ -100,8 +105,8 @@ namespace EmployeeTracker
                 }
                 foreach (DataRow row in dt.Rows)
                 {
-                    string firstName = row["fName"].ToString(); 
-                    string lastName = row["lName"].ToString(); 
+                    string firstName = row["fName"].ToString();
+                    string lastName = row["lName"].ToString();
 
                     // Concatenate first name and last name with a space in between
                     string fullName = $"{firstName} {lastName}";
@@ -122,9 +127,68 @@ namespace EmployeeTracker
             }
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
+        private void panel11_Paint(object sender, PaintEventArgs e)
         {
-            employeeView();
+            try
+            { 
+                conn.Open();
+                OleDbCommand cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM Employee";
+                cmd.ExecuteNonQuery();
+
+                DataTable dt = new DataTable();
+
+                OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+                dp.Fill(dt);
+                EmployeeList1.DataSource = dt;
+                this.EmployeeList1.Columns[0].Visible = false;
+                this.EmployeeList1.Columns[1].Visible = false;
+                this.EmployeeList1.Columns[2].Visible = false;                
+                this.EmployeeList1.Columns[3].Visible = false;
+                this.EmployeeList1.Columns[4].Visible = false;
+                this.EmployeeList1.Columns[5].Visible = false;
+                this.EmployeeList1.Columns[6].Visible = false;
+                this.EmployeeList1.Columns[7].Visible = false;
+                this.EmployeeList1.Columns[8].Visible = false;
+                this.EmployeeList1.Columns[9].Visible = false;
+                this.EmployeeList1.Columns[10].Visible = false;
+                this.EmployeeList1.Columns[11].Visible = false;
+                this.EmployeeList1.Columns[12].Visible = false;
+                this.EmployeeList1.Columns[13].Visible = false;
+                // EmployeeList.DataSource = dt.AsEnumerable().Select(obj => new {  }).ToList();
+
+                // Create a new column for the concatenated names
+                if (!dt.Columns.Contains("FullName"))
+                {
+                    // Add a new column for the concatenated full name
+                    dt.Columns.Add("FullName", typeof(string));
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    string firstName = row["fName"].ToString(); 
+                    string lastName = row["lName"].ToString(); 
+
+                    // Concatenate first name and last name with a space in between
+                    string fullName = $"{firstName} {lastName}";
+
+                    // Set the concatenated full name to the new column
+                    row["FullName"] = fullName;
+                }
+
+                EmployeeList1.DataSource = dt; // Bind the DataTable to DataGridView
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+
         }
 
         private void btnCdOv_Click(object sender, EventArgs e)
@@ -148,7 +212,21 @@ namespace EmployeeTracker
         private void btnCdCd_Click(object sender, EventArgs e)
         {
             tabCALENDAR tb = new tabCALENDAR();
-            panelCalendar.Show();
+            panelCalPage.Show();
         }
+
+        private EmployeeListCTO listCTO;
+
+        private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (listCTO != null && !listCTO.IsDisposed)
+            {
+                listCTO.Close();
+            }
+
+            listCTO = new EmployeeListCTO();
+            listCTO.Show();
+        }
+
     }
 }

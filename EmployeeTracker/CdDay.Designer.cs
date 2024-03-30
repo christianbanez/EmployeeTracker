@@ -43,9 +43,10 @@
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(1);
-            this.panel1.Size = new System.Drawing.Size(130, 98);
+            this.panel1.Size = new System.Drawing.Size(130, 81);
             this.panel1.TabIndex = 0;
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // checkBox1
             // 
@@ -61,14 +62,16 @@
             // 
             // lblDay
             // 
+            this.lblDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDay.AutoSize = true;
             this.lblDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDay.Location = new System.Drawing.Point(102, 8);
+            this.lblDay.Location = new System.Drawing.Point(106, 2);
             this.lblDay.Name = "lblDay";
             this.lblDay.Padding = new System.Windows.Forms.Padding(2);
             this.lblDay.Size = new System.Drawing.Size(25, 20);
             this.lblDay.TabIndex = 0;
             this.lblDay.Text = "00";
+            this.lblDay.Click += new System.EventHandler(this.lblDay_Click);
             // 
             // CdDay
             // 
@@ -78,7 +81,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "CdDay";
             this.Padding = new System.Windows.Forms.Padding(1);
-            this.Size = new System.Drawing.Size(132, 100);
+            this.Size = new System.Drawing.Size(132, 83);
             this.Load += new System.EventHandler(this.CdDay_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

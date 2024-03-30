@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTasks = new System.Windows.Forms.Button();
             this.displayData = new System.Windows.Forms.DataGridView();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnLogs = new System.Windows.Forms.Button();
-            this.btnTasks = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +58,17 @@
             this.panel1.Size = new System.Drawing.Size(758, 585);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnTasks
+            // 
+            this.btnTasks.AutoSize = true;
+            this.btnTasks.Location = new System.Drawing.Point(12, 18);
+            this.btnTasks.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTasks.Name = "btnTasks";
+            this.btnTasks.Size = new System.Drawing.Size(88, 23);
+            this.btnTasks.TabIndex = 12;
+            this.btnTasks.Text = "Add Tasks";
+            this.btnTasks.UseVisualStyleBackColor = true;
             // 
             // displayData
             // 
@@ -86,7 +97,7 @@
             // btnPrint
             // 
             this.btnPrint.AutoSize = true;
-            this.btnPrint.Location = new System.Drawing.Point(383, 24);
+            this.btnPrint.Location = new System.Drawing.Point(383, 18);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(88, 23);
@@ -97,7 +108,7 @@
             // btnDelete
             // 
             this.btnDelete.AutoSize = true;
-            this.btnDelete.Location = new System.Drawing.Point(290, 24);
+            this.btnDelete.Location = new System.Drawing.Point(290, 18);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(88, 23);
@@ -107,7 +118,7 @@
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(482, 26);
+            this.textSearch.Location = new System.Drawing.Point(482, 20);
             this.textSearch.Margin = new System.Windows.Forms.Padding(2);
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(110, 20);
@@ -117,7 +128,7 @@
             // btnUpdate
             // 
             this.btnUpdate.AutoSize = true;
-            this.btnUpdate.Location = new System.Drawing.Point(198, 24);
+            this.btnUpdate.Location = new System.Drawing.Point(198, 18);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(88, 23);
@@ -128,7 +139,7 @@
             // btnLogs
             // 
             this.btnLogs.AutoSize = true;
-            this.btnLogs.Location = new System.Drawing.Point(105, 24);
+            this.btnLogs.Location = new System.Drawing.Point(105, 18);
             this.btnLogs.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(88, 23);
@@ -136,17 +147,6 @@
             this.btnLogs.Text = "Add Logs";
             this.btnLogs.UseVisualStyleBackColor = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
-            // 
-            // btnTasks
-            // 
-            this.btnTasks.AutoSize = true;
-            this.btnTasks.Location = new System.Drawing.Point(12, 24);
-            this.btnTasks.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTasks.Name = "btnTasks";
-            this.btnTasks.Size = new System.Drawing.Size(88, 23);
-            this.btnTasks.TabIndex = 12;
-            this.btnTasks.Text = "Add Tasks";
-            this.btnTasks.UseVisualStyleBackColor = true;
             // 
             // tabOVERVIEW
             // 

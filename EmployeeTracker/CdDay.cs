@@ -33,6 +33,16 @@ namespace EmployeeTracker
             }
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblDay_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public CdDay(string day)
         {
             InitializeComponent();
