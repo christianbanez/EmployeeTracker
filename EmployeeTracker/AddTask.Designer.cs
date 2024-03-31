@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSelectedID = new System.Windows.Forms.TextBox();
+            this.lblSelectedName = new System.Windows.Forms.TextBox();
+            this.selectedName = new System.Windows.Forms.Label();
             this.dataGridViewSchedules = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,9 +47,6 @@
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.employeeTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.EmployeeTableAdapter();
-            this.lblSelectedName = new System.Windows.Forms.TextBox();
-            this.selectedName = new System.Windows.Forms.Label();
-            this.lblSelectedID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedules)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
@@ -74,6 +74,31 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(670, 640);
             this.panel1.TabIndex = 0;
+            // 
+            // lblSelectedID
+            // 
+            this.lblSelectedID.Location = new System.Drawing.Point(147, 42);
+            this.lblSelectedID.Name = "lblSelectedID";
+            this.lblSelectedID.Size = new System.Drawing.Size(509, 20);
+            this.lblSelectedID.TabIndex = 22;
+            // 
+            // lblSelectedName
+            // 
+            this.lblSelectedName.Location = new System.Drawing.Point(147, 10);
+            this.lblSelectedName.Name = "lblSelectedName";
+            this.lblSelectedName.Size = new System.Drawing.Size(509, 20);
+            this.lblSelectedName.TabIndex = 21;
+            // 
+            // selectedName
+            // 
+            this.selectedName.AutoSize = true;
+            this.selectedName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectedName.Location = new System.Drawing.Point(5, 10);
+            this.selectedName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.selectedName.Name = "selectedName";
+            this.selectedName.Size = new System.Drawing.Size(137, 20);
+            this.selectedName.TabIndex = 20;
+            this.selectedName.Text = "Employee Name : ";
             // 
             // dataGridViewSchedules
             // 
@@ -111,7 +136,7 @@
             // 
             // dateTimePickerTimeOut
             // 
-            this.dateTimePickerTimeOut.CustomFormat = "MM/dd/yyyy, hh:mm tt";
+            this.dateTimePickerTimeOut.CustomFormat = "MM/dd/yyyy HH:mm:ss";
             this.dateTimePickerTimeOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerTimeOut.Location = new System.Drawing.Point(345, 167);
@@ -178,7 +203,7 @@
             // 
             // dateTimePickerTimeIn
             // 
-            this.dateTimePickerTimeIn.CustomFormat = " MM/dd/yyyy, hh:mm tt";
+            this.dateTimePickerTimeIn.CustomFormat = "MM/dd/yyyy HH:mm:ss";
             this.dateTimePickerTimeIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerTimeIn.Location = new System.Drawing.Point(5, 166);
@@ -214,31 +239,6 @@
             // employeeTableAdapter
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
-            // 
-            // lblSelectedName
-            // 
-            this.lblSelectedName.Location = new System.Drawing.Point(147, 10);
-            this.lblSelectedName.Name = "lblSelectedName";
-            this.lblSelectedName.Size = new System.Drawing.Size(509, 20);
-            this.lblSelectedName.TabIndex = 21;
-            // 
-            // selectedName
-            // 
-            this.selectedName.AutoSize = true;
-            this.selectedName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectedName.Location = new System.Drawing.Point(5, 10);
-            this.selectedName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.selectedName.Name = "selectedName";
-            this.selectedName.Size = new System.Drawing.Size(137, 20);
-            this.selectedName.TabIndex = 20;
-            this.selectedName.Text = "Employee Name : ";
-            // 
-            // lblSelectedID
-            // 
-            this.lblSelectedID.Location = new System.Drawing.Point(147, 42);
-            this.lblSelectedID.Name = "lblSelectedID";
-            this.lblSelectedID.Size = new System.Drawing.Size(509, 20);
-            this.lblSelectedID.TabIndex = 22;
             // 
             // AddTask
             // 

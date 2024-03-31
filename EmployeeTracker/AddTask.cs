@@ -17,7 +17,7 @@ namespace EmployeeTracker
         public event DataUpdatedEventHandler DataUpdated;
         OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb");
         private string SelectedName { get; set; }
-        public int SelectedID { get; private set; }
+        public int SelectedID { get; set; }
 
         public AddTask(string selectedName, int selectedID)
         {
@@ -30,17 +30,6 @@ namespace EmployeeTracker
             PopulateComboBox();
             LoadSchedules(); // Load schedules when form is initialized
         }
-
-        private void AddTask_Load(object sender, EventArgs e)
-        {
-            // Debugging statement to ensure the method is called
-            Console.WriteLine("Selected ID: " + SelectedID);
-
-
-
-            PopulateComboBox();
-        }
-
         private void LoadSchedules()
         {
             try
@@ -110,39 +99,41 @@ namespace EmployeeTracker
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            DateTime timeIn = dateTimePickerTimeIn.Value;
+            DateTime timeOut = dateTimePickerTimeOut.Value;
+
             if (cmbxAssign.SelectedItem != null)
             {
                 DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
                 if (selectedRow != null)
                 {
-                    DateTime timeIn = dateTimePickerTimeIn.Value;
-                    DateTime timeOut = dateTimePickerTimeOut.Value;
+
+                    // SelectedID is already assigned in the constructor
+                    int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
 
                     // Call method to insert task
-                    InsertTask(taskID, timeIn, timeOut);
+                    InsertTask(timeIn, timeOut, taskID);
                 }
             }
         }
 
 
         //inserting the values of the form into database
-        private void InsertTask(int taskID, DateTime timeIn, DateTime timeOut)
+        private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID)
         {
             try
             {
                 // Establish connection and insert data
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb"))
-                using (OleDbCommand scheduleCmd = connection.CreateCommand())
+                connection.Open();
+                using (OleDbCommand Cmd = connection.CreateCommand())
                 {
-                    connection.Open();
-
-                    scheduleCmd.CommandType = CommandType.Text;
-                    scheduleCmd.CommandText = "INSERT INTO Schedule (timeIn, timeOut, EmployeeID, TaskID) VALUES (@timeIn, @timeOut, @EmployeeID, @TaskID)";
-                    scheduleCmd.Parameters.AddWithValue("@timeIn", timeIn);
-                    scheduleCmd.Parameters.AddWithValue("@timeOut", timeOut);
-                    scheduleCmd.Parameters.AddWithValue("@EmployeeID", SelectedID); // Use the selected ID
-                    scheduleCmd.Parameters.AddWithValue("@TaskID", taskID);
-                    scheduleCmd.ExecuteNonQuery();
+                    Cmd.CommandType = CommandType.Text;
+                    Cmd.CommandText = "INSERT INTO Schedule(timeIn, timeOut, EmployeeID, TaskID) VALUES (@timeIn, @timeOut, @EmployeeID, @TaskID)";
+                    Cmd.Parameters.AddWithValue("@timeIn", timeIn.ToString("MM/dd/yyyy HH:mm:ss"));
+                    Cmd.Parameters.AddWithValue("@timeOut", timeOut.ToString("MM/dd/yyyy HH:mm:ss"));
+                    Cmd.Parameters.AddWithValue("@EmployeeID", SelectedID); // Use the selected ID
+                    Cmd.Parameters.AddWithValue("@TaskID", taskID);
+                    Cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Task and schedule inserted successfully!");
                 }
@@ -153,9 +144,11 @@ namespace EmployeeTracker
             }
             finally
             {
+                connection.Close(); // Close the connection
                 this.Close();
             }
         }
+
 
 
 
