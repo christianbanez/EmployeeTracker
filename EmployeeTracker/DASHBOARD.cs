@@ -67,7 +67,7 @@ namespace EmployeeTracker
         {
             try
             {
-                //adding values into database
+                //getting values from database
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 cmd.CommandType = CommandType.Text;

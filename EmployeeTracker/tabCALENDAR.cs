@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace EmployeeTracker
 {
     public partial class tabCALENDAR : UserControl
@@ -45,7 +46,6 @@ namespace EmployeeTracker
             }
             showDays(_month, _year);
         }
-
         private void showDays(int month, int year)
         {
             tableLayoutPanel1.Controls.Clear();
@@ -61,29 +61,62 @@ namespace EmployeeTracker
             tableLayoutPanel1.ColumnStyles.Clear(); // Clear existing column styles
             tableLayoutPanel1.RowStyles.Clear(); // Clear existing row styles
             tableLayoutPanel1.ColumnCount = 7; // Assuming 7 days in a week
-            tableLayoutPanel1.RowCount = week; // No header row
+            tableLayoutPanel1.RowCount = 7; // Add one row for weekdays labels
+
+            string[] daysOfWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
+            // Add labels for the days of the week
+            for (int i = 0; i < 7; i++)
+            {
+                Label lblDayOfWeek = new Label();
+                lblDayOfWeek.Text = daysOfWeek[i];
+                lblDayOfWeek.TextAlign = ContentAlignment.MiddleCenter;
+
+                if (i == 0) // Set a fixed size for the first row (weekdays labels)
+                {
+                    tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20)); // Set a fixed height
+                }
+                else // Set row styles for equal sizing for other rows
+                {
+                    tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / tableLayoutPanel1.RowCount));
+                }
+
+                tableLayoutPanel1.Controls.Add(lblDayOfWeek, i, 0);
+            }
 
             for (int i = 1; i < week; i++)
             {
                 CdDay cd = new CdDay(" ");
+                cd.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom; // Set anchor for resizing
                 tableLayoutPanel1.Controls.Add(cd);
             }
 
             for (int i = 1; i <= day; i++)
             {
                 CdDay cd = new CdDay(i + " ");
+                cd.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom; // Set anchor for resizing
                 tableLayoutPanel1.Controls.Add(cd);
             }
 
-            for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-            {
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent));
-            }
+            // Adjust row and column styles for proper layout
+            //float percentRow = 100.0f / tableLayoutPanel1.RowCount;
+            //float percentColumn = 100.0f / tableLayoutPanel1.ColumnCount;
 
+            // Add special row style for weekdays labels
+            //tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+
+            // Set column styles for equal sizing
             for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
             {
-                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
+                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / tableLayoutPanel1.ColumnCount));
             }
+
+            // Set row styles for equal sizing
+            for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
+            {
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / tableLayoutPanel1.RowCount));
+            }
+            tableLayoutPanel1.Dock = DockStyle.Fill;
         }
     }
 }
