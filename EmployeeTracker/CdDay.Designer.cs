@@ -58,6 +58,7 @@
             this.lblTask.Size = new System.Drawing.Size(130, 58);
             this.lblTask.TabIndex = 1;
             this.lblTask.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTask.Click += new System.EventHandler(this.lblTask_Click);
             // 
             // checkBox1
             // 

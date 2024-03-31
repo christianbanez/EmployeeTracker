@@ -19,43 +19,57 @@ namespace EmployeeTracker
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
 
-        //public void displayTask()
-        //{
-        //    try
-        //    {
-        //        // Use using statement for automatic disposal and better resource management
-        //        using (conn)
-        //        {
-        //            conn.Open();
-        //            using (OleDbCommand cmd = conn.CreateCommand())
-        //            {
-        //                cmd.CommandType = CommandType.Text;
-        //                cmd.CommandText = "SELECT * FROM Schedule WHERE Date = ?";
-        //                // Assuming 'Date' is a column name in your database
-        //                cmd.Parameters.AddWithValue("date", tabCALENDAR._year + "-" + tabCALENDAR._month + "-" + lblDay.Text);
+        public void DisplayTask()
+        {
+            try
+            {
+                // Assuming 'conn' is your OleDbConnection object
+                using (conn)
+                {
+                    conn.Open();
+                    using (OleDbCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT Schedule.*, Task.taskName FROM Schedule, Task WHERE " +
+                            "Schedule.taskId = Task.taskId " +
+                            "AND Format(Schedule.timeIn, 'D/M/YYYY') = ?";
 
-        //                using (OleDbDataReader reader = cmd.ExecuteReader())
-        //                {
-        //                    // Check if there are rows returned from the query
-        //                    if (reader.HasRows)
-        //                    {
-        //                        // Read the first row (assuming only one result is expected)
-        //                        reader.Read();
-        //                        lblTask.Text = reader["event"].ToString();
-        //                    }
-        //                    else
-        //                    {
-        //                        lblTask.Text = "No task for this date.";
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    } 
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
+
+                        // Assuming 'Date' is a column name in your database
+                        // Format the date to match the format 'D/M/YYYY'
+                        string formattedDate = $"{_day.Trim()}/{tabCALENDAR._month}/{tabCALENDAR._year}";
+                        cmd.Parameters.AddWithValue("date", formattedDate);
+
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Check if there are rows returned from the query
+                            if (reader.HasRows)
+                            {
+                                List<string> taskNames = new List<string>();
+
+                                // Iterate through the reader and collect task names
+                                while (reader.Read())
+                                {
+                                    taskNames.Add(reader["taskName"].ToString());
+                                }
+
+                                // Display the task names as a comma-separated list
+                                lblTask.Text = string.Join(", ", taskNames);
+                            }
+                            else
+                            {
+                                //lblTask.Text = formattedDate;
+                                //lblTask.Text = formattedDate;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -76,6 +90,10 @@ namespace EmployeeTracker
             }
         }
 
+        private void lblTask_Click(object sender, EventArgs e)
+        {
+
+        }
 
         public CdDay(string day)
         {
@@ -84,12 +102,16 @@ namespace EmployeeTracker
             lblDay.Text = day;
             checkBox1.Hide();
 
-            date = tabCALENDAR._month + "/" + _day + "/" + tabCALENDAR._year;
+            date = $"{_day.Trim()}/{tabCALENDAR._month}/{tabCALENDAR._year}";
+            date = Convert.ToString(date);
         }
 
         private void CdDay_Load(object sender, EventArgs e)
         {
-            //displayTask();
+            if (!string.IsNullOrEmpty(lblDay.Text))
+            {
+                DisplayTask();
+            }
         }
     }
 }
