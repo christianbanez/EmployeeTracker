@@ -35,7 +35,6 @@ namespace EmployeeTracker
                             "AND Format(Schedule.timeIn, 'D/M/YYYY') = ?";
 
 
-                        // Assuming 'Date' is a column name in your database
                         // Format the date to match the format 'D/M/YYYY'
                         string formattedDate = $"{_day.Trim()}/{tabCALENDAR._month}/{tabCALENDAR._year}";
                         cmd.Parameters.AddWithValue("date", formattedDate);
