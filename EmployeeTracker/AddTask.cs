@@ -115,7 +115,6 @@ namespace EmployeeTracker
                 DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
                 if (selectedRow != null)
                 {
-                    int taskID = Convert.ToInt32(selectedRow["taskID"]);
                     DateTime timeIn = dateTimePickerTimeIn.Value;
                     DateTime timeOut = dateTimePickerTimeOut.Value;
 
