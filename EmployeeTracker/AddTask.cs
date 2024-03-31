@@ -15,10 +15,57 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Christian\source\repos\EmployeeTracker\dbtk.accdb");
-        public AddTask()
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb");
+        private string SelectedName { get; set; }
+        public int SelectedID { get; private set; }
+
+        public AddTask(string selectedName, int selectedID)
         {
             InitializeComponent();
+
+            lblSelectedName.Text = selectedName;
+            lblSelectedID.Text = selectedID.ToString();
+            SelectedID = selectedID;
+
+            PopulateComboBox();
+            LoadSchedules(); // Load schedules when form is initialized
+        }
+
+        private void AddTask_Load(object sender, EventArgs e)
+        {
+            // Debugging statement to ensure the method is called
+            Console.WriteLine("Selected ID: " + SelectedID);
+
+
+
+            PopulateComboBox();
+        }
+
+        private void LoadSchedules()
+        {
+            try
+            {
+                // Establish connection and query schedules for the selected employee ID
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT * FROM Schedule WHERE EmployeeID = @EmployeeID", connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+
+                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(command))
+                    {
+                        DataTable scheduleTable = new DataTable();
+                        adapter.Fill(scheduleTable);
+
+                        // Bind the retrieved schedules to the DataGridView
+                        dataGridViewSchedules.DataSource = scheduleTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,20 +73,25 @@ namespace EmployeeTracker
             PopulateComboBox();
         }
 
+        //Combo Box query
         private void PopulateComboBox()
         {
             try
             {
-                connection.Open();
-                string query = "SELECT EmployeeID, fName FROM Employee";
-                OleDbCommand command = new OleDbCommand(query, connection);
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                cmbxAssign.DataSource = dataTable;
-                cmbxAssign.DisplayMember = "fName";
-                cmbxAssign.ValueMember = "EmployeeID";
-                connection.Close();
+                // Establish connection and query database
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT taskID, taskName AS employeetask FROM Task", connection))
+                {
+                    connection.Open();
+                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        cmbxAssign.DataSource = dataTable;
+                        cmbxAssign.DisplayMember = "employeetask";
+                        cmbxAssign.ValueMember = "taskID";
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -47,72 +99,80 @@ namespace EmployeeTracker
             }
         }
 
+        // Assign to: combox Box Display
         private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
             if (selectedRow != null)
             {
-                string selectedItem = selectedRow["fname"].ToString();
+                string selectedItem = selectedRow["employeetask"].ToString();
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string taskName = txtTaskName.Text;
-            string taskDesc = txtTaskDesc.Text;
-            DateTime taskStartDate = dateTimePickerStartDate.Value;
-            DateTime taskEndDate = dateTimePickerEndDate.Value;
-
-            // Calculate hours needed
             if (cmbxAssign.SelectedItem != null)
             {
                 DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
                 if (selectedRow != null)
                 {
-                    
+                    int taskID = Convert.ToInt32(selectedRow["taskID"]);
+                    DateTime timeIn = dateTimePickerTimeIn.Value;
+                    DateTime timeOut = dateTimePickerTimeOut.Value;
 
-                    int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
-
-                    InsertTask(taskStartDate, taskEndDate, employeeID);
-                 
+                    // Call method to insert task
+                    InsertTask(taskID, timeIn, timeOut);
                 }
             }
         }
 
-        private void InsertTask(DateTime taskStartDate, DateTime taskEndDate, int employeeID)
+
+        //inserting the values of the form into database
+        private void InsertTask(int taskID, DateTime timeIn, DateTime timeOut)
         {
             try
             {
-                connection.Open();
+                // Establish connection and insert data
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb"))
+                using (OleDbCommand scheduleCmd = connection.CreateCommand())
+                {
+                    connection.Open();
 
-                OleDbCommand cmd = connection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
+                    scheduleCmd.CommandType = CommandType.Text;
+                    scheduleCmd.CommandText = "INSERT INTO Schedule (timeIn, timeOut, EmployeeID, TaskID) VALUES (@timeIn, @timeOut, @EmployeeID, @TaskID)";
+                    scheduleCmd.Parameters.AddWithValue("@timeIn", timeIn);
+                    scheduleCmd.Parameters.AddWithValue("@timeOut", timeOut);
+                    scheduleCmd.Parameters.AddWithValue("@EmployeeID", SelectedID); // Use the selected ID
+                    scheduleCmd.Parameters.AddWithValue("@TaskID", taskID);
+                    scheduleCmd.ExecuteNonQuery();
 
-                TimeSpan timeDifference = taskEndDate - taskStartDate;
-                double hoursNeeded = timeDifference.TotalHours / 10;
-
-                cmd.CommandText = "INSERT INTO Schedule(timeIn, timeOut, EmployeeID, EmployeeID.ctoEarned) VALUES(@taskStartDate, @taskEndDate, @EmployeeID, @hoursNeeded)";
-                cmd.Parameters.AddWithValue("@taskStartDate", taskStartDate);
-                cmd.Parameters.AddWithValue("@taskEndDate", taskEndDate);
-                cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
-                cmd.Parameters.AddWithValue("@hoursNeeded", hoursNeeded);
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Task inserted successfully!");
-
+                    MessageBox.Show("Task and schedule inserted successfully!");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
-            connection.Close();
-            this.Close();
+            finally
+            {
+                this.Close();
+            }
         }
+
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dateTimePickerEndDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

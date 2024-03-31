@@ -13,7 +13,7 @@ namespace EmployeeTracker
 {
     public partial class frmDashboard : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Christian\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb");
         public frmDashboard()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace EmployeeTracker
                 cmd.ExecuteNonQuery();
                 //string fullName = EmployeeList.Columns[1].Value, EmployeeList.Columns[2].Value;
 
-                DataTable dt = new DataTable ();
+                DataTable dt = new DataTable();
 
                 OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
                 dp.Fill(dt);
@@ -73,7 +73,7 @@ namespace EmployeeTracker
 
                 this.EmployeeList.Columns[0].Visible = false;
                 this.EmployeeList.Columns[1].Visible = false;
-                this.EmployeeList.Columns[2].Visible = false;                
+                this.EmployeeList.Columns[2].Visible = false;
                 this.EmployeeList.Columns[3].Visible = false;
                 this.EmployeeList.Columns[4].Visible = false;
                 this.EmployeeList.Columns[5].Visible = false;
@@ -95,8 +95,8 @@ namespace EmployeeTracker
                 }
                 foreach (DataRow row in dt.Rows)
                 {
-                    string firstName = row["fName"].ToString(); 
-                    string lastName = row["lName"].ToString(); 
+                    string firstName = row["fName"].ToString();
+                    string lastName = row["lName"].ToString();
 
                     // Concatenate first name and last name with a space in between
                     string fullName = $"{firstName} {lastName}";
@@ -120,6 +120,29 @@ namespace EmployeeTracker
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
             employeeView();
+        }
+
+        private void EmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (EmployeeList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                string selectedName = EmployeeList.CurrentRow.Cells["FullName"].Value.ToString();
+                int selectedID = Convert.ToInt32(EmployeeList.CurrentRow.Cells["EmployeeID"].Value); // Assuming ID is the column name for ID
+
+                Console.WriteLine("Selected Name: " + selectedName); // Debugging statement
+                Console.WriteLine("Selected ID: " + selectedID); // Debugging statement
+
+                AddTask addTaskForm = new AddTask(selectedName, selectedID);
+                addTaskForm.ShowDialog();
+            }
+        }
+
+
+
+
+        private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

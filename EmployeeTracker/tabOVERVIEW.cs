@@ -13,7 +13,7 @@ namespace EmployeeTracker
 {
     public partial class tabOVERVIEW : UserControl
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Christian\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb");
 
         public tabOVERVIEW()
         {
@@ -53,11 +53,7 @@ namespace EmployeeTracker
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddTask addTask = new AddTask();
-            addTask.DataUpdated += addTask_DataUpdated;
-            addTask.Show();
-            //addTask.btnSave.Hide();
-            //editTab.BringToFront();
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
