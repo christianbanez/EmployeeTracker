@@ -13,7 +13,7 @@ namespace EmployeeTracker
 {
     public partial class tabOVERVIEW : UserControl
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\WINDOWS 10\source\repos\EmployeeTracker\dbtk.accdb");
 
         public tabOVERVIEW()
         {
