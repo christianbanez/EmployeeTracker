@@ -57,6 +57,71 @@ namespace EmployeeTracker
         //    }
         //}
 
+        public CdDay(string day)
+        {
+            InitializeComponent();
+            _day = day;
+            lblDay.Text = day;
+            checkBox1.Hide();
+            date = tabCALENDAR._month + "/" + _day + "/" + tabCALENDAR._year;
+        }
+
+        private void CdDay_Load(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(lblDay.Text)) // Check if lblDay.Text is not blank
+            {
+                DisplayTask();
+            }
+        }
+
+        private void DisplayTask()
+        {
+            try
+            {
+                conn.Open();
+                using (OleDbCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"SELECT Schedule.*, Task.taskName
+                                FROM Schedule
+                                INNER JOIN Task ON Schedule.taskID = Task.taskID
+                                WHERE Schedule.timeIn = ?";
+                    cmd.Parameters.AddWithValue("timeIn", date);
+
+
+                    using (OleDbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            lblTask.Text = "This is being read.";
+                            // Check if the taskID is not null or DBNull.Value
+                            if (!reader.IsDBNull(reader.GetOrdinal("taskID")))
+                            {
+                                lblTask.Text = reader["taskName"].ToString();
+                            }
+                            else
+                            {
+                                //lblTask.Text = "No task assigned for this date.";
+                            }
+                        }
+                        else
+                        {
+                            lblTask.Text = date;
+                            Console.WriteLine(date);       
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -74,22 +139,6 @@ namespace EmployeeTracker
                 checkBox1.Checked = false;
                 this.BackColor = Color.White;
             }
-        }
-
-
-        public CdDay(string day)
-        {
-            InitializeComponent();
-            _day = day;
-            lblDay.Text = day;
-            checkBox1.Hide();
-
-            date = tabCALENDAR._month + "/" + _day + "/" + tabCALENDAR._year;
-        }
-
-        private void CdDay_Load(object sender, EventArgs e)
-        {
-            //displayTask();
         }
     }
 }

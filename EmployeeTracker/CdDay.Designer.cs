@@ -53,7 +53,7 @@
             // 
             // lblTask
             // 
-            this.lblTask.Location = new System.Drawing.Point(0, 22);
+            this.lblTask.Location = new System.Drawing.Point(0, 46);
             this.lblTask.Name = "lblTask";
             this.lblTask.Size = new System.Drawing.Size(130, 58);
             this.lblTask.TabIndex = 1;
