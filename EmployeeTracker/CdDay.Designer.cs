@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTask = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.lblDay = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -40,7 +40,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.lblTask);
+            this.panel1.Controls.Add(this.listBox1);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.lblDay);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -52,18 +52,20 @@
             this.panel1.TabIndex = 0;
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
-            // lblTask
+            // listBox1
             // 
-            this.lblTask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTask.Location = new System.Drawing.Point(0, 43);
-            this.lblTask.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTask.Name = "lblTask";
-            this.lblTask.Size = new System.Drawing.Size(173, 83);
-            this.lblTask.TabIndex = 1;
-            this.lblTask.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTask.Click += new System.EventHandler(this.lblTask_Click);
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(0, 33);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(173, 96);
+            this.listBox1.TabIndex = 2;
+            this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // checkBox1
             // 
@@ -113,7 +115,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label lblTask;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

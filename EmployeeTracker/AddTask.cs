@@ -69,13 +69,12 @@ namespace EmployeeTracker
             //    {
 
             //        int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
-
-            //        InsertTask(taskName, taskDesc, employeeID);
+            InsertTask(taskName, taskDesc);
             //    }
             //}
         }
 
-        private void InsertTask(string taskName, string taskDesc, int empID)
+        private void InsertTask(string taskName, string taskDesc /*int empID*/)
         {
             try
             {
@@ -101,7 +100,7 @@ namespace EmployeeTracker
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
+                
             connection.Close();
             this.Close();
         }

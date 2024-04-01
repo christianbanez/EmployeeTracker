@@ -44,21 +44,19 @@ namespace EmployeeTracker
                             // Check if there are rows returned from the query
                             if (reader.HasRows)
                             {
-                                List<string> taskNames = new List<string>();
+                                // Clear existing items in ListBox
+                                listBox1.Items.Clear();
 
-                                // Iterate through the reader and collect task names
+                                // Populate ListBox with task names
                                 while (reader.Read())
                                 {
-                                    taskNames.Add(reader["taskName"].ToString());
+                                    listBox1.Items.Add(reader["taskName"].ToString());
                                 }
-
-                                // Display the task names as a comma-separated list
-                                lblTask.Text = string.Join(", ", taskNames);
                             }
                             else
                             {
-                                //lblTask.Text = formattedDate;
-                                //lblTask.Text = formattedDate;
+                                listBox1.Items.Clear();
+                                // Handle case where no tasks are found for the date
                             }
                         }
                     }
@@ -92,6 +90,58 @@ namespace EmployeeTracker
         private void lblTask_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == false)
+            {
+                checkBox1.Checked = true;
+                this.BackColor = Color.FromArgb(255, 155, 79);
+            }
+            else
+            {
+                checkBox1.Checked = false;
+                this.BackColor = Color.White;
+            }
+            // Checks if an item is selected
+            if (listBox1.SelectedItem != null)
+            {
+                // Retrieve the selected task name
+                string selectedTask = listBox1.SelectedItem.ToString();
+                MessageBox.Show("Test");
+                // Open another form to display more details about the selected task
+                // Example:
+                // TaskDetailsForm taskDetailsForm = new TaskDetailsForm(selectedTask);
+                // taskDetailsForm.Show();
+            }
+            else
+            {
+                // No task in the day
+                if (listBox1.Items.Count == 0)
+                {
+                    AddTask addTask = new AddTask();
+                    addTask.Show();
+                    // No tasks exist for the selected day, open a form to add a new task
+                    // Example:
+                    // AddTaskForm addTaskForm = new AddTaskForm(selectedDate);
+                    // addTaskForm.Show();
+                }
+            }
+        }
+
+        private void listBox1_Click(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == false)
+            {
+                checkBox1.Checked = true;
+                this.BackColor = Color.FromArgb(255, 155, 79);
+            }
+            else
+            {
+                checkBox1.Checked = false;
+                this.BackColor = Color.White;
+            }
         }
 
         public CdDay(string day)
