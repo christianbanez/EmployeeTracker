@@ -116,7 +116,7 @@ namespace EmployeeTracker
             {
                 tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / tableLayoutPanel1.RowCount));
             }
-            tableLayoutPanel1.Dock = DockStyle.Fill;
+            //tableLayoutPanel1.Dock = DockStyle.Fill;
         }
     }
 }

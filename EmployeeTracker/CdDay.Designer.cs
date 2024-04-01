@@ -45,7 +45,7 @@
             this.panel1.Controls.Add(this.lblDay);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(1, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(1);
             this.panel1.Size = new System.Drawing.Size(174, 127);
@@ -54,10 +54,13 @@
             // 
             // lblTask
             // 
-            this.lblTask.Location = new System.Drawing.Point(0, 46);
+            this.lblTask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTask.Location = new System.Drawing.Point(0, 43);
             this.lblTask.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTask.Name = "lblTask";
-            this.lblTask.Size = new System.Drawing.Size(173, 82);
+            this.lblTask.Size = new System.Drawing.Size(173, 83);
             this.lblTask.TabIndex = 1;
             this.lblTask.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblTask.Click += new System.EventHandler(this.lblTask_Click);
@@ -68,7 +71,7 @@
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.ForeColor = System.Drawing.Color.White;
             this.checkBox1.Location = new System.Drawing.Point(13, 16);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(14, 13);
             this.checkBox1.TabIndex = 1;
@@ -94,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CdDay";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Size = new System.Drawing.Size(176, 129);

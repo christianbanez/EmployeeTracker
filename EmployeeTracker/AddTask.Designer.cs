@@ -1,6 +1,6 @@
 ﻿namespace EmployeeTracker
 {
-    partial class AddLogs
+    partial class AddTask
     {
         /// <summary>
         /// Required designer variable.
@@ -72,20 +72,19 @@
             this.panel1.Controls.Add(this.cmbxAssign);
             this.panel1.Controls.Add(this.txtTaskDesc);
             this.panel1.Controls.Add(this.txtTaskName);
-            this.panel1.Location = new System.Drawing.Point(10, 10);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel1.Location = new System.Drawing.Point(13, 12);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(553, 432);
+            this.panel1.Size = new System.Drawing.Size(737, 532);
             this.panel1.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(271, 83);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(361, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 20);
+            this.label2.Size = new System.Drawing.Size(99, 25);
             this.label2.TabIndex = 15;
             this.label2.Text = "End Date:";
             // 
@@ -94,20 +93,19 @@
             this.dateTimePickerEndDate.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
             this.dateTimePickerEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(274, 105);
-            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(365, 129);
+            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
-            this.dateTimePickerEndDate.Size = new System.Drawing.Size(238, 26);
+            this.dateTimePickerEndDate.Size = new System.Drawing.Size(316, 30);
             this.dateTimePickerEndDate.TabIndex = 14;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(425, 30);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(567, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
+            this.label1.Size = new System.Drawing.Size(65, 25);
             this.label1.TabIndex = 13;
             this.label1.Text = "Color:";
             // 
@@ -116,18 +114,18 @@
             this.cmbxColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxColor.FormattingEnabled = true;
-            this.cmbxColor.Location = new System.Drawing.Point(428, 53);
-            this.cmbxColor.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cmbxColor.Location = new System.Drawing.Point(571, 65);
+            this.cmbxColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbxColor.Name = "cmbxColor";
-            this.cmbxColor.Size = new System.Drawing.Size(105, 28);
+            this.cmbxColor.Size = new System.Drawing.Size(139, 33);
             this.cmbxColor.TabIndex = 12;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(441, 382);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnCancel.Location = new System.Drawing.Point(588, 470);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(96, 30);
+            this.btnCancel.Size = new System.Drawing.Size(128, 37);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -135,10 +133,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(320, 382);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnAdd.Location = new System.Drawing.Point(427, 470);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(96, 30);
+            this.btnAdd.Size = new System.Drawing.Size(128, 37);
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -148,10 +146,9 @@
             // 
             this.lStartD.AutoSize = true;
             this.lStartD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lStartD.Location = new System.Drawing.Point(9, 83);
-            this.lStartD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lStartD.Location = new System.Drawing.Point(12, 102);
             this.lStartD.Name = "lStartD";
-            this.lStartD.Size = new System.Drawing.Size(87, 20);
+            this.lStartD.Size = new System.Drawing.Size(105, 25);
             this.lStartD.TabIndex = 8;
             this.lStartD.Text = "Start Date:";
             // 
@@ -159,10 +156,9 @@
             // 
             this.lProj.AutoSize = true;
             this.lProj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lProj.Location = new System.Drawing.Point(290, 312);
-            this.lProj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lProj.Location = new System.Drawing.Point(387, 384);
             this.lProj.Name = "lProj";
-            this.lProj.Size = new System.Drawing.Size(62, 20);
+            this.lProj.Size = new System.Drawing.Size(78, 25);
             this.lProj.TabIndex = 9;
             this.lProj.Text = "Project:";
             // 
@@ -170,10 +166,9 @@
             // 
             this.lAssign.AutoSize = true;
             this.lAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lAssign.Location = new System.Drawing.Point(9, 312);
-            this.lAssign.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lAssign.Location = new System.Drawing.Point(12, 384);
             this.lAssign.Name = "lAssign";
-            this.lAssign.Size = new System.Drawing.Size(101, 20);
+            this.lAssign.Size = new System.Drawing.Size(129, 25);
             this.lAssign.TabIndex = 7;
             this.lAssign.Text = "Assigned To:";
             // 
@@ -181,10 +176,9 @@
             // 
             this.ltskDesc.AutoSize = true;
             this.ltskDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ltskDesc.Location = new System.Drawing.Point(9, 136);
-            this.ltskDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ltskDesc.Location = new System.Drawing.Point(12, 167);
             this.ltskDesc.Name = "ltskDesc";
-            this.ltskDesc.Size = new System.Drawing.Size(131, 20);
+            this.ltskDesc.Size = new System.Drawing.Size(164, 25);
             this.ltskDesc.TabIndex = 8;
             this.ltskDesc.Text = "Task Description:";
             // 
@@ -192,10 +186,9 @@
             // 
             this.lbtskTitle.AutoSize = true;
             this.lbtskTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtskTitle.Location = new System.Drawing.Point(9, 30);
-            this.lbtskTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbtskTitle.Location = new System.Drawing.Point(12, 37);
             this.lbtskTitle.Name = "lbtskTitle";
-            this.lbtskTitle.Size = new System.Drawing.Size(80, 20);
+            this.lbtskTitle.Size = new System.Drawing.Size(104, 25);
             this.lbtskTitle.TabIndex = 6;
             this.lbtskTitle.Text = "Task Title:";
             // 
@@ -203,10 +196,10 @@
             // 
             this.cmbxProj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxProj.FormattingEnabled = true;
-            this.cmbxProj.Location = new System.Drawing.Point(294, 335);
-            this.cmbxProj.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cmbxProj.Location = new System.Drawing.Point(392, 412);
+            this.cmbxProj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbxProj.Name = "cmbxProj";
-            this.cmbxProj.Size = new System.Drawing.Size(221, 28);
+            this.cmbxProj.Size = new System.Drawing.Size(293, 33);
             this.cmbxProj.TabIndex = 5;
             // 
             // dateTimePickerStartDate
@@ -214,10 +207,10 @@
             this.dateTimePickerStartDate.CustomFormat = "ddd, MMM/dd/yyyy, hh:mm tt";
             this.dateTimePickerStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerStartDate.Location = new System.Drawing.Point(13, 105);
-            this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(17, 129);
+            this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
-            this.dateTimePickerStartDate.Size = new System.Drawing.Size(238, 26);
+            this.dateTimePickerStartDate.Size = new System.Drawing.Size(316, 30);
             this.dateTimePickerStartDate.TabIndex = 4;
             // 
             // cmbxAssign
@@ -227,10 +220,10 @@
             this.cmbxAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxAssign.FormattingEnabled = true;
-            this.cmbxAssign.Location = new System.Drawing.Point(13, 335);
-            this.cmbxAssign.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cmbxAssign.Location = new System.Drawing.Point(17, 412);
+            this.cmbxAssign.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbxAssign.Name = "cmbxAssign";
-            this.cmbxAssign.Size = new System.Drawing.Size(238, 28);
+            this.cmbxAssign.Size = new System.Drawing.Size(316, 33);
             this.cmbxAssign.TabIndex = 3;
             this.cmbxAssign.SelectedIndexChanged += new System.EventHandler(this.cmbxAssign_SelectedIndexChanged);
             // 
@@ -247,35 +240,35 @@
             // txtTaskDesc
             // 
             this.txtTaskDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTaskDesc.Location = new System.Drawing.Point(13, 159);
-            this.txtTaskDesc.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtTaskDesc.Location = new System.Drawing.Point(17, 196);
+            this.txtTaskDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTaskDesc.Multiline = true;
             this.txtTaskDesc.Name = "txtTaskDesc";
-            this.txtTaskDesc.Size = new System.Drawing.Size(528, 148);
+            this.txtTaskDesc.Size = new System.Drawing.Size(703, 181);
             this.txtTaskDesc.TabIndex = 1;
             // 
             // txtTaskName
             // 
             this.txtTaskName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTaskName.Location = new System.Drawing.Point(13, 53);
-            this.txtTaskName.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtTaskName.Location = new System.Drawing.Point(17, 65);
+            this.txtTaskName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTaskName.Name = "txtTaskName";
-            this.txtTaskName.Size = new System.Drawing.Size(407, 26);
+            this.txtTaskName.Size = new System.Drawing.Size(541, 30);
             this.txtTaskName.TabIndex = 0;
             // 
             // employeeTableAdapter
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
             // 
-            // AddLogs
+            // AddTask
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 452);
+            this.ClientSize = new System.Drawing.Size(763, 556);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "AddLogs";
-            this.Text = "Add Log";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "AddTask";
+            this.Text = "Add Task";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

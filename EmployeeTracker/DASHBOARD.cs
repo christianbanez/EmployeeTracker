@@ -28,6 +28,7 @@ namespace EmployeeTracker
             panelTabs.Controls.Add(userControl);
             //this.Location = new System.Drawing.Point(1000, 1000);
             panelCalPage.Hide();
+            panel5.Show();
             userControl.BringToFront();
         }
 
@@ -47,6 +48,7 @@ namespace EmployeeTracker
         {
             tabCALENDAR tb = new tabCALENDAR();
             panelCalPage.Show();
+            panel5.Hide();
             //tb.Show();
             //tb.Dock = DockStyle.Fill;
             //panelCalendar.Add(tb);
@@ -211,8 +213,10 @@ namespace EmployeeTracker
 
         private void btnCdCd_Click(object sender, EventArgs e)
         {
-            tabCALENDAR tb = new tabCALENDAR();
-            panelCalPage.Show();
+            //tabCALENDAR tb = new tabCALENDAR();
+            //panelCalPage.Show();
+            //panel5.Hide();
+            btnCalendar_Click(sender, e);
         }
 
         private EmployeeListCTO listCTO;
