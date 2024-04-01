@@ -15,7 +15,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
         private string SelectedName { get; set; }
         public int SelectedID { get; set; }
 
@@ -35,7 +35,7 @@ namespace EmployeeTracker
             try
             {
                 // Establish connection and query schedules for the selected employee ID
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM Schedule WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -68,7 +68,7 @@ namespace EmployeeTracker
             try
             {
                 // Establish connection and query database
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT taskID, taskName AS employeetask FROM Task", connection))
                 {
                     connection.Open();
@@ -111,15 +111,19 @@ namespace EmployeeTracker
                     // SelectedID is already assigned in the constructor
                     int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
 
+                    TimeSpan timeDifference = timeOut - timeIn;
+                    double hoursNeeded = timeDifference.TotalHours / 10;
+                    double timeDifference1 = timeDifference.TotalHours;
+                    double ctoEarned = Math.Round(hoursNeeded, 2);
                     // Call method to insert task
-                    InsertTask(timeIn, timeOut, taskID);
+                    InsertTask(timeIn, timeOut, taskID, ctoEarned, timeDifference1);
                 }
             }
         }
 
 
         //inserting the values of the form into database
-        private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID)
+        private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID, double ctoEarned, double timeDifference1)
         {
             try
             {
@@ -127,12 +131,45 @@ namespace EmployeeTracker
                 connection.Open();
                 using (OleDbCommand Cmd = connection.CreateCommand())
                 {
+
+                    //Console.WriteLine("Time Out: ", timeOut);
+                    //Console.WriteLine("Hours needed: ", hoursNeeded);
                     Cmd.CommandType = CommandType.Text;
                     Cmd.CommandText = "INSERT INTO Schedule(timeIn, timeOut, EmployeeID, TaskID) VALUES (@timeIn, @timeOut, @EmployeeID, @TaskID)";
-                    Cmd.Parameters.AddWithValue("@timeIn", timeIn.ToString("MM/dd/yyyy HH:mm:ss"));
-                    Cmd.Parameters.AddWithValue("@timeOut", timeOut.ToString("MM/dd/yyyy HH:mm:ss"));
+                    Cmd.Parameters.AddWithValue("@timeIn", timeIn.ToString("MM/dd/yyyy hh:mm:ss"));
+                    Cmd.Parameters.AddWithValue("@timeOut", timeOut.ToString("MM/dd/yyyy hh:mm:ss"));
                     Cmd.Parameters.AddWithValue("@EmployeeID", SelectedID); // Use the selected ID
                     Cmd.Parameters.AddWithValue("@TaskID", taskID);
+
+                    Cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close(); // Close the connection
+                this.Close();
+            }
+
+            try
+            {
+                // Establish connection and insert data
+                connection.Open();
+                using (OleDbCommand Cmd = connection.CreateCommand())
+                {
+
+                    //Console.WriteLine("Time Out: ", timeOut);
+                    //Console.WriteLine("Hours needed: ", hoursNeeded);
+                    Cmd.CommandType = CommandType.Text;
+                    Cmd.CommandText = "INSERT INTO CTOearned(dateEarned, ctoEarned, EmployeeID, ctoRendered) VALUES (@timeOut, @ctoEarned, @EmployeeID, @timeDifference1)";
+                    Cmd.Parameters.AddWithValue("@timeOut", timeOut.ToString("MM/dd/yyyy hh:mm:ss"));
+                    Cmd.Parameters.AddWithValue("@ctoEarned", ctoEarned);
+                    Cmd.Parameters.AddWithValue("@EmployeeID", SelectedID); // Use the selected ID
+                    Cmd.Parameters.AddWithValue("@timeDifference1", timeDifference1);
                     Cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Task and schedule inserted successfully!");
@@ -147,6 +184,7 @@ namespace EmployeeTracker
                 connection.Close(); // Close the connection
                 this.Close();
             }
+           
         }
 
 

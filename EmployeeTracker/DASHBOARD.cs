@@ -13,7 +13,7 @@ namespace EmployeeTracker
 {
     public partial class frmDashboard : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jesse\Downloads\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
         public frmDashboard()
         {
             InitializeComponent();
@@ -82,9 +82,7 @@ namespace EmployeeTracker
                 this.EmployeeList.Columns[8].Visible = false;
                 this.EmployeeList.Columns[9].Visible = false;
                 this.EmployeeList.Columns[10].Visible = false;
-                this.EmployeeList.Columns[11].Visible = false;
-                this.EmployeeList.Columns[12].Visible = false;
-                this.EmployeeList.Columns[13].Visible = false;
+
                 // EmployeeList.DataSource = dt.AsEnumerable().Select(obj => new {  }).ToList();
 
                 // Create a new column for the concatenated names
