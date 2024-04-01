@@ -127,8 +127,10 @@ namespace EmployeeTracker
             {
                 MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }
         }
 
         //Search Method

@@ -13,7 +13,7 @@ namespace EmployeeTracker
 {
     public partial class tabOVERVIEW : UserControl
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
 
         public tabOVERVIEW()
         {
@@ -64,5 +64,48 @@ namespace EmployeeTracker
         {
             dataView();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string mesDel = "Are you sure you want to delete?";
+            string title = "Delete Record";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(mesDel, title, buttons, MessageBoxIcon.Question);
+
+            try
+            {
+                if (result == DialogResult.Yes)
+                {   //to delete the data
+                    string schedID;
+                    conn.Open();
+                    OleDbCommand cmd = conn.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "Delete * from Schedule where ID = @ID ";
+                    schedID = displayData.CurrentRow.Cells["ID"].Value.ToString();
+                    cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(schedID));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataView();
+                    //refresh();
+
+                }
+                else
+                {   //if the data is not deleted
+                    MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
+        }
     }
+    
 }
