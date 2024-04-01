@@ -23,38 +23,38 @@ namespace EmployeeTracker
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            PopulateComboBox();
+            //PopulateComboBox();
         }
 
-        private void PopulateComboBox()
-        {
-            try
-            {
-                connection.Open();
-                string query = "SELECT EmployeeID, fName FROM Employee";
-                OleDbCommand command = new OleDbCommand(query, connection);
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                cmbxAssign.DataSource = dataTable;
-                cmbxAssign.DisplayMember = "fName";
-                cmbxAssign.ValueMember = "EmployeeID";
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
+        //private void PopulateComboBox()
+        //{
+        //    try
+        //    {
+        //        connection.Open();
+        //        string query = "SELECT EmployeeID, fName FROM Employee";
+        //        OleDbCommand command = new OleDbCommand(query, connection);
+        //        OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+        //        DataTable dataTable = new DataTable();
+        //        adapter.Fill(dataTable);
+        //        cmbxAssign.DataSource = dataTable;
+        //        cmbxAssign.DisplayMember = "fName";
+        //        cmbxAssign.ValueMember = "EmployeeID";
+        //        connection.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error: " + ex.Message);
+        //    }
+        //}
 
-        private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
-            if (selectedRow != null)
-            {
-                string selectedItem = selectedRow["fname"].ToString();
-            }
-        }
+        //private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
+        //    if (selectedRow != null)
+        //    {
+        //        string selectedItem = selectedRow["fname"].ToString();
+        //    }
+        //}
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string taskName = txtTaskName.Text;
@@ -62,17 +62,17 @@ namespace EmployeeTracker
             //DateTime taskStartDate = dateTimePickerStartDate.Value;
             //DateTime taskEndDate = dateTimePickerEndDate.Value;
 
-            if (cmbxAssign.SelectedItem != null)
-            {
-                DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
-                if (selectedRow != null)
-                {
+            //if (cmbxAssign.SelectedItem != null)
+            //{
+            //    DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
+            //    if (selectedRow != null)
+            //    {
 
-                    int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
+            //        int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
 
-                    InsertTask(taskName, taskDesc, employeeID);
-                }
-            }
+            //        InsertTask(taskName, taskDesc, employeeID);
+            //    }
+            //}
         }
 
         private void InsertTask(string taskName, string taskDesc, int empID)
