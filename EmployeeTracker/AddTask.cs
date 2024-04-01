@@ -164,7 +164,52 @@ namespace EmployeeTracker
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Retrieve selected employee, task, date, and time (if applicable)
+                int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
+                int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
+                DateTime startDate = pickDate1.Value.Date;
+                DateTime endDate = pickDate2.Value.Date;
+                TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
+                TimeSpan? timeOut = chkTime.Checked ? (TimeSpan?)pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
+                // Open the OleDbConnection
+                connection.Open();
+
+                string scheduledDate = $"{startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+
+                string timeInFormatted = timeIn?.ToString(@"D/M/YYYY hh\:mm\:ss tt");
+                string timeOutFormatted = timeOut?.ToString(@"D/M/YYYY hh\:mm\:ss tt");
+
+                // Create an OleDbCommand object with the INSERT query and the OleDbConnection
+                OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut) " +
+                       "VALUES (@EmployeeID, @TaskID, @TimeIn, @TimeOut)");
+
+                command.Connection = connection;
+
+                // Add parameters to the command
+                command.Parameters.AddWithValue("@EmployeeID", employeeID);
+                command.Parameters.AddWithValue("@TaskID", taskID);
+               // command.Parameters.AddWithValue("@ScheduledDate", scheduledDate);
+                command.Parameters.AddWithValue("@TimeIn", timeInFormatted ?? DBNull.Value.ToString());
+                command.Parameters.AddWithValue("@TimeOut", timeOutFormatted ?? DBNull.Value.ToString());
+
+                // Execute the command to perform the insertion
+                command.ExecuteNonQuery();
+
+                // Close the OleDbConnection
+                connection.Close();
+
+                // Optionally, raise the DataUpdated event to notify subscribers that the data has been updated
+                DataUpdated?.Invoke();
+
+                MessageBox.Show("Assignment added successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void btnCancel2_Click(object sender, EventArgs e)

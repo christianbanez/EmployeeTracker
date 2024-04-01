@@ -34,8 +34,8 @@
             this.chkTime = new System.Windows.Forms.CheckBox();
             this.pnlDate = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.pickDate2 = new System.Windows.Forms.DateTimePicker();
+            this.pickDate1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbxEmp = new System.Windows.Forms.ComboBox();
             this.cmbxTask = new System.Windows.Forms.ComboBox();
@@ -47,8 +47,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pnlTime = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.pickTimeOut = new System.Windows.Forms.DateTimePicker();
+            this.pickTimeIn = new System.Windows.Forms.DateTimePicker();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lProj = new System.Windows.Forms.Label();
@@ -120,8 +120,8 @@
             // pnlDate
             // 
             this.pnlDate.Controls.Add(this.label4);
-            this.pnlDate.Controls.Add(this.dateTimePicker3);
-            this.pnlDate.Controls.Add(this.dateTimePicker4);
+            this.pnlDate.Controls.Add(this.pickDate2);
+            this.pnlDate.Controls.Add(this.pickDate1);
             this.pnlDate.Location = new System.Drawing.Point(183, 240);
             this.pnlDate.Name = "pnlDate";
             this.pnlDate.Size = new System.Drawing.Size(375, 38);
@@ -137,23 +137,23 @@
             this.label4.TabIndex = 23;
             this.label4.Text = "-";
             // 
-            // dateTimePicker3
+            // pickDate2
             // 
-            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(202, 5);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(170, 30);
-            this.dateTimePicker3.TabIndex = 22;
+            this.pickDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickDate2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.pickDate2.Location = new System.Drawing.Point(202, 5);
+            this.pickDate2.Name = "pickDate2";
+            this.pickDate2.Size = new System.Drawing.Size(170, 30);
+            this.pickDate2.TabIndex = 22;
             // 
-            // dateTimePicker4
+            // pickDate1
             // 
-            this.dateTimePicker4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker4.Location = new System.Drawing.Point(3, 5);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(170, 30);
-            this.dateTimePicker4.TabIndex = 21;
+            this.pickDate1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickDate1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.pickDate1.Location = new System.Drawing.Point(3, 5);
+            this.pickDate1.Name = "pickDate1";
+            this.pickDate1.Size = new System.Drawing.Size(170, 30);
+            this.pickDate1.TabIndex = 21;
             // 
             // label2
             // 
@@ -248,8 +248,8 @@
             // pnlTime
             // 
             this.pnlTime.Controls.Add(this.label3);
-            this.pnlTime.Controls.Add(this.dateTimePicker1);
-            this.pnlTime.Controls.Add(this.dateTimePicker2);
+            this.pnlTime.Controls.Add(this.pickTimeOut);
+            this.pnlTime.Controls.Add(this.pickTimeIn);
             this.pnlTime.Location = new System.Drawing.Point(180, 307);
             this.pnlTime.Name = "pnlTime";
             this.pnlTime.Size = new System.Drawing.Size(378, 38);
@@ -266,25 +266,25 @@
             this.label3.TabIndex = 23;
             this.label3.Text = "-";
             // 
-            // dateTimePicker1
+            // pickTimeOut
             // 
-            this.dateTimePicker1.CustomFormat = "h:mm tt";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(202, 5);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(170, 30);
-            this.dateTimePicker1.TabIndex = 22;
+            this.pickTimeOut.CustomFormat = "h:mm tt";
+            this.pickTimeOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickTimeOut.Location = new System.Drawing.Point(202, 5);
+            this.pickTimeOut.Name = "pickTimeOut";
+            this.pickTimeOut.Size = new System.Drawing.Size(170, 30);
+            this.pickTimeOut.TabIndex = 22;
             // 
-            // dateTimePicker2
+            // pickTimeIn
             // 
-            this.dateTimePicker2.CustomFormat = "h:mm tt";
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(3, 5);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(170, 30);
-            this.dateTimePicker2.TabIndex = 21;
+            this.pickTimeIn.CustomFormat = "h:mm tt";
+            this.pickTimeIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickTimeIn.Location = new System.Drawing.Point(3, 5);
+            this.pickTimeIn.Name = "pickTimeIn";
+            this.pickTimeIn.Size = new System.Drawing.Size(170, 30);
+            this.pickTimeIn.TabIndex = 21;
             // 
             // btnCancel
             // 
@@ -434,12 +434,12 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.Panel pnlTime;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker pickTimeOut;
+        private System.Windows.Forms.DateTimePicker pickTimeIn;
         private System.Windows.Forms.Panel pnlDate;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.DateTimePicker pickDate2;
+        private System.Windows.Forms.DateTimePicker pickDate1;
         public System.Windows.Forms.CheckBox chkTime;
     }
 }
