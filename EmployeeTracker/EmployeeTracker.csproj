@@ -101,6 +101,12 @@
     <Compile Include="tabTEAM.Designer.cs">
       <DependentUpon>tabTEAM.cs</DependentUpon>
     </Compile>
+    <Compile Include="useCTO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="useCTO.Designer.cs">
+      <DependentUpon>useCTO.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddTask.resx">
       <DependentUpon>AddTask.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="tabCALENDAR.resx">
       <DependentUpon>tabCALENDAR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="useCTO.resx">
+      <DependentUpon>useCTO.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="dbtkDataSet.xsc">
       <DependentUpon>dbtkDataSet.xsd</DependentUpon>

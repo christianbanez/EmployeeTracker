@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTotalCTORendered = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewCTOearned = new System.Windows.Forms.DataGridView();
             this.lblSelectedID = new System.Windows.Forms.TextBox();
             this.lblSelectedName = new System.Windows.Forms.TextBox();
             this.selectedName = new System.Windows.Forms.Label();
@@ -47,19 +51,17 @@
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.employeeTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.EmployeeTableAdapter();
-            this.dataGridViewCTOearned = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTotalCTORendered = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.useCTObtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOearned)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedules)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOearned)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.useCTObtn);
             this.panel1.Controls.Add(this.txtTotalCTORendered);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
@@ -83,6 +85,47 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1005, 985);
             this.panel1.TabIndex = 0;
+            // 
+            // txtTotalCTORendered
+            // 
+            this.txtTotalCTORendered.Location = new System.Drawing.Point(221, 878);
+            this.txtTotalCTORendered.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTotalCTORendered.Name = "txtTotalCTORendered";
+            this.txtTotalCTORendered.Size = new System.Drawing.Size(272, 26);
+            this.txtTotalCTORendered.TabIndex = 26;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 878);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(191, 29);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "CTO : Rendered";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(8, 598);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 29);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "CTO:";
+            // 
+            // dataGridViewCTOearned
+            // 
+            this.dataGridViewCTOearned.AllowUserToAddRows = false;
+            this.dataGridViewCTOearned.AllowUserToDeleteRows = false;
+            this.dataGridViewCTOearned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCTOearned.Location = new System.Drawing.Point(14, 632);
+            this.dataGridViewCTOearned.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridViewCTOearned.Name = "dataGridViewCTOearned";
+            this.dataGridViewCTOearned.ReadOnly = true;
+            this.dataGridViewCTOearned.RowHeadersWidth = 51;
+            this.dataGridViewCTOearned.Size = new System.Drawing.Size(478, 231);
+            this.dataGridViewCTOearned.TabIndex = 23;
             // 
             // lblSelectedID
             // 
@@ -158,7 +201,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(840, 915);
+            this.btnCancel.Location = new System.Drawing.Point(200, 924);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(144, 46);
@@ -169,7 +212,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(658, 915);
+            this.btnAdd.Location = new System.Drawing.Point(37, 924);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(144, 46);
@@ -247,46 +290,16 @@
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridViewCTOearned
+            // useCTObtn
             // 
-            this.dataGridViewCTOearned.AllowUserToAddRows = false;
-            this.dataGridViewCTOearned.AllowUserToDeleteRows = false;
-            this.dataGridViewCTOearned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCTOearned.Location = new System.Drawing.Point(14, 632);
-            this.dataGridViewCTOearned.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataGridViewCTOearned.Name = "dataGridViewCTOearned";
-            this.dataGridViewCTOearned.ReadOnly = true;
-            this.dataGridViewCTOearned.RowHeadersWidth = 51;
-            this.dataGridViewCTOearned.Size = new System.Drawing.Size(478, 231);
-            this.dataGridViewCTOearned.TabIndex = 23;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 598);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 29);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "CTO:";
-            // 
-            // txtTotalCTORendered
-            // 
-            this.txtTotalCTORendered.Location = new System.Drawing.Point(221, 878);
-            this.txtTotalCTORendered.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTotalCTORendered.Name = "txtTotalCTORendered";
-            this.txtTotalCTORendered.Size = new System.Drawing.Size(272, 26);
-            this.txtTotalCTORendered.TabIndex = 26;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 878);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(191, 29);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "CTO : Rendered";
+            this.useCTObtn.Location = new System.Drawing.Point(377, 924);
+            this.useCTObtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.useCTObtn.Name = "useCTObtn";
+            this.useCTObtn.Size = new System.Drawing.Size(144, 46);
+            this.useCTObtn.TabIndex = 27;
+            this.useCTObtn.Text = "Use CTO";
+            this.useCTObtn.UseVisualStyleBackColor = true;
+            this.useCTObtn.Click += new System.EventHandler(this.useCTObtn_Click);
             // 
             // AddTask
             // 
@@ -300,10 +313,10 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOearned)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedules)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOearned)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -332,5 +345,6 @@
         private System.Windows.Forms.DataGridView dataGridViewCTOearned;
         private System.Windows.Forms.TextBox txtTotalCTORendered;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button useCTObtn;
     }
 }
