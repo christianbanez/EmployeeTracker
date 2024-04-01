@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EmployeeTracker
@@ -15,7 +9,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
         private string SelectedName { get; set; }
         public int SelectedID { get; set; }
 
@@ -35,7 +29,7 @@ namespace EmployeeTracker
             try
             {
                 // Establish connection and query schedules for the selected employee ID
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM Schedule WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -50,12 +44,48 @@ namespace EmployeeTracker
                         dataGridViewSchedules.DataSource = scheduleTable;
                     }
                 }
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+
+                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(command))
+                    {
+                        DataTable scheduleTable = new DataTable();
+                        adapter.Fill(scheduleTable);
+
+                        // Bind the retrieved schedules to the DataGridView
+                        dataGridViewCTOearned.DataSource = scheduleTable;
+                    }
+                }
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT SUM(ctoRendered) AS TotalCTORendered FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+
+                    // Execute the query and get the total ctoRendered
+                    object totalCTORendered = command.ExecuteScalar();
+
+                    // Display the total in the text box
+                    if (totalCTORendered != DBNull.Value)
+                    {
+                        txtTotalCTORendered.Text = totalCTORendered.ToString() + " Hours";
+                    }
+                    else
+                    {
+                        txtTotalCTORendered.Text = "0"; // If no value found, set to 0
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -68,7 +98,7 @@ namespace EmployeeTracker
             try
             {
                 // Establish connection and query database
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT taskID, taskName AS employeetask FROM Task", connection))
                 {
                     connection.Open();
@@ -184,12 +214,8 @@ namespace EmployeeTracker
                 connection.Close(); // Close the connection
                 this.Close();
             }
-           
+
         }
-
-
-
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
