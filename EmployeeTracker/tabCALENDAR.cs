@@ -46,6 +46,17 @@ namespace EmployeeTracker
             }
             showDays(_month, _year);
         }
+
+        private void btnTask_Click(object sender, EventArgs e)
+        {
+            AddTask addTask = new AddTask();
+            //addTask.DataUpdated += addTask_DataUpdated;
+            addTask.pnlAssign.Hide();
+            addTask.Show();
+            //addTask.btnSave.Hide();
+            //editTab.BringToFront();
+        }
+
         private void showDays(int month, int year)
         {
             tableLayoutPanel1.Controls.Clear();

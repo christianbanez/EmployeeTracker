@@ -34,6 +34,7 @@
             this.btnNext = new System.Windows.Forms.PictureBox();
             this.btnPrev = new System.Windows.Forms.PictureBox();
             this.lblMonth = new System.Windows.Forms.Label();
+            this.btnTask = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
@@ -42,13 +43,14 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnTask);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnNext);
             this.panel1.Controls.Add(this.btnPrev);
             this.panel1.Controls.Add(this.lblMonth);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(946, 607);
             this.panel1.TabIndex = 0;
@@ -60,7 +62,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Location = new System.Drawing.Point(0, 38);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(942, 569);
             this.panel2.TabIndex = 14;
@@ -72,16 +74,16 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 688F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 688F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 688F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 688F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 688F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 569F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 569F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 569F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 569F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 569F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(942, 569);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
@@ -89,7 +91,7 @@
             // 
             this.btnNext.Image = global::EmployeeTracker.Properties.Resources.right_arrow_png_file;
             this.btnNext.Location = new System.Drawing.Point(392, 4);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(44, 31);
             this.btnNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -101,7 +103,7 @@
             // 
             this.btnPrev.Image = global::EmployeeTracker.Properties.Resources.left_arrow_png_file;
             this.btnPrev.Location = new System.Drawing.Point(328, 4);
-            this.btnPrev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrev.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(44, 31);
             this.btnPrev.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -119,6 +121,18 @@
             this.lblMonth.Size = new System.Drawing.Size(114, 31);
             this.lblMonth.TabIndex = 8;
             this.lblMonth.Text = "MONTH";
+            // 
+            // btnTask
+            // 
+            this.btnTask.AutoSize = true;
+            this.btnTask.Location = new System.Drawing.Point(811, 3);
+            this.btnTask.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTask.Name = "btnTask";
+            this.btnTask.Size = new System.Drawing.Size(87, 32);
+            this.btnTask.TabIndex = 3;
+            this.btnTask.Text = "Add Task";
+            this.btnTask.UseVisualStyleBackColor = true;
+            this.btnTask.Click += new System.EventHandler(this.btnTask_Click);
             // 
             // tabCALENDAR
             // 
@@ -146,5 +160,6 @@
         private System.Windows.Forms.PictureBox btnNext;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnTask;
     }
 }

@@ -34,7 +34,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnTask = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +47,6 @@
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.textSearch);
             this.panel1.Controls.Add(this.btnUpdate);
-            this.panel1.Controls.Add(this.btnTask);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -87,7 +85,7 @@
             // btnPrint
             // 
             this.btnPrint.AutoSize = true;
-            this.btnPrint.Location = new System.Drawing.Point(294, 22);
+            this.btnPrint.Location = new System.Drawing.Point(199, 22);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(87, 32);
@@ -98,7 +96,7 @@
             // btnDelete
             // 
             this.btnDelete.AutoSize = true;
-            this.btnDelete.Location = new System.Drawing.Point(201, 22);
+            this.btnDelete.Location = new System.Drawing.Point(106, 22);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(87, 32);
@@ -108,7 +106,7 @@
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(399, 27);
+            this.textSearch.Location = new System.Drawing.Point(304, 27);
             this.textSearch.Margin = new System.Windows.Forms.Padding(2);
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(159, 22);
@@ -118,25 +116,13 @@
             // btnUpdate
             // 
             this.btnUpdate.AutoSize = true;
-            this.btnUpdate.Location = new System.Drawing.Point(108, 22);
+            this.btnUpdate.Location = new System.Drawing.Point(13, 22);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(87, 32);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnTask
-            // 
-            this.btnTask.AutoSize = true;
-            this.btnTask.Location = new System.Drawing.Point(15, 22);
-            this.btnTask.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTask.Name = "btnTask";
-            this.btnTask.Size = new System.Drawing.Size(87, 32);
-            this.btnTask.TabIndex = 2;
-            this.btnTask.Text = "Add";
-            this.btnTask.UseVisualStyleBackColor = true;
-            this.btnTask.Click += new System.EventHandler(this.btnTask_Click);
             // 
             // tabOVERVIEW
             // 
@@ -161,7 +147,6 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textSearch;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnTask;
         private System.Windows.Forms.Button btnPrint;
     }
 }

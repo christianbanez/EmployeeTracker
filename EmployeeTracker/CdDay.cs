@@ -121,6 +121,8 @@ namespace EmployeeTracker
                 if (listBox1.Items.Count == 0)
                 {
                     AddTask addTask = new AddTask();
+                    addTask.pnlAssign.Show();
+
                     addTask.Show();
                     // No tasks exist for the selected day, open a form to add a new task
                     // Example:

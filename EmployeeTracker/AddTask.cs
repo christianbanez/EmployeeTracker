@@ -23,7 +23,8 @@ namespace EmployeeTracker
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //PopulateComboBox();
+            PopulateCmbxEmp();
+            PopulateCmbxTask();
         }
 
         //private void PopulateComboBox()
@@ -59,19 +60,7 @@ namespace EmployeeTracker
         {
             string taskName = txtTaskName.Text;
             string taskDesc = txtTaskDesc.Text;
-            //DateTime taskStartDate = dateTimePickerStartDate.Value;
-            //DateTime taskEndDate = dateTimePickerEndDate.Value;
-
-            //if (cmbxAssign.SelectedItem != null)
-            //{
-            //    DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
-            //    if (selectedRow != null)
-            //    {
-
-            //        int employeeID = Convert.ToInt32(selectedRow["EmployeeID"]);
             InsertTask(taskName, taskDesc);
-            //    }
-            //}
         }
 
         private void InsertTask(string taskName, string taskDesc /*int empID*/)
@@ -106,6 +95,79 @@ namespace EmployeeTracker
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void chkTime_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTime.Checked)
+            {
+                pnlTime.Visible = true;
+            }
+            else
+            {
+                pnlTime.Visible = false;
+            }
+        }
+
+        private void PopulateCmbxTask()
+        {
+            try
+            {
+                connection.Open();
+                string query = "SELECT taskID, taskName FROM Task";
+                OleDbCommand command = new OleDbCommand(query, connection);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                cmbxTask.DataSource = dataTable;
+                cmbxTask.DisplayMember = "taskName";
+                cmbxTask.ValueMember = "taskID";
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        private void PopulateCmbxEmp()
+        {
+            try
+            {
+                connection.Open();
+                string query = "SELECT EmployeeID, fName FROM Employee";
+                OleDbCommand command = new OleDbCommand(query, connection);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                cmbxEmp.DataSource = dataTable;
+                cmbxEmp.DisplayMember = "fName";
+                cmbxEmp.ValueMember = "EmployeeID";
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataRowView selectedRow = cmbxEmp.SelectedItem as DataRowView;
+            if (selectedRow != null)
+            {
+                string selectedItem = selectedRow["fname"].ToString();
+            }
+        }
+
+        private void btnAssign_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancel2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
