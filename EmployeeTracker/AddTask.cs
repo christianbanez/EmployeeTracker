@@ -15,7 +15,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
         public AddLogs()
         {
             InitializeComponent();
