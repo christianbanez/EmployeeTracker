@@ -251,13 +251,16 @@
             // 
             this.dataGridViewCTOearned.AllowUserToAddRows = false;
             this.dataGridViewCTOearned.AllowUserToDeleteRows = false;
+            this.dataGridViewCTOearned.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCTOearned.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewCTOearned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCTOearned.Location = new System.Drawing.Point(14, 632);
             this.dataGridViewCTOearned.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewCTOearned.Name = "dataGridViewCTOearned";
             this.dataGridViewCTOearned.ReadOnly = true;
+            this.dataGridViewCTOearned.RowHeadersVisible = false;
             this.dataGridViewCTOearned.RowHeadersWidth = 51;
-            this.dataGridViewCTOearned.Size = new System.Drawing.Size(478, 231);
+            this.dataGridViewCTOearned.Size = new System.Drawing.Size(385, 231);
             this.dataGridViewCTOearned.TabIndex = 23;
             // 
             // label1
@@ -272,7 +275,7 @@
             // 
             // txtTotalCTORendered
             // 
-            this.txtTotalCTORendered.Location = new System.Drawing.Point(221, 878);
+            this.txtTotalCTORendered.Location = new System.Drawing.Point(127, 882);
             this.txtTotalCTORendered.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalCTORendered.Name = "txtTotalCTORendered";
             this.txtTotalCTORendered.Size = new System.Drawing.Size(272, 26);
@@ -284,9 +287,10 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(9, 878);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(191, 29);
+            this.label3.Size = new System.Drawing.Size(121, 29);
             this.label3.TabIndex = 25;
-            this.label3.Text = "CTO : Rendered";
+            this.label3.Text = "Rendered";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // AddTask
             // 

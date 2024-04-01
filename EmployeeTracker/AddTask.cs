@@ -57,6 +57,9 @@ namespace EmployeeTracker
 
                         // Bind the retrieved schedules to the DataGridView
                         dataGridViewCTOearned.DataSource = scheduleTable;
+                        dataGridViewCTOearned.Columns["ID"].Visible = false;
+                        dataGridViewCTOearned.Columns["employeeID"].Visible = false;
+                        dataGridViewCTOearned.Columns["ctoRendered"].Visible = false;
                     }
                 }
                 using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
@@ -129,26 +132,35 @@ namespace EmployeeTracker
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            
             DateTime timeIn = dateTimePickerTimeIn.Value;
             DateTime timeOut = dateTimePickerTimeOut.Value;
-
-            if (cmbxAssign.SelectedItem != null)
+            if (timeOut > timeIn)
             {
-                DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
-                if (selectedRow != null)
+                if (cmbxAssign.SelectedItem != null)
                 {
+                    DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
+                    if (selectedRow != null)
+                    {
 
-                    // SelectedID is already assigned in the constructor
-                    int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
+                        // SelectedID is already assigned in the constructor
+                        int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
 
-                    TimeSpan timeDifference = timeOut - timeIn;
-                    double hoursNeeded = timeDifference.TotalHours / 10;
-                    double timeDifference1 = timeDifference.TotalHours;
-                    double ctoEarned = Math.Round(hoursNeeded, 2);
-                    // Call method to insert task
-                    InsertTask(timeIn, timeOut, taskID, ctoEarned, timeDifference1);
+                        TimeSpan timeDifference = timeOut - timeIn;
+                        double hoursNeeded = timeDifference.TotalHours / 10;
+                        double timeDifference1 = timeDifference.TotalHours;
+                        double ctoEarned = Math.Round(hoursNeeded, 2);
+                        // Call method to insert task
+                        InsertTask(timeIn, timeOut, taskID, ctoEarned, timeDifference1);
+                    }
                 }
+
             }
+            else
+            {
+                MessageBox.Show("Error: Invalid Input", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+                
         }
 
 
@@ -227,6 +239,11 @@ namespace EmployeeTracker
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
