@@ -15,9 +15,10 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
-       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
+
 
         public void DisplayTask()
         {
@@ -38,6 +39,7 @@ namespace EmployeeTracker
                         // Format the date to match the format 'D/M/YYYY'
                         string formattedDate = $"{tabCALENDAR._month}/{_day.Trim()}/{tabCALENDAR._year}";
                         this.date = formattedDate;
+
                         cmd.Parameters.AddWithValue("date", formattedDate);
 
                         using (OleDbDataReader reader = cmd.ExecuteReader())
@@ -86,46 +88,44 @@ namespace EmployeeTracker
                 checkBox1.Checked = false;
                 this.BackColor = Color.White;
             }
+            listBox1.ClearSelected();
         }
 
         private AddTask addTask;
 
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+        public void ReloadListBoxFromDatabase()
         {
-            if (checkBox1.Checked == false)
-            {
-                checkBox1.Checked = true;
-                this.BackColor = Color.FromArgb(255, 155, 79);
-            }
-            else
-            {
-                checkBox1.Checked = false;
-                this.BackColor = Color.White;
-            }
-            // Checks if an item is selected
-            if (listBox1.SelectedItem != null)
-            {
-                // Retrieve the selected task name
-                string selectedTask = listBox1.SelectedItem.ToString();
-                AddTask addTask = new AddTask(date);
-                addTask.pnlAssign.Show();
+            // Connection string for your database
 
-                //addTask.cmbxEmp =
+            // Query to retrieve data from the database
+            string query = "SELECT Schedule.*, Task.taskName FROM Schedule, Task WHERE " +
+                            "Schedule.taskId = Task.taskId " +
+                            "AND Format(Schedule.timeIn, 'M/D/yyyy') = ?";
 
-                addTask.ShowDialog();
-                addTask.btnAssign.Hide();
-            }
-            else
+            using (conn)
             {
-                // No task in the day
-                if (listBox1.Items.Count == 0)
+                // Open the connection
+                conn.Open();
+
+                // Create a command
+                using (OleDbCommand command = new OleDbCommand(query, conn))
                 {
-                    AddTask addTask = new AddTask(date);
-                    addTask.pnlAssign.Show();
-                    addTask.ShowDialog();
-                    addTask.btnSvCal.Hide();
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        // Clear existing items in the ListBox
+                        listBox1.Items.Clear();
+
+                        // Read the data and add it to the ListBox
+                        while (reader.Read())
+                        {
+                            listBox1.Items.Add(reader["taskName"].ToString());
+                        }
+                    }
                 }
             }
+        }
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
         }
 
         private void listBox1_Click(object sender, EventArgs e)
@@ -142,11 +142,7 @@ namespace EmployeeTracker
             }
         }
 
-        public void refreshList()
-        {
-            listBox1.DataSource = null;
-            listBox1.DataSource = conn;
-        }
+        private tabCALENDAR tCal;
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -155,7 +151,59 @@ namespace EmployeeTracker
 
         private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (checkBox1.Checked == false)
+            {
+                checkBox1.Checked = true;
+                this.BackColor = Color.FromArgb(255, 155, 79);
+            }
+            else
+            {
+                checkBox1.Checked = false;
+                this.BackColor = Color.White;
+            }
 
+            int selectedIndex = listBox1.IndexFromPoint(e.Location);
+
+            if (selectedIndex != ListBox.NoMatches || listBox1.Bounds.Contains(e.Location))
+            {
+                // If double-click occurred on a valid item
+                if (selectedIndex != ListBox.NoMatches)
+                {
+                    // Get the selected item
+                    string selectedItem = listBox1.Items[selectedIndex].ToString();
+
+                    // Call a method and pass the selected item as an argument
+                    HandleDoubleClick(selectedItem);
+                }
+                else
+                {
+                    AddTask addTask = new AddTask(date);
+                    addTask.pnlAssign.Show();
+                    addTask.btnSvCal.Hide();
+                    addTask.ShowDialog();
+                }
+            }
+
+        }
+
+        private void HandleDoubleClick(string selectedItem)
+        {
+            // Perform action based on the selected item
+            //MessageBox.Show("Double-clicked on: " + selectedItem);
+
+            // Checks if an item is selected
+            if (listBox1.SelectedItem != null)
+            {
+                // Retrieve the selected task name
+                string selectedTask = listBox1.SelectedItem.ToString();
+                AddTask addTask = new AddTask(date);
+                addTask.pnlAssign.Show();
+
+                //addTask.cmbxEmp =
+
+                addTask.ShowDialog();
+                addTask.btnAssign.Hide();
+            }
         }
 
         public CdDay(string day)
@@ -165,9 +213,10 @@ namespace EmployeeTracker
             lblDay.Text = day;
             checkBox1.Hide();
 
-            date = $"{_day.Trim()}/{tabCALENDAR._month}/{tabCALENDAR._year}";
+            date = $"{tabCALENDAR._month}/{_day.Trim()}/{tabCALENDAR._year}";
             date = Convert.ToString(date);
         }
+
 
         private void CdDay_Load(object sender, EventArgs e)
         {

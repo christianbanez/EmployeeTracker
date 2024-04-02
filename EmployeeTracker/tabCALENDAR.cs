@@ -57,7 +57,12 @@ namespace EmployeeTracker
             //editTab.BringToFront();
         }
 
-        private void showDays(int month, int year)
+        private void tableLayoutPanel1_Click(object sender, EventArgs e)
+        {
+        }
+
+
+        public void showDays(int month, int year)
         {
             tableLayoutPanel1.Controls.Clear();
             _year = year;

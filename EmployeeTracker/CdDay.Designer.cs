@@ -2,6 +2,7 @@
 {
     partial class CdDay
     {
+
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -114,6 +115,6 @@
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ListBox listBox1;
+        public System.Windows.Forms.ListBox listBox1;
     }
 }

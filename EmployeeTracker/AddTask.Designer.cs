@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlTask = new System.Windows.Forms.Panel();
             this.pnlAssign = new System.Windows.Forms.Panel();
             this.btnSvCal = new System.Windows.Forms.Button();
             this.chkTime = new System.Windows.Forms.CheckBox();
@@ -61,7 +61,7 @@
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.employeeTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.EmployeeTableAdapter();
-            this.panel1.SuspendLayout();
+            this.pnlTask.SuspendLayout();
             this.pnlAssign.SuspendLayout();
             this.pnlDate.SuspendLayout();
             this.pnlTime.SuspendLayout();
@@ -69,22 +69,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlTask
             // 
-            this.panel1.Controls.Add(this.pnlAssign);
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.lProj);
-            this.panel1.Controls.Add(this.ltskDesc);
-            this.panel1.Controls.Add(this.lbtskTitle);
-            this.panel1.Controls.Add(this.cmbxProj);
-            this.panel1.Controls.Add(this.txtTaskDesc);
-            this.panel1.Controls.Add(this.txtTaskName);
-            this.panel1.Location = new System.Drawing.Point(10, 10);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(434, 379);
-            this.panel1.TabIndex = 0;
+            this.pnlTask.Controls.Add(this.pnlAssign);
+            this.pnlTask.Controls.Add(this.btnCancel);
+            this.pnlTask.Controls.Add(this.btnAdd);
+            this.pnlTask.Controls.Add(this.lProj);
+            this.pnlTask.Controls.Add(this.ltskDesc);
+            this.pnlTask.Controls.Add(this.lbtskTitle);
+            this.pnlTask.Controls.Add(this.cmbxProj);
+            this.pnlTask.Controls.Add(this.txtTaskDesc);
+            this.pnlTask.Controls.Add(this.txtTaskName);
+            this.pnlTask.Location = new System.Drawing.Point(10, 10);
+            this.pnlTask.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnlTask.Name = "pnlTask";
+            this.pnlTask.Size = new System.Drawing.Size(434, 379);
+            this.pnlTask.TabIndex = 0;
             // 
             // pnlAssign
             // 
@@ -122,7 +122,7 @@
             this.chkTime.AutoSize = true;
             this.chkTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTime.Location = new System.Drawing.Point(13, 256);
-            this.chkTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkTime.Margin = new System.Windows.Forms.Padding(2);
             this.chkTime.Name = "chkTime";
             this.chkTime.Size = new System.Drawing.Size(99, 24);
             this.chkTime.TabIndex = 27;
@@ -136,7 +136,7 @@
             this.pnlDate.Controls.Add(this.pickDate2);
             this.pnlDate.Controls.Add(this.pickDate1);
             this.pnlDate.Location = new System.Drawing.Point(137, 195);
-            this.pnlDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlDate.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDate.Name = "pnlDate";
             this.pnlDate.Size = new System.Drawing.Size(281, 31);
             this.pnlDate.TabIndex = 25;
@@ -157,7 +157,7 @@
             this.pickDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pickDate2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.pickDate2.Location = new System.Drawing.Point(152, 4);
-            this.pickDate2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pickDate2.Margin = new System.Windows.Forms.Padding(2);
             this.pickDate2.Name = "pickDate2";
             this.pickDate2.Size = new System.Drawing.Size(128, 26);
             this.pickDate2.TabIndex = 22;
@@ -167,7 +167,7 @@
             this.pickDate1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pickDate1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.pickDate1.Location = new System.Drawing.Point(2, 4);
-            this.pickDate1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pickDate1.Margin = new System.Windows.Forms.Padding(2);
             this.pickDate1.Name = "pickDate1";
             this.pickDate1.Size = new System.Drawing.Size(128, 26);
             this.pickDate1.TabIndex = 21;
@@ -188,7 +188,7 @@
             this.cmbxEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxEmp.FormattingEnabled = true;
             this.cmbxEmp.Location = new System.Drawing.Point(166, 96);
-            this.cmbxEmp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbxEmp.Margin = new System.Windows.Forms.Padding(2);
             this.cmbxEmp.Name = "cmbxEmp";
             this.cmbxEmp.Size = new System.Drawing.Size(254, 25);
             this.cmbxEmp.TabIndex = 14;
@@ -198,7 +198,7 @@
             this.cmbxTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxTask.FormattingEnabled = true;
             this.cmbxTask.Location = new System.Drawing.Point(166, 49);
-            this.cmbxTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbxTask.Margin = new System.Windows.Forms.Padding(2);
             this.cmbxTask.Name = "cmbxTask";
             this.cmbxTask.Size = new System.Drawing.Size(254, 25);
             this.cmbxTask.TabIndex = 13;
@@ -274,7 +274,7 @@
             this.pnlTime.Controls.Add(this.pickTimeOut);
             this.pnlTime.Controls.Add(this.pickTimeIn);
             this.pnlTime.Location = new System.Drawing.Point(135, 249);
-            this.pnlTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTime.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTime.Name = "pnlTime";
             this.pnlTime.Size = new System.Drawing.Size(284, 31);
             this.pnlTime.TabIndex = 26;
@@ -297,7 +297,7 @@
             this.pickTimeOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pickTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.pickTimeOut.Location = new System.Drawing.Point(152, 4);
-            this.pickTimeOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pickTimeOut.Margin = new System.Windows.Forms.Padding(2);
             this.pickTimeOut.Name = "pickTimeOut";
             this.pickTimeOut.ShowUpDown = true;
             this.pickTimeOut.Size = new System.Drawing.Size(128, 26);
@@ -309,7 +309,7 @@
             this.pickTimeIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pickTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.pickTimeIn.Location = new System.Drawing.Point(2, 4);
-            this.pickTimeIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pickTimeIn.Margin = new System.Windows.Forms.Padding(2);
             this.pickTimeIn.Name = "pickTimeIn";
             this.pickTimeIn.ShowUpDown = true;
             this.pickTimeIn.Size = new System.Drawing.Size(128, 26);
@@ -417,7 +417,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(454, 405);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlTask);
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximumSize = new System.Drawing.Size(470, 444);
             this.MinimumSize = new System.Drawing.Size(470, 444);
@@ -425,8 +425,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Task";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlTask.ResumeLayout(false);
+            this.pnlTask.PerformLayout();
             this.pnlAssign.ResumeLayout(false);
             this.pnlAssign.PerformLayout();
             this.pnlDate.ResumeLayout(false);
@@ -441,7 +441,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Panel pnlTask;
         private System.Windows.Forms.TextBox txtTaskDesc;
         private System.Windows.Forms.TextBox txtTaskName;
         private dbtkDataSet dbtkDataSet;

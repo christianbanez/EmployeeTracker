@@ -17,7 +17,7 @@ namespace EmployeeTracker
         private string date;
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
         public AddTask(string date)
         {
             InitializeComponent();
@@ -140,7 +140,7 @@ namespace EmployeeTracker
                 string selectedItem = selectedRow["fname"].ToString();
             }
         }
-
+        private CdDay cd = new CdDay("");
         private void btnAssign_Click(object sender, EventArgs e)
         {
             try
@@ -186,9 +186,10 @@ namespace EmployeeTracker
                 DataUpdated?.Invoke();
 
                 MessageBox.Show("Assignment added successfully!");
+                cd.listBox1.ClearSelected();
+                cd.ReloadListBoxFromDatabase();
                 this.Close();
 
-                //CdDay.refreshList();
             }
             catch (Exception ex)
             {
