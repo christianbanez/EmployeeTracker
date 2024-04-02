@@ -14,18 +14,22 @@ namespace EmployeeTracker
 {
     public partial class AddTask : Form
     {
+        private string date;
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
         OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
-        public AddTask()
+        public AddTask(string date)
         {
             InitializeComponent();
+            this.date = date;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             PopulateCmbxEmp();
             PopulateCmbxTask();
+            pickDate1.Value = DateTime.Parse(date);
+            pickDate2.Value = DateTime.Parse(date);
         }
 
         //private void PopulateComboBox()
@@ -110,7 +114,6 @@ namespace EmployeeTracker
                 pnlTime.Visible = false;
             }
         }
-
         private void PopulateCmbxTask()
         {
             try
@@ -169,7 +172,7 @@ namespace EmployeeTracker
             {
                 // Retrieve selected employee, task, date, and time (if applicable)
                 int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
-                int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
+                int taskID = Convert.ToInt32(cmbxTask.SelectedValue); 
                 DateTime startDate = pickDate1.Value.Date;
                 DateTime endDate = pickDate2.Value.Date;
                 TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;

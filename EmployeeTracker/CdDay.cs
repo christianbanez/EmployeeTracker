@@ -15,7 +15,7 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
-       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
 
@@ -37,6 +37,7 @@ namespace EmployeeTracker
 
                         // Format the date to match the format 'D/M/YYYY'
                         string formattedDate = $"{_day.Trim()}/{tabCALENDAR._month}/{tabCALENDAR._year}";
+                        this.date = formattedDate;
                         cmd.Parameters.AddWithValue("date", formattedDate);
 
                         using (OleDbDataReader reader = cmd.ExecuteReader())
@@ -120,9 +121,8 @@ namespace EmployeeTracker
                 // No task in the day
                 if (listBox1.Items.Count == 0)
                 {
-                    AddTask addTask = new AddTask();
+                    AddTask addTask = new AddTask(date);
                     addTask.pnlAssign.Show();
-
                     addTask.Show();
                     // No tasks exist for the selected day, open a form to add a new task
                     // Example:
