@@ -52,7 +52,7 @@ namespace EmployeeTracker
             AddTask addTask = new AddTask("");
             //addTask.DataUpdated += addTask_DataUpdated;
             addTask.pnlAssign.Hide();
-            addTask.Show();
+            addTask.ShowDialog();
             //addTask.btnSave.Hide();
             //editTab.BringToFront();
         }

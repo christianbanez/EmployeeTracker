@@ -15,7 +15,7 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
-       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
 
@@ -88,6 +88,8 @@ namespace EmployeeTracker
             }
         }
 
+        private AddTask addTask;
+
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             if (checkBox1.Checked == false)
@@ -110,7 +112,7 @@ namespace EmployeeTracker
 
                 //addTask.cmbxEmp =
 
-                addTask.Show();
+                addTask.ShowDialog();
                 addTask.btnAssign.Hide();
             }
             else
@@ -120,7 +122,7 @@ namespace EmployeeTracker
                 {
                     AddTask addTask = new AddTask(date);
                     addTask.pnlAssign.Show();
-                    addTask.Show();
+                    addTask.ShowDialog();
                     addTask.btnSvCal.Hide();
                 }
             }
@@ -144,6 +146,16 @@ namespace EmployeeTracker
         {
             listBox1.DataSource = null;
             listBox1.DataSource = conn;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
 
         public CdDay(string day)
