@@ -15,7 +15,7 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
-       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
+       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
 
@@ -32,11 +32,11 @@ namespace EmployeeTracker
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "SELECT Schedule.*, Task.taskName FROM Schedule, Task WHERE " +
                             "Schedule.taskId = Task.taskId " +
-                            "AND Format(Schedule.timeIn, 'D/M/YYYY') = ?";
+                            "AND Format(Schedule.timeIn, 'M/D/yyyy') = ?";
 
 
                         // Format the date to match the format 'D/M/YYYY'
-                        string formattedDate = $"{_day.Trim()}/{tabCALENDAR._month}/{tabCALENDAR._year}";
+                        string formattedDate = $"{tabCALENDAR._month}/{_day.Trim()}/{tabCALENDAR._year}";
                         this.date = formattedDate;
                         cmd.Parameters.AddWithValue("date", formattedDate);
 
@@ -88,11 +88,6 @@ namespace EmployeeTracker
             }
         }
 
-        private void lblTask_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             if (checkBox1.Checked == false)
@@ -110,11 +105,13 @@ namespace EmployeeTracker
             {
                 // Retrieve the selected task name
                 string selectedTask = listBox1.SelectedItem.ToString();
-                MessageBox.Show("Test");
-                // Open another form to display more details about the selected task
-                // Example:
-                // TaskDetailsForm taskDetailsForm = new TaskDetailsForm(selectedTask);
-                // taskDetailsForm.Show();
+                AddTask addTask = new AddTask(date);
+                addTask.pnlAssign.Show();
+
+                //addTask.cmbxEmp =
+
+                addTask.Show();
+                addTask.btnAssign.Hide();
             }
             else
             {
@@ -124,10 +121,7 @@ namespace EmployeeTracker
                     AddTask addTask = new AddTask(date);
                     addTask.pnlAssign.Show();
                     addTask.Show();
-                    // No tasks exist for the selected day, open a form to add a new task
-                    // Example:
-                    // AddTaskForm addTaskForm = new AddTaskForm(selectedDate);
-                    // addTaskForm.Show();
+                    addTask.btnSvCal.Hide();
                 }
             }
         }
@@ -144,6 +138,12 @@ namespace EmployeeTracker
                 checkBox1.Checked = false;
                 this.BackColor = Color.White;
             }
+        }
+
+        public void refreshList()
+        {
+            listBox1.DataSource = null;
+            listBox1.DataSource = conn;
         }
 
         public CdDay(string day)

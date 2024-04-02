@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTask = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnNext = new System.Windows.Forms.PictureBox();
             this.btnPrev = new System.Windows.Forms.PictureBox();
             this.lblMonth = new System.Windows.Forms.Label();
-            this.btnTask = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
@@ -54,6 +54,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(946, 607);
             this.panel1.TabIndex = 0;
+            // 
+            // btnTask
+            // 
+            this.btnTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTask.AutoSize = true;
+            this.btnTask.Location = new System.Drawing.Point(811, 3);
+            this.btnTask.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTask.Name = "btnTask";
+            this.btnTask.Size = new System.Drawing.Size(87, 32);
+            this.btnTask.TabIndex = 3;
+            this.btnTask.Text = "Add Task";
+            this.btnTask.UseVisualStyleBackColor = true;
+            this.btnTask.Click += new System.EventHandler(this.btnTask_Click);
             // 
             // panel2
             // 
@@ -121,18 +134,6 @@
             this.lblMonth.Size = new System.Drawing.Size(114, 31);
             this.lblMonth.TabIndex = 8;
             this.lblMonth.Text = "MONTH";
-            // 
-            // btnTask
-            // 
-            this.btnTask.AutoSize = true;
-            this.btnTask.Location = new System.Drawing.Point(811, 3);
-            this.btnTask.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTask.Name = "btnTask";
-            this.btnTask.Size = new System.Drawing.Size(87, 32);
-            this.btnTask.TabIndex = 3;
-            this.btnTask.Text = "Add Task";
-            this.btnTask.UseVisualStyleBackColor = true;
-            this.btnTask.Click += new System.EventHandler(this.btnTask_Click);
             // 
             // tabCALENDAR
             // 

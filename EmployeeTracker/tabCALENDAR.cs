@@ -22,7 +22,7 @@ namespace EmployeeTracker
 
         private void tabCALENDAR_Load(object sender, EventArgs e)
         {
-            showDays(DateTime.Now.Month, DateTime.Now.Year);
+            showDays(DateTime.Now.Month, DateTime.Now.Year);           
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -107,6 +107,7 @@ namespace EmployeeTracker
                 CdDay cd = new CdDay(i + " ");
                 cd.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom; // Set anchor for resizing
                 tableLayoutPanel1.Controls.Add(cd);
+
             }
 
             // Adjust row and column styles for proper layout

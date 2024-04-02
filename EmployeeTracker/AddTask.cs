@@ -17,7 +17,7 @@ namespace EmployeeTracker
         private string date;
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
         public AddTask(string date)
         {
             InitializeComponent();
@@ -28,39 +28,14 @@ namespace EmployeeTracker
         {
             PopulateCmbxEmp();
             PopulateCmbxTask();
-            pickDate1.Value = DateTime.Parse(date);
-            pickDate2.Value = DateTime.Parse(date);
+
+            if (pnlAssign.Visible)
+            {
+                pickDate1.Value = DateTime.Parse(date);
+                pickDate2.Value = DateTime.Parse(date);
+            }
         }
 
-        //private void PopulateComboBox()
-        //{
-        //    try
-        //    {
-        //        connection.Open();
-        //        string query = "SELECT EmployeeID, fName FROM Employee";
-        //        OleDbCommand command = new OleDbCommand(query, connection);
-        //        OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //        DataTable dataTable = new DataTable();
-        //        adapter.Fill(dataTable);
-        //        cmbxAssign.DataSource = dataTable;
-        //        cmbxAssign.DisplayMember = "fName";
-        //        cmbxAssign.ValueMember = "EmployeeID";
-        //        connection.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error: " + ex.Message);
-        //    }
-        //}
-
-        //private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
-        //    if (selectedRow != null)
-        //    {
-        //        string selectedItem = selectedRow["fname"].ToString();
-        //    }
-        //}
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string taskName = txtTaskName.Text;
@@ -170,7 +145,7 @@ namespace EmployeeTracker
         {
             try
             {
-                // Retrieve selected employee, task, date, and time (if applicable)
+                // gets selected employee, task, date, and time
                 int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
                 int taskID = Convert.ToInt32(cmbxTask.SelectedValue); 
                 DateTime startDate = pickDate1.Value.Date;
@@ -178,7 +153,7 @@ namespace EmployeeTracker
                 TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
                 TimeSpan? timeOut = chkTime.Checked ? (TimeSpan?)pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
-                // Method to remove milliseconds from a TimeSpan
+                // remove milliseconds from a TimeSpan
                 TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
                 {
                     return new TimeSpan(timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
@@ -187,44 +162,40 @@ namespace EmployeeTracker
                 timeIn = chkTime.Checked ? RemoveMilliseconds(pickTimeIn.Value.TimeOfDay) : (TimeSpan?)null;
                 timeOut = chkTime.Checked ? RemoveMilliseconds(pickTimeOut.Value.TimeOfDay) : (TimeSpan?)null;
 
-
-                // Open the OleDbConnection
                 connection.Open();
 
                 string scheduledDate = $"{startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+                string timeInFormatted = startDate.ToString("MM/dd/yyyy") + " " + timeIn;
+                string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
 
-                string timeInFormatted = startDate.ToString("dd/MM/yyyy") + " " + timeIn;
-                string timeOutFormatted = endDate.ToString("dd/MM/yyyy") + " " + timeOut;
-
-                // Create an OleDbCommand object with the INSERT query and the OleDbConnection
                 OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut) " +
                        "VALUES (@EmployeeID, @TaskID, @TimeIn, @TimeOut)");
 
                 command.Connection = connection;
 
-                // Add parameters to the command
                 command.Parameters.AddWithValue("@EmployeeID", employeeID);
                 command.Parameters.AddWithValue("@TaskID", taskID);
                // command.Parameters.AddWithValue("@ScheduledDate", scheduledDate);
                 command.Parameters.AddWithValue("@TimeIn", timeInFormatted ?? DBNull.Value.ToString());
                 command.Parameters.AddWithValue("@TimeOut", timeOutFormatted ?? DBNull.Value.ToString());
 
-                // Execute the command to perform the insertion
                 command.ExecuteNonQuery();
 
-                // Close the OleDbConnection
                 connection.Close();
 
-                // Optionally, raise the DataUpdated event to notify subscribers that the data has been updated
                 DataUpdated?.Invoke();
 
                 MessageBox.Show("Assignment added successfully!");
+                this.Close();
+
+                CdDay.refreshList();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         private void btnCancel2_Click(object sender, EventArgs e)
         {
