@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace EmployeeTracker
@@ -15,7 +16,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
         public AddTask()
         {
             InitializeComponent();
@@ -174,13 +175,23 @@ namespace EmployeeTracker
                 TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
                 TimeSpan? timeOut = chkTime.Checked ? (TimeSpan?)pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
+                // Method to remove milliseconds from a TimeSpan
+                TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
+                {
+                    return new TimeSpan(timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+                }
+
+                timeIn = chkTime.Checked ? RemoveMilliseconds(pickTimeIn.Value.TimeOfDay) : (TimeSpan?)null;
+                timeOut = chkTime.Checked ? RemoveMilliseconds(pickTimeOut.Value.TimeOfDay) : (TimeSpan?)null;
+
+
                 // Open the OleDbConnection
                 connection.Open();
 
                 string scheduledDate = $"{startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
 
-                string timeInFormatted = timeIn?.ToString(@"D/M/YYYY hh\:mm\:ss tt");
-                string timeOutFormatted = timeOut?.ToString(@"D/M/YYYY hh\:mm\:ss tt");
+                string timeInFormatted = startDate.ToString("dd/MM/yyyy") + " " + timeIn;
+                string timeOutFormatted = endDate.ToString("dd/MM/yyyy") + " " + timeOut;
 
                 // Create an OleDbCommand object with the INSERT query and the OleDbConnection
                 OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut) " +
