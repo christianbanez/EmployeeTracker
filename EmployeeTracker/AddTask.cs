@@ -44,6 +44,7 @@ namespace EmployeeTracker
                         dataGridViewSchedules.DataSource = scheduleTable;
                     }
                 }
+                //CTO EARNED
                 using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
                 {
@@ -59,6 +60,45 @@ namespace EmployeeTracker
                         dataGridViewCTOearned.DataSource = scheduleTable;
                     }
                 }
+                //CTO BALANCE
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
+                
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+
+                    // Execute the query and get the total ctoBalance and ctoEarned
+                    object totalCTOBalance = command.ExecuteScalar();
+
+                    string finalBalance = totalCTOBalance.ToString();
+                    // Display the total in the text box
+                    if (totalCTOBalance != DBNull.Value)
+                    {
+                        txtTotalCTOBalance.Text = finalBalance;
+                    }
+                    else
+                    {
+                        txtTotalCTOBalance.Text = "0"; // If no value found, set to 0
+                    }
+                }
+                //DISPLAY CTO USED TO GRIDVIEW
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOused WHERE EmployeeID = @EmployeeID", connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+
+                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(command))
+                    {
+                        DataTable usedTable = new DataTable();
+                        adapter.Fill(usedTable);
+
+                        // Bind the retrieved balance to the DataGridView
+                        dataGridViewCTOused.DataSource = usedTable;
+                    }
+                }
+                //CTO RENDERED
                 using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT SUM(ctoRendered) AS TotalCTORendered FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
                 {
@@ -132,28 +172,48 @@ namespace EmployeeTracker
             DateTime timeIn = dateTimePickerTimeIn.Value;
             DateTime timeOut = dateTimePickerTimeOut.Value;
 
-            if (cmbxAssign.SelectedItem != null)
+            if (timeOut > timeIn)
             {
-                DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
-                if (selectedRow != null)
+                if (cmbxAssign.SelectedItem != null)
                 {
+                    DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
+                    if (selectedRow != null)
+                    {
 
-                    // SelectedID is already assigned in the constructor
-                    int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
+                        // SelectedID is already assigned in the constructor
+                        int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
 
-                    TimeSpan timeDifference = timeOut - timeIn;
-                    double hoursNeeded = timeDifference.TotalHours / 10;
-                    double timeDifference1 = timeDifference.TotalHours;
-                    double ctoEarned = Math.Round(hoursNeeded, 2);
-                    // Call method to insert task
-                    InsertTask(timeIn, timeOut, taskID, ctoEarned, timeDifference1);
+                        TimeSpan timeDifference = timeOut - timeIn;
+                        double hoursNeeded = timeDifference.TotalHours / 10;
+                        double timeDifference1 = timeDifference.TotalHours;
+                        double ctoEarned = Math.Round(hoursNeeded, 2);
+                        connection.Open();
+                        OleDbCommand cmd = connection.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT ctoBalance AS totalBalance FROM Employee WHERE EmployeeID = @EmployeeID";
+                        cmd.Parameters.AddWithValue("@EmployeeID", SelectedID);
+                        object totalBalance = cmd.ExecuteScalar();
+                        connection.Close();
+                        double totalCTObalance = totalBalance == DBNull.Value ? 0.0 : Convert.ToDouble(totalBalance);
+
+                        totalCTObalance += ctoEarned;
+                        InsertTask(timeIn, timeOut, taskID, ctoEarned, timeDifference1, totalCTObalance);
+                        
+                        // Call method to insert task
+                        
+                    }
                 }
+
+            }
+            else
+            {
+                MessageBox.Show("Error: Invalid time inputted", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
         //inserting the values of the form into database
-        private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID, double ctoEarned, double timeDifference1)
+        private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID, double ctoEarned, double timeDifference1, double totalCTObalance)
         {
             try
             {
@@ -172,7 +232,6 @@ namespace EmployeeTracker
                     Cmd.Parameters.AddWithValue("@TaskID", taskID);
 
                     Cmd.ExecuteNonQuery();
-
                 }
             }
             catch (Exception ex)
@@ -182,7 +241,6 @@ namespace EmployeeTracker
             finally
             {
                 connection.Close(); // Close the connection
-                this.Close();
             }
 
             try
@@ -212,8 +270,28 @@ namespace EmployeeTracker
             finally
             {
                 connection.Close(); // Close the connection
-                this.Close();
             }
+            try
+            {
+                connection.Open();
+                OleDbCommand cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "UPDATE Employee SET ctoBalance = @totalBalance WHERE EmployeeID = @EmployeeID";
+                cmd.Parameters.AddWithValue("@totalBalance", totalCTObalance);
+                cmd.Parameters.AddWithValue("@EmployeeID", SelectedID); // Use the selected ID
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+                
+            }
+
 
         }
         private void btnCancel_Click(object sender, EventArgs e)

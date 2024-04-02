@@ -73,6 +73,7 @@
             this.Name = "UseCTO";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "useCTO";
+            this.Load += new System.EventHandler(this.UseCTO_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
