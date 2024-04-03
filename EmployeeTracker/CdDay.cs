@@ -16,8 +16,9 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
+        public Panel MyPanel { get { return panel1; } }
         public string selectedItem;
-       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
+       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
         public void DisplayTask()
@@ -30,8 +31,9 @@ namespace EmployeeTracker
                     using (OleDbCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "SELECT Schedule.*, Task.taskName FROM Schedule, Task WHERE " +
+                        cmd.CommandText = "SELECT Schedule.*, Task.taskName, Employee.fName, Employee.lName FROM Schedule, Task, Employee WHERE " +
                             "Schedule.taskId = Task.taskId " +
+                            "AND Schedule.EmployeeID = Employee.EmployeeID " +
                             "AND Format(Schedule.timeIn, 'M/D/yyyy') = ?";
 
 
@@ -52,7 +54,7 @@ namespace EmployeeTracker
                                 // Populate ListBox with task names
                                 while (reader.Read())
                                 {
-                                    listBox1.Items.Add(reader["taskName"].ToString());
+                                    listBox1.Items.Add(reader["taskName"].ToString() + " - " + reader["fname"].ToString() + " " + reader["lName"].ToString());
                                 }
                             }
                             else
@@ -177,7 +179,7 @@ namespace EmployeeTracker
                 }
                 else
                 {
-                    addTask = new AddTask(date,null);
+                    addTask = new AddTask(date,null,null);
                     addTask.pnlAssign.Show();
                     addTask.btnSvCal.Hide();
                     addTask.ShowDialog();
@@ -197,13 +199,22 @@ namespace EmployeeTracker
                 MessageBox.Show("Item Found: " + selectedItem);
                 // Retrieve the selected task name
                 string selectedTask = listBox1.SelectedItem.ToString();
-                addTask = new AddTask(date, selectedItem);
+                selectedItem = listBox1.SelectedItem.ToString();
+                string[] parts = selectedItem.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length == 2)
+                {
+                    string taskName = parts[0]; // Contains "C# Coding"
+                    string employeeName = parts[1]; // Contains "cruz jana"
+                    addTask = new AddTask(date, taskName, employeeName);
+                }
+
                 addTask.pnlAssign.Show();
-
-                //addTask.cmbxEmp =
-
-                addTask.ShowDialog();
+                addTask.pickDate1.Enabled = false;
+                addTask.pickDate2.Enabled = false;
                 addTask.btnAssign.Hide();
+                addTask.ShowDialog();
+
             }
         }
 

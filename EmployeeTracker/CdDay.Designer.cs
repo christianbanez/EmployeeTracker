@@ -48,7 +48,7 @@
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(1);
-            this.panel1.Size = new System.Drawing.Size(130, 103);
+            this.panel1.Size = new System.Drawing.Size(91, 63);
             this.panel1.TabIndex = 0;
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
@@ -60,9 +60,9 @@
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 27);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(130, 78);
+            this.listBox1.Size = new System.Drawing.Size(91, 39);
             this.listBox1.TabIndex = 2;
             this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -86,9 +86,9 @@
             this.lblDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDay.AutoSize = true;
             this.lblDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDay.Location = new System.Drawing.Point(106, 2);
+            this.lblDay.Location = new System.Drawing.Point(67, 2);
             this.lblDay.Name = "lblDay";
-            this.lblDay.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblDay.Padding = new System.Windows.Forms.Padding(2);
             this.lblDay.Size = new System.Drawing.Size(25, 20);
             this.lblDay.TabIndex = 0;
             this.lblDay.Text = "00";
@@ -101,7 +101,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "CdDay";
             this.Padding = new System.Windows.Forms.Padding(1);
-            this.Size = new System.Drawing.Size(132, 105);
+            this.Size = new System.Drawing.Size(93, 65);
             this.Load += new System.EventHandler(this.CdDay_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -111,7 +111,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Timer timer1;

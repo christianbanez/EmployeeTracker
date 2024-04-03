@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -19,14 +20,16 @@ namespace EmployeeTracker
         private CdDay cd = new CdDay("");
         private string date;
         private string selectedItem;
+        private string employeeName;
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
-        public AddTask(string date, string selectedItem)
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        public AddTask(string date, string selectedItem, string employeeName)
         {
             InitializeComponent();
             this.date = date;
             this.selectedItem = selectedItem;
+            this.employeeName = employeeName;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,8 +40,8 @@ namespace EmployeeTracker
             if (pnlAssign.Visible)
             {
                 DateTime dateDT;
-                dateDT = DateTime.ParseExact(date, "M/d/yyyy", CultureInfo.InvariantCulture);
-                date = dateDT.ToString("dd/MM/yyyy");
+                //dateDT = DateTime.ParseExact(date, "M/d/yyyy", CultureInfo.InvariantCulture);
+                //date = dateDT.ToString("dd/MM/yyyy");
                 MessageBox.Show(date);
                 pickDate1.Value = DateTime.Parse(date);
                 pickDate2.Value = DateTime.Parse(date);
@@ -153,17 +156,64 @@ namespace EmployeeTracker
         private void PopulateCmbxEmp()
         {
             try
+
+                    // Add parameter to the command
             {
-                connection.Open();
-                string query = "SELECT EmployeeID, fName FROM Employee";
-                OleDbCommand command = new OleDbCommand(query, connection);
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                cmbxEmp.DataSource = dataTable;
-                cmbxEmp.DisplayMember = "fName";
-                cmbxEmp.ValueMember = "EmployeeID";
-                connection.Close();
+                if(selectedItem != null)
+                {
+                    connection.Open();
+                    // Split the employee name further into first name and last name
+                    string[] names = employeeName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    string firstName = "";
+                    string lastName = "";
+
+                    if (names.Length >= 2)
+                    {
+                        firstName = names[0]; // Contains "cruz"
+                        lastName = string.Join(" ", names.Skip(1)); // Contains "jana"
+                        //MessageBox.Show("Values here: " + firstName + " " + lastName);
+                    }
+                    else if (names.Length == 1)
+                    {
+                        // Only one name provided, consider it as the first name
+                        firstName = names[0]; // Contains "cruz"
+                        lastName = ""; // No last name
+                    }
+
+                    // Build the query dynamically
+                    string query = "SELECT lName, fName, EmployeeID FROM Employee WHERE fName = @fName AND lName = @lName";
+
+                    // Create a new instance of OleDbCommand
+                    OleDbCommand command = new OleDbCommand(query, connection);
+                    command.Parameters.AddWithValue("@fName", firstName);
+                    command.Parameters.AddWithValue("@lName", lastName);
+
+                    // Create OleDbDataAdapter and fill the DataTable
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataTable.Columns.Add("FullName", typeof(string), "fName + ' ' + lName");
+
+                    // Bind the DataTable to the ComboBox
+                    cmbxEmp.DataSource = dataTable;
+                    cmbxEmp.DisplayMember = "FullName";
+                    cmbxEmp.ValueMember = "EmployeeID";
+
+                    connection.Close();
+                }
+                else 
+                { 
+                    connection.Open();
+                    string query = "SELECT EmployeeID, fName FROM Employee";
+                    OleDbCommand command = new OleDbCommand(query, connection);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    cmbxEmp.DataSource = dataTable;
+                    cmbxEmp.DisplayMember = "fName";
+                    cmbxEmp.ValueMember = "EmployeeID";
+                    connection.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -171,6 +221,13 @@ namespace EmployeeTracker
             }
         }
 
+        // Method to refresh the panel
+        public void RefreshPanel()
+        {
+            CdDay cd = new CdDay(""); // Create an instance of the form
+            cd.MyPanel.Invalidate(); // Refresh the panel
+            cd.MyPanel.Update();
+        }
         private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRowView selectedRow = cmbxEmp.SelectedItem as DataRowView;
@@ -202,7 +259,6 @@ namespace EmployeeTracker
 
                 connection.Open();
 
-                string scheduledDate = $"{startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
                 string timeInFormatted = startDate.ToString("MM/dd/yyyy") + " " + timeIn;
                 string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
 
@@ -228,6 +284,7 @@ namespace EmployeeTracker
 
                 MessageBox.Show("Assignment added successfully!");
                 cd.listBox1.ClearSelected();
+                RefreshPanel();         
                 //cd.ReloadListBoxFromDatabase();
                 this.Close();
 
@@ -315,7 +372,6 @@ namespace EmployeeTracker
             timeIn = chkTime.Checked ? RemoveMilliseconds(pickTimeIn.Value.TimeOfDay) : (TimeSpan?)null;
             timeOut = chkTime.Checked ? RemoveMilliseconds(pickTimeOut.Value.TimeOfDay) : (TimeSpan?)null;
 
-            string scheduledDate = $"{startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
             string timeInFormatted = startDate.ToString("MM/dd/yyyy") + " " + timeIn;
             string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
 
@@ -323,9 +379,6 @@ namespace EmployeeTracker
                             "SET TimeIn = @TimeIn, " +
                             "TimeOut = @TimeOut " +
                             "WHERE ID = @scheduleID", connection);
-
-
-
 
             command.Connection = connection;
             //command.Parameters.AddWithValue("@EmployeeID", employeeID);

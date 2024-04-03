@@ -25,7 +25,7 @@ namespace EmployeeTracker
             showDays(DateTime.Now.Month, DateTime.Now.Year);           
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        public void btnNext_Click(object sender, EventArgs e)
         {
             _month += 1;
             if (_month > 12)
@@ -36,7 +36,7 @@ namespace EmployeeTracker
             showDays(_month, _year);
         }
 
-        private void btnPrev_Click(object sender, EventArgs e)
+        public void btnPrev_Click(object sender, EventArgs e)
         {
             _month -= 1;
             if (_month < 1)
@@ -49,7 +49,7 @@ namespace EmployeeTracker
 
         private void btnTask_Click(object sender, EventArgs e)
         {
-            AddTask addTask = new AddTask(null,null);
+            AddTask addTask = new AddTask(null,null,null);
             //addTask.DataUpdated += addTask_DataUpdated;
             addTask.pnlAssign.Hide();
             addTask.ShowDialog();
