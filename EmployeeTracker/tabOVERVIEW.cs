@@ -27,7 +27,7 @@ namespace EmployeeTracker
 
         void dataView()
         {
-            OleDbConnection connection = new OleDbConnection();
+            OleDbConnection connection = new OleDbConnection(conn.conn);
 
             try
             {
