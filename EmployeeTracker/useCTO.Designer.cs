@@ -50,6 +50,7 @@
             this.useCTOtxt.Name = "useCTOtxt";
             this.useCTOtxt.Size = new System.Drawing.Size(156, 35);
             this.useCTOtxt.TabIndex = 1;
+            this.useCTOtxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.useCTOtxt_KeyPress);
             // 
             // useCTOsave
             // 

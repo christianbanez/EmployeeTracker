@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewCTOused = new System.Windows.Forms.DataGridView();
+            this.txtTotalCTOBalance = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.useCTObtn = new System.Windows.Forms.Button();
             this.txtTotalCTORendered = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,19 +55,18 @@
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dbtkDataSet = new EmployeeTracker.dbtkDataSet();
             this.employeeTableAdapter = new EmployeeTracker.dbtkDataSetTableAdapters.EmployeeTableAdapter();
-            this.txtTotalCTOBalance = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dataGridViewCTOused = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOused)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOearned)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedules)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOused)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dataGridViewCTOused);
             this.panel1.Controls.Add(this.txtTotalCTOBalance);
             this.panel1.Controls.Add(this.label5);
@@ -92,10 +94,43 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1005, 985);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // dataGridViewCTOused
+            // 
+            this.dataGridViewCTOused.AllowUserToAddRows = false;
+            this.dataGridViewCTOused.AllowUserToDeleteRows = false;
+            this.dataGridViewCTOused.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCTOused.Location = new System.Drawing.Point(505, 632);
+            this.dataGridViewCTOused.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridViewCTOused.Name = "dataGridViewCTOused";
+            this.dataGridViewCTOused.ReadOnly = true;
+            this.dataGridViewCTOused.RowHeadersWidth = 51;
+            this.dataGridViewCTOused.Size = new System.Drawing.Size(478, 231);
+            this.dataGridViewCTOused.TabIndex = 30;
+            // 
+            // txtTotalCTOBalance
+            // 
+            this.txtTotalCTOBalance.Enabled = false;
+            this.txtTotalCTOBalance.Location = new System.Drawing.Point(613, 882);
+            this.txtTotalCTOBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTotalCTOBalance.Name = "txtTotalCTOBalance";
+            this.txtTotalCTOBalance.Size = new System.Drawing.Size(134, 26);
+            this.txtTotalCTOBalance.TabIndex = 29;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(503, 879);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 29);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Balance:";
             // 
             // useCTObtn
             // 
-            this.useCTObtn.Location = new System.Drawing.Point(377, 924);
+            this.useCTObtn.Location = new System.Drawing.Point(365, 924);
             this.useCTObtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.useCTObtn.Name = "useCTObtn";
             this.useCTObtn.Size = new System.Drawing.Size(144, 46);
@@ -106,6 +141,7 @@
             // 
             // txtTotalCTORendered
             // 
+            this.txtTotalCTORendered.Enabled = false;
             this.txtTotalCTORendered.Location = new System.Drawing.Point(145, 881);
             this.txtTotalCTORendered.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalCTORendered.Name = "txtTotalCTORendered";
@@ -308,36 +344,15 @@
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
             // 
-            // txtTotalCTOBalance
+            // button1
             // 
-            this.txtTotalCTOBalance.Location = new System.Drawing.Point(613, 882);
-            this.txtTotalCTOBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTotalCTOBalance.Name = "txtTotalCTOBalance";
-            this.txtTotalCTOBalance.Size = new System.Drawing.Size(134, 26);
-            this.txtTotalCTOBalance.TabIndex = 29;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(503, 879);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 29);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Balance:";
-            // 
-            // dataGridViewCTOused
-            // 
-            this.dataGridViewCTOused.AllowUserToAddRows = false;
-            this.dataGridViewCTOused.AllowUserToDeleteRows = false;
-            this.dataGridViewCTOused.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCTOused.Location = new System.Drawing.Point(505, 632);
-            this.dataGridViewCTOused.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataGridViewCTOused.Name = "dataGridViewCTOused";
-            this.dataGridViewCTOused.ReadOnly = true;
-            this.dataGridViewCTOused.RowHeadersWidth = 51;
-            this.dataGridViewCTOused.Size = new System.Drawing.Size(478, 231);
-            this.dataGridViewCTOused.TabIndex = 30;
+            this.button1.Location = new System.Drawing.Point(527, 924);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 46);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // AddTask
             // 
@@ -351,11 +366,11 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOused)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOearned)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedules)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbtkDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCTOused)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -388,5 +403,6 @@
         private System.Windows.Forms.TextBox txtTotalCTOBalance;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridViewCTOused;
+        private System.Windows.Forms.Button button1;
     }
 }
