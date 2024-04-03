@@ -15,19 +15,19 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
-       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
-        string _day, date, weekday;
+
+        GlobalConnection conn = new GlobalConnection();
+        string _day, date;
         //List<string> tasks; // List to store tasks/events for the day
 
         public void DisplayTask()
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
-                // Assuming 'conn' is your OleDbConnection object
-                using (conn)
                 {
-                    conn.Open();
-                    using (OleDbCommand cmd = conn.CreateCommand())
+                    connection.Open();
+                    using (OleDbCommand cmd = connection.CreateCommand())
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "SELECT Schedule.*, Task.taskName FROM Schedule, Task WHERE " +

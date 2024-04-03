@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Odbc;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+
 
 namespace EmployeeTracker
 {
@@ -15,7 +18,11 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+        //dbConnection(OleDbConnection connection);
+        GlobalConnection conn = new GlobalConnection();
+
+        //OleDbConnection connection = new OleDbConnection();
+        //OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
         public AddTask()
         {
             InitializeComponent();
@@ -76,6 +83,8 @@ namespace EmployeeTracker
 
         private void InsertTask(string taskName, string taskDesc /*int empID*/)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
+
             try
             {
                 connection.Open();
