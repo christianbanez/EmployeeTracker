@@ -8,7 +8,7 @@ using ClosedXML.Excel;
 
 namespace EmployeeTracker
 {
-    public partial class AddTask : Form
+    public partial class EmployeeListCTO : Form
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
@@ -23,7 +23,7 @@ namespace EmployeeTracker
 
         public int SelectedID { get; set; }
 
-        public AddTask(string selectedName, int selectedID)
+        public EmployeeListCTO(string selectedName, int selectedID)
         {
             InitializeComponent();
 

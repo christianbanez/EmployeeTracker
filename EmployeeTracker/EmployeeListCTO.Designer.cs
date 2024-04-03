@@ -1,6 +1,6 @@
 ﻿namespace EmployeeTracker
 {
-    partial class AddTask
+    partial class EmployeeListCTO
     {
         /// <summary>
         /// Required designer variable.
@@ -395,7 +395,7 @@
             this.label3.Size = new System.Drawing.Size(121, 29);
             this.label3.TabIndex = 25;
             this.label3.Text = "Rendered";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            
             // 
             // AddTask
             // 

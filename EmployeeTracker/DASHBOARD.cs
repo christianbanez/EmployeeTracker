@@ -131,7 +131,7 @@ namespace EmployeeTracker
                 Console.WriteLine("Selected Name: " + selectedName); // Debugging statement
                 Console.WriteLine("Selected ID: " + selectedID); // Debugging statement
 
-                AddTask addTaskForm = new AddTask(selectedName, selectedID);
+                EmployeeListCTO addTaskForm = new EmployeeListCTO(selectedName, selectedID);
                 addTaskForm.ShowDialog();
             }
         }

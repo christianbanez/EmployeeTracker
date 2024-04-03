@@ -16,7 +16,7 @@ namespace EmployeeTracker
     {
         OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
         public int SelectedID { get; set; }
-        private AddTask addtask;
+        private EmployeeListCTO addtask;
         public UseCTO(int selectedID)
         {
             InitializeComponent();
