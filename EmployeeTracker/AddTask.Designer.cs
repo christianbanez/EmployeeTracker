@@ -94,6 +94,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1005, 985);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // dataGridViewCTOused
             // 
@@ -110,6 +111,7 @@
             // 
             // txtTotalCTOBalance
             // 
+            this.txtTotalCTOBalance.Enabled = false;
             this.txtTotalCTOBalance.Location = new System.Drawing.Point(613, 882);
             this.txtTotalCTOBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalCTOBalance.Name = "txtTotalCTOBalance";
@@ -128,7 +130,7 @@
             // 
             // useCTObtn
             // 
-            this.useCTObtn.Location = new System.Drawing.Point(754, 872);
+            this.useCTObtn.Location = new System.Drawing.Point(365, 924);
             this.useCTObtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.useCTObtn.Name = "useCTObtn";
             this.useCTObtn.Size = new System.Drawing.Size(144, 46);
@@ -139,6 +141,7 @@
             // 
             // txtTotalCTORendered
             // 
+            this.txtTotalCTORendered.Enabled = false;
             this.txtTotalCTORendered.Location = new System.Drawing.Point(145, 881);
             this.txtTotalCTORendered.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalCTORendered.Name = "txtTotalCTORendered";

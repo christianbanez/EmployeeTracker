@@ -16,60 +16,79 @@ namespace EmployeeTracker
     {
         OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
         public int SelectedID { get; set; }
+        private AddTask addtask;
         public UseCTO(int selectedID)
         {
             InitializeComponent();
             SelectedID = selectedID;
             Console.WriteLine("Selected ID: ", selectedID);
+            
         }
         private void UseCTO_Load(object sender, EventArgs e)
         {
             
            
         }
-
-       
-
         private void useCTOsave_Click(object sender, EventArgs e)
         {
 
             DateTime dateCTOused = datetimepickerUseDate.Value;
-            double inputCTO = Convert.ToDouble(useCTOtxt.Text);
+            
 
             try
             {
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
+                if (useCTOtxt.Text != "")
                 {
-                    connection.Open();
-                    
-                    OleDbCommand command = connection.CreateCommand();
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = "SELECT SUM(ctoEarned) AS TotalCTOearned FROM CTOearned WHERE EmployeeID = @EmployeeID";
-                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
-                    object TotalCTOearned = command.ExecuteScalar();
-
-                    OleDbCommand cmd = connection.CreateCommand();
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SELECT SUM(ctoUsed) AS TotalCTOused FROM CTOused WHERE EmployeeID = @EmployeeID";
-                    cmd.Parameters.AddWithValue("@EmployeeID", SelectedID);
-                    object TotalCTOused = cmd.ExecuteScalar();
-
-                    double totalEarned = TotalCTOearned == DBNull.Value ? 0.0 : Convert.ToDouble(TotalCTOearned);
-                    double totalUsed = TotalCTOused == DBNull.Value ? 0.0 : Convert.ToDouble(TotalCTOused);
-                    
-
-                    if (totalEarned >= (inputCTO+totalUsed)) 
+                    double inputCTO = Convert.ToDouble(useCTOtxt.Text);
+                    if (inputCTO != 0 || inputCTO != 0.0 )
                     {
-                        double totalBalance = totalEarned - (inputCTO + totalUsed);
-                        InsertUsed(dateCTOused, inputCTO, totalBalance);
-                        
+
+                        using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                        {
+                            connection.Open();
+
+                            OleDbCommand command = connection.CreateCommand();
+                            command.CommandType = CommandType.Text;
+                            command.CommandText = "SELECT SUM(ctoEarned) AS TotalCTOearned FROM CTOearned WHERE EmployeeID = @EmployeeID";
+                            command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+                            object TotalCTOearned = command.ExecuteScalar();
+
+                            OleDbCommand cmd = connection.CreateCommand();
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = "SELECT SUM(ctoUsed) AS TotalCTOused FROM CTOused WHERE EmployeeID = @EmployeeID";
+                            cmd.Parameters.AddWithValue("@EmployeeID", SelectedID);
+                            object TotalCTOused = cmd.ExecuteScalar();
+
+                            double totalEarned = TotalCTOearned == DBNull.Value ? 0.0 : Convert.ToDouble(TotalCTOearned);
+                            double totalUsed = TotalCTOused == DBNull.Value ? 0.0 : Convert.ToDouble(TotalCTOused);
+
+
+                            if (totalEarned >= (inputCTO + totalUsed))
+                            {
+                                double totalBalance = totalEarned - (inputCTO + totalUsed);
+                                InsertUsed(dateCTOused, inputCTO, totalBalance);
+                                //testform.RefreshDataGrid();
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error: CTO earned is not enough to be used", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+
                     }
                     else
                     {
                         MessageBox.Show("Error: CTO earned is not enough to be used", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }               
-                        
-                }              
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error: Please input number", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -79,7 +98,6 @@ namespace EmployeeTracker
             {
                 connection.Close();
             }
-            
         }  
         private void InsertUsed(DateTime dateCTOused, double inputCTO, double totalBalance)
         {
@@ -115,6 +133,28 @@ namespace EmployeeTracker
             {
                 connection.Close(); // Close the connection
                 this.Close();
+            }
+        }
+
+        private void useCTOtxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (char.IsDigit(ch) == true)
+            {
+                e.Handled = false;
+
+            }
+            else if (ch == 8)
+            {
+                e.Handled = false;
+            }
+            else if (ch == 46)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
     }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
-using System.IO;
-using System.Linq;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using ClosedXML.Excel;
 
@@ -15,6 +14,13 @@ namespace EmployeeTracker
         public event DataUpdatedEventHandler DataUpdated;
         OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
         private string SelectedName { get; set; }
+
+        private delegate void DEmpty();
+        public void RefreshDataGrid()
+        {
+            this.Invoke(new DEmpty(dataGridViewCTOused.Refresh));
+        }
+
         public int SelectedID { get; set; }
 
         public AddTask(string selectedName, int selectedID)
@@ -28,7 +34,7 @@ namespace EmployeeTracker
             PopulateComboBox();
             LoadSchedules(); // Load schedules when form is initialized
         }
-        private void LoadSchedules()
+        public void LoadSchedules()
         {
             try
             {
@@ -122,18 +128,40 @@ namespace EmployeeTracker
                         txtTotalCTORendered.Text = "0"; // If no value found, set to 0
                     }
                 }
+                //CTO BALANCE
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
+
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+
+                    // Execute the query and get the total ctoBalance and ctoEarned
+                    object totalCTOBalance = command.ExecuteScalar();
+
+                    string finalBalance = totalCTOBalance.ToString();
+                    // Display the total in the text box
+                    if (totalCTOBalance != DBNull.Value)
+                    {
+                        txtTotalCTOBalance.Text = finalBalance;
+                    }
+                    else
+                    {
+                        txtTotalCTOBalance.Text = "0"; // If no value found, set to 0
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             PopulateComboBox();
+            LoadSchedules();
+            
         }
 
         //Combo Box query
@@ -201,18 +229,16 @@ namespace EmployeeTracker
                         double totalCTObalance = totalBalance == DBNull.Value ? 0.0 : Convert.ToDouble(totalBalance);
 
                         totalCTObalance += ctoEarned;
-                        InsertTask(timeIn, timeOut, taskID, ctoEarned, timeDifference1, totalCTObalance);
-                        
-                        // Call method to insert task
-                        
+                        InsertTask(timeIn, timeOut, taskID, ctoEarned, timeDifference1, totalCTObalance); // Call method to insert task
+                        LoadSchedules();
                     }
                 }
-
             }
             else
             {
                 MessageBox.Show("Error: Invalid time inputted", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
 
@@ -284,25 +310,20 @@ namespace EmployeeTracker
                 cmd.Parameters.AddWithValue("@totalBalance", totalCTObalance);
                 cmd.Parameters.AddWithValue("@EmployeeID", SelectedID); // Use the selected ID
                 cmd.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error: " + ex.Message);
             }
             finally
             {
                 connection.Close();
-                
             }
-
-
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void dateTimePickerEndDate_ValueChanged(object sender, EventArgs e)
         {
 
@@ -315,17 +336,49 @@ namespace EmployeeTracker
 
         private void useCTObtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                using(OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@EmployeeID", SelectedID);
+
+                    // Execute the query and get the total ctoBalance and ctoEarned
+                    object totalCTOBalance = command.ExecuteScalar();
+
+                    string finalBalance = totalCTOBalance.ToString();
+                    // Display the total in the text box
+                    if (totalCTOBalance != DBNull.Value && finalBalance != "0")
+                    {
+                        UseCTO UseCTOForm = new UseCTO(SelectedID);
+                        UseCTOForm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please add cto first");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
            
-                UseCTO UseCTOForm = new UseCTO(SelectedID);
-                UseCTOForm.Show();
-            //useCTO.DataUpdated
             
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            PopulateComboBox();
+            LoadSchedules();      
         }
+
         private void exportButton_Click_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
