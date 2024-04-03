@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace EmployeeTracker
@@ -15,13 +16,15 @@ namespace EmployeeTracker
     public partial class AddTask : Form
     {
         private string date;
+        private string selectedItem;
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
-        public AddTask(string date)
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
+        public AddTask(string date, string selectedItem)
         {
             InitializeComponent();
             this.date = date;
+            this.selectedItem = selectedItem;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -31,8 +34,10 @@ namespace EmployeeTracker
 
             if (pnlAssign.Visible)
             {
+                MessageBox.Show(date);
                 pickDate1.Value = DateTime.Parse(date);
                 pickDate2.Value = DateTime.Parse(date);
+                MessageBox.Show(pickDate1.ToString() + pickDate2.ToString());
             }
         }
 
@@ -179,6 +184,9 @@ namespace EmployeeTracker
                 command.Parameters.AddWithValue("@timeIn", timeInFormatted ?? DBNull.Value.ToString());
                 command.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
 
+                MessageBox.Show(employeeID + " " + taskID + " " + timeInFormatted + " " + timeOutFormatted);
+                Application.Exit();
+
                 command.ExecuteNonQuery();
 
                 connection.Close();
@@ -205,9 +213,58 @@ namespace EmployeeTracker
 
         private void btnSvCal_Click(object sender, EventArgs e)
         {
-            // gets selected employee, task, date, and time
+            //fetching taskID here
+            OleDbCommand cmd = new OleDbCommand("SELECT Task.taskID FROM Task WHERE taskName = @taskName", connection);
+            cmd.Parameters.AddWithValue("@taskName", selectedItem);
+            //MessageBox.Show(selectedItem);
+
+            connection.Open();
+            object result = (Int32)cmd.ExecuteScalar();
+
+
+            int taskID = 0;
+
+            if (result != null)
+            {
+                taskID = Convert.ToInt32(result);
+                //MessageBox.Show("Value of TaskID is = " + taskID);
+                // Now you can use taskID variable as needed.
+            }
+            else
+            {
+                MessageBox.Show("No Tasks Found.");
+            }
+
+            //fetching taskID here
+
             int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
-            int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
+
+            OleDbCommand cmdSc = new OleDbCommand("SELECT Schedule.ID FROM Schedule WHERE taskID = @taskID AND timeIn = @date AND EmployeeID = @employeeID", connection);
+            cmdSc.Parameters.AddWithValue("@taskID", taskID);
+            cmdSc.Parameters.AddWithValue("@date", date);
+            cmdSc.Parameters.AddWithValue("@employeeID", employeeID);
+            MessageBox.Show(taskID + " " + date + " " + employeeID);
+
+
+            object resultSc = cmdSc.ExecuteScalar();
+
+
+            int scheduleID = 0;
+
+            if (resultSc != null)
+            {
+                scheduleID = Convert.ToInt32(resultSc);
+                MessageBox.Show("ScheduleID = " +  scheduleID);
+                //MessageBox.Show("Value of TaskID is = " + taskID);
+                // Now you can use taskID variable as needed.
+            }
+            else
+            {
+                MessageBox.Show("No Tasks Found.");
+            }
+
+            //// gets selected employee, task, date, and time
+            //int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
             DateTime startDate = pickDate1.Value.Date;
             DateTime endDate = pickDate2.Value.Date;
             TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
@@ -222,26 +279,29 @@ namespace EmployeeTracker
             timeIn = chkTime.Checked ? RemoveMilliseconds(pickTimeIn.Value.TimeOfDay) : (TimeSpan?)null;
             timeOut = chkTime.Checked ? RemoveMilliseconds(pickTimeOut.Value.TimeOfDay) : (TimeSpan?)null;
 
-            connection.Open();
-
             string scheduledDate = $"{startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
             string timeInFormatted = startDate.ToString("MM/dd/yyyy") + " " + timeIn;
             string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
 
             OleDbCommand command = new OleDbCommand("UPDATE Schedule " +
-                                        "SET TimeIn = @TimeIn, " +
-                                        "    TimeOut = @TimeOut " +
-                                        "WHERE EmployeeID = @EmployeeID " +
-                                        "  AND TaskID = @TaskID", connection);
+                            "SET TimeIn = @TimeIn, " +
+                            "TimeOut = @TimeOut " +
+                            "WHERE ID = @scheduleID", connection);
+
+
+
 
             command.Connection = connection;
-
-            command.Parameters.AddWithValue("@EmployeeID", employeeID);
-            command.Parameters.AddWithValue("@TaskID", taskID);
+            //command.Parameters.AddWithValue("@EmployeeID", employeeID);
+            //command.Parameters.AddWithValue("@TaskID", taskID);
             //command.Parameters.AddWithValue("@StartDate", startDate);
             //command.Parameters.AddWithValue("@EndDate", endDate);
             command.Parameters.AddWithValue("@TimeIn", timeInFormatted ?? DBNull.Value.ToString());
             command.Parameters.AddWithValue("@TimeOut", timeOutFormatted ?? DBNull.Value.ToString());
+            command.Parameters.AddWithValue("@scheduleID", scheduleID);
+
+            //MessageBox.Show(scheduleID + " " + taskID + " " + timeInFormatted + " " + timeOutFormatted + "selected date: " + date);
+            //Application.Exit();
 
             command.ExecuteNonQuery();
 

@@ -49,7 +49,7 @@ namespace EmployeeTracker
 
         private void btnTask_Click(object sender, EventArgs e)
         {
-            AddTask addTask = new AddTask("");
+            AddTask addTask = new AddTask(null,null);
             //addTask.DataUpdated += addTask_DataUpdated;
             addTask.pnlAssign.Hide();
             addTask.ShowDialog();
