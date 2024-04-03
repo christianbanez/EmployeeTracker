@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace EmployeeTracker
 {
     public partial class AddTask : Form
     {
+        private CdDay cd = new CdDay("");
         private string date;
         private string selectedItem;
         public delegate void DataUpdatedEventHandler();
@@ -34,7 +36,10 @@ namespace EmployeeTracker
 
             if (pnlAssign.Visible)
             {
-                //MessageBox.Show(date);
+                DateTime dateDT;
+                dateDT = DateTime.ParseExact(date, "M/d/yyyy", CultureInfo.InvariantCulture);
+                date = dateDT.ToString("dd/MM/yyyy");
+                MessageBox.Show(date);
                 pickDate1.Value = DateTime.Parse(date);
                 pickDate2.Value = DateTime.Parse(date);
                 //MessageBox.Show(pickDate1.ToString() + pickDate2.ToString());
@@ -97,8 +102,8 @@ namespace EmployeeTracker
         private void PopulateCmbxTask()
         {
             try{
-                MessageBox.Show(Convert.ToString(cd.selectedIndex));
-                if (cd.selectedIndex != null && cd.selectedIndex != 0)
+                MessageBox.Show("Selected Item: " + selectedItem);
+                if (selectedItem != null)
                 {
                     connection.Open();
                     string selectedTask = selectedItem;
@@ -174,7 +179,6 @@ namespace EmployeeTracker
                 string selectedItem = selectedRow["fname"].ToString();
             }
         }
-        private CdDay cd = new CdDay("");
         private void btnAssign_Click(object sender, EventArgs e)
         {
             try
@@ -224,7 +228,7 @@ namespace EmployeeTracker
 
                 MessageBox.Show("Assignment added successfully!");
                 cd.listBox1.ClearSelected();
-                cd.ReloadListBoxFromDatabase();
+                //cd.ReloadListBoxFromDatabase();
                 this.Close();
 
             }
@@ -269,10 +273,13 @@ namespace EmployeeTracker
             int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
 
             OleDbCommand cmdSc = new OleDbCommand("SELECT Schedule.ID FROM Schedule WHERE taskID = @taskID AND timeIn = @date AND EmployeeID = @employeeID", connection);
+            DateTime dateTimeIn = DateTime.Parse(date);
+            date = dateTimeIn.ToString("MM/dd/yyyy");
             cmdSc.Parameters.AddWithValue("@taskID", taskID);
             cmdSc.Parameters.AddWithValue("@date", date);
             cmdSc.Parameters.AddWithValue("@employeeID", employeeID);
             MessageBox.Show(taskID + " " + date + " " + employeeID);
+            MessageBox.Show(date.ToString());
 
 
             object resultSc = cmdSc.ExecuteScalar();
@@ -283,13 +290,13 @@ namespace EmployeeTracker
             if (resultSc != null)
             {
                 scheduleID = Convert.ToInt32(resultSc);
-                MessageBox.Show("ScheduleID = " +  scheduleID);
+                //MessageBox.Show("ScheduleID = " +  scheduleID);
                 //MessageBox.Show("Value of TaskID is = " + taskID);
                 // Now you can use taskID variable as needed.
             }
             else
             {
-                MessageBox.Show("No Tasks Found.");
+                MessageBox.Show("No Schedules Found.");
             }
 
             //// gets selected employee, task, date, and time

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,12 +16,10 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
-       public int selectedIndex;
+        public string selectedItem;
        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
-
-
         public void DisplayTask()
         {
             try
@@ -162,7 +161,8 @@ namespace EmployeeTracker
                 this.BackColor = Color.White;
             }
 
-            selectedIndex = listBox1.IndexFromPoint(e.Location);
+            int selectedIndex = listBox1.IndexFromPoint(e.Location);
+
 
             if (selectedIndex != ListBox.NoMatches || listBox1.Bounds.Contains(e.Location))
             {
@@ -170,14 +170,14 @@ namespace EmployeeTracker
                 if (selectedIndex != ListBox.NoMatches)
                 {
                     // Get the selected item
-                    string selectedItem = listBox1.Items[selectedIndex].ToString();
+                    selectedItem = listBox1.Items[selectedIndex].ToString();
 
                     // Call a method and pass the selected item as an argument
                     HandleDoubleClick(selectedItem);
                 }
                 else
                 {
-                    addTask = new AddTask(date,null);
+                    addTask = new AddTask(date,"");
                     addTask.pnlAssign.Show();
                     addTask.btnSvCal.Hide();
                     addTask.ShowDialog();
@@ -194,6 +194,7 @@ namespace EmployeeTracker
             // Checks if an item is selected
             if (listBox1.SelectedItem != null)
             {
+                MessageBox.Show("Item Found: " + selectedItem);
                 // Retrieve the selected task name
                 string selectedTask = listBox1.SelectedItem.ToString();
                 addTask = new AddTask(date, selectedItem);
@@ -213,8 +214,9 @@ namespace EmployeeTracker
             lblDay.Text = day;
             checkBox1.Hide();
 
-            date = $"{tabCALENDAR._month}/{_day.Trim()}/{tabCALENDAR._year}";
+            date = $"{tabCALENDAR._month.ToString().PadLeft(2, '0')}/{_day.Trim().PadLeft(2, '0')}/{tabCALENDAR._year}";
             date = Convert.ToString(date);
+            //MessageBox.Show(date);
         }
 
 
