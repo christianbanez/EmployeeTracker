@@ -46,9 +46,9 @@
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(643, 568);
+            this.panel1.Size = new System.Drawing.Size(482, 462);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -67,8 +67,8 @@
             this.displayData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.displayData.ColumnHeadersHeight = 50;
             this.displayData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.displayData.Location = new System.Drawing.Point(15, 68);
-            this.displayData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.displayData.Location = new System.Drawing.Point(11, 55);
+            this.displayData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.displayData.MultiSelect = false;
             this.displayData.Name = "displayData";
             this.displayData.ReadOnly = true;
@@ -76,45 +76,48 @@
             this.displayData.RowHeadersWidth = 62;
             this.displayData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.displayData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.displayData.Size = new System.Drawing.Size(600, 478);
+            this.displayData.Size = new System.Drawing.Size(450, 388);
             this.displayData.TabIndex = 11;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(108, 22);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Location = new System.Drawing.Point(81, 18);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(87, 32);
+            this.btnDelete.Size = new System.Drawing.Size(65, 26);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(213, 27);
-            this.textSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textSearch.Location = new System.Drawing.Point(160, 22);
+            this.textSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(159, 22);
+            this.textSearch.Size = new System.Drawing.Size(120, 20);
             this.textSearch.TabIndex = 3;
             this.textSearch.Text = "Search...";
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(15, 22);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUpdate.Location = new System.Drawing.Point(11, 18);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(87, 32);
+            this.btnUpdate.Size = new System.Drawing.Size(65, 26);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // tabOVERVIEW
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "tabOVERVIEW";
-            this.Size = new System.Drawing.Size(643, 568);
+            this.Size = new System.Drawing.Size(482, 462);
+            this.Load += new System.EventHandler(this.tabOVERVIEW_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();
