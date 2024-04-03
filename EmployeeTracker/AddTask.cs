@@ -214,7 +214,7 @@ namespace EmployeeTracker
                 command.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
 
                 MessageBox.Show(employeeID + " " + taskID + " " + timeInFormatted + " " + timeOutFormatted);
-                Application.Exit();
+                //Application.Exit();
 
                 command.ExecuteNonQuery();
 
