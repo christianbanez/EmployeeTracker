@@ -28,32 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.displayData = new System.Windows.Forms.DataGridView();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.textSearch = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.textSearch = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.displayData = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayData)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // btnUpdate
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.displayData);
-            this.panel1.Controls.Add(this.btnPrint);
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.textSearch);
-            this.panel1.Controls.Add(this.btnUpdate);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(643, 568);
-            this.panel1.TabIndex = 2;
+            this.btnUpdate.AutoSize = true;
+            this.btnUpdate.Location = new System.Drawing.Point(108, 22);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(87, 32);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // textSearch
+            // 
+            this.textSearch.Location = new System.Drawing.Point(399, 27);
+            this.textSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textSearch.Name = "textSearch";
+            this.textSearch.Size = new System.Drawing.Size(159, 22);
+            this.textSearch.TabIndex = 3;
+            this.textSearch.Text = "Search...";
+            this.textSearch.Click += new System.EventHandler(this.textSearch_Click);
+            this.textSearch.TextChanged += new System.EventHandler(this.textSearch_TextChanged);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.AutoSize = true;
+            this.btnDelete.Location = new System.Drawing.Point(201, 22);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(87, 32);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.AutoSize = true;
+            this.btnPrint.Location = new System.Drawing.Point(294, 22);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(87, 32);
+            this.btnPrint.TabIndex = 7;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // displayData
             // 
@@ -82,51 +112,21 @@
             this.displayData.Size = new System.Drawing.Size(600, 478);
             this.displayData.TabIndex = 11;
             // 
-            // btnPrint
+            // panel1
             // 
-            this.btnPrint.AutoSize = true;
-            this.btnPrint.Location = new System.Drawing.Point(294, 22);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(87, 32);
-            this.btnPrint.TabIndex = 7;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AutoSize = true;
-            this.btnDelete.Location = new System.Drawing.Point(201, 22);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(87, 32);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // textSearch
-            // 
-            this.textSearch.Location = new System.Drawing.Point(399, 27);
-            this.textSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(159, 22);
-            this.textSearch.TabIndex = 3;
-            this.textSearch.Text = "Search...";
-            this.textSearch.Click += new System.EventHandler(this.textSearch_Click);
-            this.textSearch.TextChanged += new System.EventHandler(this.textSearch_TextChanged);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.AutoSize = true;
-            this.btnUpdate.Location = new System.Drawing.Point(108, 22);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(87, 32);
-            this.btnUpdate.TabIndex = 4;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.displayData);
+            this.panel1.Controls.Add(this.btnPrint);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.textSearch);
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(643, 568);
+            this.panel1.TabIndex = 2;
             // 
             // btnAdd
             // 
@@ -150,21 +150,21 @@
             this.Name = "tabTEAM";
             this.Size = new System.Drawing.Size(643, 568);
             this.Load += new System.EventHandler(this.tabTEAM_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.displayData)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView displayData;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.TextBox textSearch;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox textSearch;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.DataGridView displayData;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAdd;
     }
 }

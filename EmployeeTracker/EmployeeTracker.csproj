@@ -86,12 +86,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tabOVERVIEW.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="tabOVERVIEW.Designer.cs">
-      <DependentUpon>tabOVERVIEW.cs</DependentUpon>
-    </Compile>
     <Compile Include="tabTODAY.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,9 +132,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="tabOVERVIEW.resx">
-      <DependentUpon>tabOVERVIEW.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="tabTEAM.resx">
       <DependentUpon>tabTEAM.cs</DependentUpon>
     </EmbeddedResource>
