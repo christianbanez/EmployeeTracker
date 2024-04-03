@@ -24,7 +24,6 @@ namespace EmployeeTracker
         {
             try
             {
-                // Assuming 'conn' is your OleDbConnection object
                 using (conn)
                 {
                     conn.Open();
@@ -142,8 +141,6 @@ namespace EmployeeTracker
             }
         }
 
-        private tabCALENDAR tCal;
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -177,7 +174,7 @@ namespace EmployeeTracker
                 }
                 else
                 {
-                    AddTask addTask = new AddTask(date);
+                    addTask = new AddTask(date);
                     addTask.pnlAssign.Show();
                     addTask.btnSvCal.Hide();
                     addTask.ShowDialog();
@@ -196,7 +193,7 @@ namespace EmployeeTracker
             {
                 // Retrieve the selected task name
                 string selectedTask = listBox1.SelectedItem.ToString();
-                AddTask addTask = new AddTask(date);
+                addTask = new AddTask(date);
                 addTask.pnlAssign.Show();
 
                 //addTask.cmbxEmp =

@@ -116,6 +116,7 @@
             this.btnSvCal.TabIndex = 28;
             this.btnSvCal.Text = "Save";
             this.btnSvCal.UseVisualStyleBackColor = true;
+            this.btnSvCal.Click += new System.EventHandler(this.btnSvCal_Click);
             // 
             // chkTime
             // 

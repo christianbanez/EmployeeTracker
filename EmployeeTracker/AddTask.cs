@@ -147,7 +147,7 @@ namespace EmployeeTracker
             {
                 // gets selected employee, task, date, and time
                 int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
-                int taskID = Convert.ToInt32(cmbxTask.SelectedValue); 
+                int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
                 DateTime startDate = pickDate1.Value.Date;
                 DateTime endDate = pickDate2.Value.Date;
                 TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
@@ -169,15 +169,15 @@ namespace EmployeeTracker
                 string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
 
                 OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut) " +
-                       "VALUES (@EmployeeID, @TaskID, @TimeIn, @TimeOut)");
+                       "VALUES (@EmployeeID, @taskID, @timeIn, @timeOut)");
 
                 command.Connection = connection;
 
                 command.Parameters.AddWithValue("@EmployeeID", employeeID);
-                command.Parameters.AddWithValue("@TaskID", taskID);
-               // command.Parameters.AddWithValue("@ScheduledDate", scheduledDate);
-                command.Parameters.AddWithValue("@TimeIn", timeInFormatted ?? DBNull.Value.ToString());
-                command.Parameters.AddWithValue("@TimeOut", timeOutFormatted ?? DBNull.Value.ToString());
+                command.Parameters.AddWithValue("@taskID", taskID);
+                // command.Parameters.AddWithValue("@ScheduledDate", scheduledDate);
+                command.Parameters.AddWithValue("@timeIn", timeInFormatted ?? DBNull.Value.ToString());
+                command.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
 
                 command.ExecuteNonQuery();
 
@@ -200,6 +200,58 @@ namespace EmployeeTracker
 
         private void btnCancel2_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnSvCal_Click(object sender, EventArgs e)
+        {
+            // gets selected employee, task, date, and time
+            int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
+            int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
+            DateTime startDate = pickDate1.Value.Date;
+            DateTime endDate = pickDate2.Value.Date;
+            TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
+            TimeSpan? timeOut = chkTime.Checked ? (TimeSpan?)pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
+
+            // remove milliseconds from a TimeSpan
+            TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
+            {
+                return new TimeSpan(timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+            }
+
+            timeIn = chkTime.Checked ? RemoveMilliseconds(pickTimeIn.Value.TimeOfDay) : (TimeSpan?)null;
+            timeOut = chkTime.Checked ? RemoveMilliseconds(pickTimeOut.Value.TimeOfDay) : (TimeSpan?)null;
+
+            connection.Open();
+
+            string scheduledDate = $"{startDate.ToString("dd/MM/yyyy")} - {endDate.ToString("dd/MM/yyyy")}";
+            string timeInFormatted = startDate.ToString("MM/dd/yyyy") + " " + timeIn;
+            string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
+
+            OleDbCommand command = new OleDbCommand("UPDATE Schedule " +
+                                        "SET TimeIn = @TimeIn, " +
+                                        "    TimeOut = @TimeOut " +
+                                        "WHERE EmployeeID = @EmployeeID " +
+                                        "  AND TaskID = @TaskID", connection);
+
+            command.Connection = connection;
+
+            command.Parameters.AddWithValue("@EmployeeID", employeeID);
+            command.Parameters.AddWithValue("@TaskID", taskID);
+            //command.Parameters.AddWithValue("@StartDate", startDate);
+            //command.Parameters.AddWithValue("@EndDate", endDate);
+            command.Parameters.AddWithValue("@TimeIn", timeInFormatted ?? DBNull.Value.ToString());
+            command.Parameters.AddWithValue("@TimeOut", timeOutFormatted ?? DBNull.Value.ToString());
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
+
+            DataUpdated?.Invoke();
+
+            MessageBox.Show("Assignment saved successfully!");
+            //cd.listBox1.ClearSelected();
+            //cd.ReloadListBoxFromDatabase();
             this.Close();
         }
     }
