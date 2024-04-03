@@ -17,7 +17,7 @@ namespace EmployeeTracker
     public partial class CdDay : UserControl
     {
         public string selectedItem;
-       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tdizon\source\repos\EmployeeTracker\dbtk.accdb");
+       OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
         public void DisplayTask()
@@ -177,7 +177,7 @@ namespace EmployeeTracker
                 }
                 else
                 {
-                    addTask = new AddTask(date,"");
+                    addTask = new AddTask(date,null);
                     addTask.pnlAssign.Show();
                     addTask.btnSvCal.Hide();
                     addTask.ShowDialog();
