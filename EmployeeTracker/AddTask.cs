@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using ClosedXML.Excel;
+
 
 namespace EmployeeTracker
 {
@@ -9,7 +13,7 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb");
+        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
         private string SelectedName { get; set; }
         public int SelectedID { get; set; }
 
@@ -29,7 +33,7 @@ namespace EmployeeTracker
             try
             {
                 // Establish connection and query schedules for the selected employee ID
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM Schedule WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -45,7 +49,7 @@ namespace EmployeeTracker
                     }
                 }
                 //CTO EARNED
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -61,7 +65,7 @@ namespace EmployeeTracker
                     }
                 }
                 //CTO BALANCE
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
                 
                 {
@@ -83,7 +87,7 @@ namespace EmployeeTracker
                     }
                 }
                 //DISPLAY CTO USED TO GRIDVIEW
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOused WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -99,7 +103,7 @@ namespace EmployeeTracker
                     }
                 }
                 //CTO RENDERED
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT SUM(ctoRendered) AS TotalCTORendered FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -138,7 +142,7 @@ namespace EmployeeTracker
             try
             {
                 // Establish connection and query database
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
                 using (OleDbCommand command = new OleDbCommand("SELECT taskID, taskName AS employeetask FROM Task", connection))
                 {
                     connection.Open();
@@ -317,5 +321,64 @@ namespace EmployeeTracker
             //useCTO.DataUpdated
             
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void exportButton_Click_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                // Set the default file name to the current ID
+                sfd.FileName = $"{SelectedID}_Export.xlsx";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            DataTable dtExport = new DataTable();
+
+                            connection.Open();
+
+                            // Exporting data from CTOearned
+                            OleDbCommand cmdEarned = connection.CreateCommand();
+                            cmdEarned.CommandType = CommandType.Text;
+                            cmdEarned.CommandText = "SELECT dateEarned, ctoEarned FROM CTOearned WHERE EmployeeID = @EmployeeID";
+                            cmdEarned.Parameters.AddWithValue("@EmployeeID", SelectedID);
+                            using (OleDbDataAdapter dpEarned = new OleDbDataAdapter(cmdEarned))
+                            {
+                                dpEarned.Fill(dtExport);
+                            }
+
+                            // Exporting data from CTOused
+                            OleDbCommand cmdUsed = connection.CreateCommand();
+                            cmdUsed.CommandType = CommandType.Text;
+                            cmdUsed.CommandText = "SELECT dateUsed, ctoUsed FROM CTOused WHERE EmployeeID = @EmployeeID";
+                            cmdUsed.Parameters.AddWithValue("@EmployeeID", SelectedID);
+                            using (OleDbDataAdapter dpUsed = new OleDbDataAdapter(cmdUsed))
+                            {
+                                dpUsed.Fill(dtExport);
+                            }
+
+                            connection.Close();
+
+                            workbook.Worksheets.Add(dtExport, "CTO Data");
+
+                            workbook.SaveAs(sfd.FileName);
+                            MessageBox.Show("You have exported the data to an excel file", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+
     }
 }
