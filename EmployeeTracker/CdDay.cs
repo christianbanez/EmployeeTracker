@@ -122,6 +122,8 @@ namespace EmployeeTracker
                         }
                     }
                 }
+
+                conn.Close();
             }
         }
         private void listBox1_DoubleClick(object sender, EventArgs e)

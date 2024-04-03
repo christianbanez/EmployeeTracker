@@ -52,6 +52,7 @@
             this.EmployeeList = new System.Windows.Forms.DataGridView();
             this.panelCalPage = new System.Windows.Forms.Panel();
             this.panelCalendar = new System.Windows.Forms.Panel();
+            this.tabCALENDAR1 = new EmployeeTracker.tabCALENDAR();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCdCd = new System.Windows.Forms.Button();
             this.btnCdTm = new System.Windows.Forms.Button();
@@ -62,7 +63,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
-            this.tabCALENDAR1 = new EmployeeTracker.tabCALENDAR();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -82,7 +82,7 @@
             this.panel2.Controls.Add(this.btnExport);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(925, 32);
             this.panel2.TabIndex = 10;
@@ -91,7 +91,7 @@
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.Location = new System.Drawing.Point(829, 4);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(2);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(87, 24);
             this.btnExport.TabIndex = 4;
@@ -109,7 +109,7 @@
             this.panel5.Controls.Add(this.panel4);
             this.panel5.Controls.Add(this.panel2);
             this.panel5.Location = new System.Drawing.Point(11, 11);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(925, 525);
             this.panel5.TabIndex = 5;
@@ -130,7 +130,7 @@
             this.panel6.Controls.Add(this.btnOverV);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(228, 32);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(483, 32);
             this.panel6.TabIndex = 13;
@@ -139,7 +139,7 @@
             // 
             this.btnCalendar.AutoSize = true;
             this.btnCalendar.Location = new System.Drawing.Point(148, 3);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCalendar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalendar.Name = "btnCalendar";
             this.btnCalendar.Size = new System.Drawing.Size(72, 26);
             this.btnCalendar.TabIndex = 6;
@@ -151,7 +151,7 @@
             // 
             this.btnTeam.AutoSize = true;
             this.btnTeam.Location = new System.Drawing.Point(225, 3);
-            this.btnTeam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTeam.Margin = new System.Windows.Forms.Padding(2);
             this.btnTeam.Name = "btnTeam";
             this.btnTeam.Size = new System.Drawing.Size(61, 26);
             this.btnTeam.TabIndex = 3;
@@ -163,7 +163,7 @@
             // 
             this.btnToday.AutoSize = true;
             this.btnToday.Location = new System.Drawing.Point(80, 3);
-            this.btnToday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnToday.Margin = new System.Windows.Forms.Padding(2);
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(64, 26);
             this.btnToday.TabIndex = 1;
@@ -175,7 +175,7 @@
             // 
             this.btnOverV.AutoSize = true;
             this.btnOverV.Location = new System.Drawing.Point(3, 3);
-            this.btnOverV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOverV.Margin = new System.Windows.Forms.Padding(2);
             this.btnOverV.Name = "btnOverV";
             this.btnOverV.Size = new System.Drawing.Size(73, 26);
             this.btnOverV.TabIndex = 0;
@@ -188,7 +188,7 @@
             this.panel3.Controls.Add(this.monthCalendar1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 32);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(228, 493);
             this.panel3.TabIndex = 15;
@@ -198,7 +198,7 @@
             this.monthCalendar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.monthCalendar1.Location = new System.Drawing.Point(0, 0);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(7);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             // 
@@ -208,7 +208,7 @@
             this.panel4.Controls.Add(this.EmployeeList);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(711, 32);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(214, 493);
             this.panel4.TabIndex = 16;
@@ -278,7 +278,7 @@
             this.panelCalPage.Controls.Add(this.panel11);
             this.panelCalPage.Controls.Add(this.panel12);
             this.panelCalPage.Location = new System.Drawing.Point(12, 11);
-            this.panelCalPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelCalPage.Margin = new System.Windows.Forms.Padding(2);
             this.panelCalPage.Name = "panelCalPage";
             this.panelCalPage.Size = new System.Drawing.Size(924, 525);
             this.panelCalPage.TabIndex = 18;
@@ -293,6 +293,15 @@
             this.panelCalendar.Size = new System.Drawing.Size(710, 493);
             this.panelCalendar.TabIndex = 0;
             // 
+            // tabCALENDAR1
+            // 
+            this.tabCALENDAR1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCALENDAR1.Location = new System.Drawing.Point(0, 32);
+            this.tabCALENDAR1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabCALENDAR1.Name = "tabCALENDAR1";
+            this.tabCALENDAR1.Size = new System.Drawing.Size(710, 461);
+            this.tabCALENDAR1.TabIndex = 15;
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.btnCdCd);
@@ -301,7 +310,7 @@
             this.panel7.Controls.Add(this.btnCdOv);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(710, 32);
             this.panel7.TabIndex = 14;
@@ -310,7 +319,7 @@
             // 
             this.btnCdCd.AutoSize = true;
             this.btnCdCd.Location = new System.Drawing.Point(148, 3);
-            this.btnCdCd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCdCd.Margin = new System.Windows.Forms.Padding(2);
             this.btnCdCd.Name = "btnCdCd";
             this.btnCdCd.Size = new System.Drawing.Size(72, 26);
             this.btnCdCd.TabIndex = 6;
@@ -322,7 +331,7 @@
             // 
             this.btnCdTm.AutoSize = true;
             this.btnCdTm.Location = new System.Drawing.Point(225, 3);
-            this.btnCdTm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCdTm.Margin = new System.Windows.Forms.Padding(2);
             this.btnCdTm.Name = "btnCdTm";
             this.btnCdTm.Size = new System.Drawing.Size(61, 26);
             this.btnCdTm.TabIndex = 3;
@@ -334,7 +343,7 @@
             // 
             this.btnCdTd.AutoSize = true;
             this.btnCdTd.Location = new System.Drawing.Point(80, 3);
-            this.btnCdTd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCdTd.Margin = new System.Windows.Forms.Padding(2);
             this.btnCdTd.Name = "btnCdTd";
             this.btnCdTd.Size = new System.Drawing.Size(64, 26);
             this.btnCdTd.TabIndex = 1;
@@ -346,7 +355,7 @@
             // 
             this.btnCdOv.AutoSize = true;
             this.btnCdOv.Location = new System.Drawing.Point(3, 3);
-            this.btnCdOv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCdOv.Margin = new System.Windows.Forms.Padding(2);
             this.btnCdOv.Name = "btnCdOv";
             this.btnCdOv.Size = new System.Drawing.Size(73, 26);
             this.btnCdOv.TabIndex = 0;
@@ -360,7 +369,7 @@
             this.panel11.Controls.Add(this.label2);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel11.Location = new System.Drawing.Point(710, 32);
-            this.panel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel11.Margin = new System.Windows.Forms.Padding(2);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(214, 493);
             this.panel11.TabIndex = 16;
@@ -426,7 +435,7 @@
             this.panel12.Controls.Add(this.button5);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel12.Margin = new System.Windows.Forms.Padding(2);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(924, 32);
             this.panel12.TabIndex = 10;
@@ -435,21 +444,12 @@
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.Location = new System.Drawing.Point(828, 4);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(87, 24);
             this.button5.TabIndex = 4;
             this.button5.Text = "Export";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // tabCALENDAR1
-            // 
-            this.tabCALENDAR1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabCALENDAR1.Location = new System.Drawing.Point(0, 32);
-            this.tabCALENDAR1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabCALENDAR1.Name = "tabCALENDAR1";
-            this.tabCALENDAR1.Size = new System.Drawing.Size(710, 461);
-            this.tabCALENDAR1.TabIndex = 15;
             // 
             // frmDashboard
             // 
@@ -458,7 +458,7 @@
             this.ClientSize = new System.Drawing.Size(946, 547);
             this.Controls.Add(this.panelCalPage);
             this.Controls.Add(this.panel5);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Tracker";

@@ -34,10 +34,10 @@ namespace EmployeeTracker
 
             if (pnlAssign.Visible)
             {
-                MessageBox.Show(date);
+                //MessageBox.Show(date);
                 pickDate1.Value = DateTime.Parse(date);
                 pickDate2.Value = DateTime.Parse(date);
-                MessageBox.Show(pickDate1.ToString() + pickDate2.ToString());
+                //MessageBox.Show(pickDate1.ToString() + pickDate2.ToString());
             }
         }
 
