@@ -15,6 +15,7 @@ namespace EmployeeTracker
 {
     public partial class CdDay : UserControl
     {
+       public int selectedIndex;
        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\4. OJT\Jazmine\EmployeeTracker\dbtk.accdb");
         string _day, date, weekday;
         //List<string> tasks; // List to store tasks/events for the day
@@ -159,7 +160,7 @@ namespace EmployeeTracker
                 this.BackColor = Color.White;
             }
 
-            int selectedIndex = listBox1.IndexFromPoint(e.Location);
+            selectedIndex = listBox1.IndexFromPoint(e.Location);
 
             if (selectedIndex != ListBox.NoMatches || listBox1.Bounds.Contains(e.Location))
             {

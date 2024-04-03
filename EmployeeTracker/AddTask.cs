@@ -96,18 +96,47 @@ namespace EmployeeTracker
         }
         private void PopulateCmbxTask()
         {
-            try
-            {
-                connection.Open();
-                string query = "SELECT taskID, taskName FROM Task";
-                OleDbCommand command = new OleDbCommand(query, connection);
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                cmbxTask.DataSource = dataTable;
-                cmbxTask.DisplayMember = "taskName";
-                cmbxTask.ValueMember = "taskID";
-                connection.Close();
+            try{
+                MessageBox.Show(Convert.ToString(cd.selectedIndex));
+                if (cd.selectedIndex != null && cd.selectedIndex != 0)
+                {
+                    connection.Open();
+                    string selectedTask = selectedItem;
+
+                    // Build the query dynamically
+                    string query = "SELECT taskID, taskName FROM Task WHERE taskName = @taskName";
+
+                    // Create a new instance of OleDbCommand
+                    OleDbCommand command = new OleDbCommand(query, connection);
+
+                    // Add parameter to the command
+                    command.Parameters.AddWithValue("@taskName", selectedTask);
+
+                    // Create OleDbDataAdapter and fill the DataTable
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    // Bind the DataTable to the ComboBox
+                    cmbxTask.DataSource = dataTable;
+                    cmbxTask.DisplayMember = "taskName";
+                    cmbxTask.ValueMember = "taskID";
+
+                    connection.Close();
+                }
+                else
+                {
+                    connection.Open();
+                    string query = "SELECT taskID, taskName FROM Task";
+                    OleDbCommand command = new OleDbCommand(query, connection);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    cmbxTask.DataSource = dataTable;
+                    cmbxTask.DisplayMember = "taskName";
+                    cmbxTask.ValueMember = "taskID";
+                    connection.Close();
+                }
             }
             catch (Exception ex)
             {
