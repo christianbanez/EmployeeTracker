@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.Common;
+using ClosedXML.Excel;
 
 //using EmployeeTracker.dbConnection;
 
@@ -103,9 +104,7 @@ namespace EmployeeTracker
                 this.EmployeeList.Columns[8].Visible = false;
                 this.EmployeeList.Columns[9].Visible = false;
                 this.EmployeeList.Columns[10].Visible = false;
-                this.EmployeeList.Columns[11].Visible = false;
-                this.EmployeeList.Columns[12].Visible = false;
-                this.EmployeeList.Columns[13].Visible = false;
+
                 // EmployeeList.DataSource = dt.AsEnumerable().Select(obj => new {  }).ToList();
 
                 // Create a new column for the concatenated names
@@ -231,16 +230,57 @@ namespace EmployeeTracker
 
         private EmployeeListCTO listCTO;
 
-        private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void EmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            listCTO = new EmployeeListCTO();
-            listCTO.ShowDialog();
+            if (EmployeeList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                string selectedName = EmployeeList.CurrentRow.Cells["FullName"].Value.ToString();
+                int selectedID = Convert.ToInt32(EmployeeList.CurrentRow.Cells["EmployeeID"].Value); // Assuming ID is the column name for ID
+
+                Console.WriteLine("Selected Name: " + selectedName); // Debugging statement
+                Console.WriteLine("Selected ID: " + selectedID); // Debugging statement
+
+                EmployeeListCTO addTaskForm = new EmployeeListCTO(selectedName, selectedID);
+                addTaskForm.ShowDialog();
+            }
         }
 
-        private void EmployeeList1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+
+
+
+
+        private void btnExport_Click(object sender, EventArgs e)
         {
-            listCTO = new EmployeeListCTO();
-            listCTO.ShowDialog();
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    OleDbConnection connection = new OleDbConnection(conn.conn);
+                    try
+                    {
+                        connection.Open();
+                        OleDbCommand cmd = connection.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT * FROM Schedule";
+                        DataTable dt = new DataTable();
+                        OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+                        dp.Fill(dt);
+
+                        connection.Close();
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            workbook.Worksheets.Add(dt, "Schedule");
+                            workbook.SaveAs(sfd.FileName);
+                        }
+                        MessageBox.Show("You have exported the data to an excel file", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

@@ -52,6 +52,12 @@ namespace EmployeeTracker
             }
         }
 
+        //For updating datagridview when inserting or adding
+        private void addTask_DataUpdated()
+        {
+            dataView(); //updates datagridview
+        }
+
         private void tabOVERVIEW_Load(object sender, EventArgs e)
         {
             dataView();

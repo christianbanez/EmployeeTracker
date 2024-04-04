@@ -97,6 +97,7 @@
             this.btnExport.TabIndex = 4;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // panel5
             // 
@@ -267,7 +268,6 @@
             this.EmployeeList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.EmployeeList.Size = new System.Drawing.Size(214, 451);
             this.EmployeeList.TabIndex = 0;
-            this.EmployeeList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList_CellClick);
             // 
             // panelCalPage
             // 
@@ -409,7 +409,6 @@
             this.EmployeeList1.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.EmployeeList1.Size = new System.Drawing.Size(214, 451);
             this.EmployeeList1.TabIndex = 2;
-            this.EmployeeList1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList1_CellContentClick);
             // 
             // label2
             // 
@@ -450,6 +449,7 @@
             this.tabCALENDAR1.Name = "tabCALENDAR1";
             this.tabCALENDAR1.Size = new System.Drawing.Size(1108, 643);
             this.tabCALENDAR1.TabIndex = 15;
+            this.EmployeeList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList_CellContentClick);
             // 
             // frmDashboard
             // 

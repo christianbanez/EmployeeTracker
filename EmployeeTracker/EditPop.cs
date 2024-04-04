@@ -21,7 +21,7 @@ namespace EmployeeTracker
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
         GlobalConnection conn = new GlobalConnection();
-        
+        int state;
         string pattern = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
         public EditPop()
