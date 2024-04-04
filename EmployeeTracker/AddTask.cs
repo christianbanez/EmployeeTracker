@@ -263,9 +263,8 @@ namespace EmployeeTracker
                 int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
                 DateTime startDate = pickDate1.Value.Date;
                 DateTime endDate = pickDate2.Value.Date;
-
-                TimeSpan? timeIn = null;
-                TimeSpan? timeOut = null;
+                TimeSpan? timeIn = chkTime.Checked ? pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
+                TimeSpan? timeOut = chkTime.Checked ? pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
                 TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
                 {
@@ -365,7 +364,7 @@ namespace EmployeeTracker
 
             int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
 
-            OleDbCommand cmdSc = new OleDbCommand("SELECT Schedule.ID FROM Schedule WHERE taskID = @taskID AND timeIn = @date AND EmployeeID = @employeeID", connection);
+            OleDbCommand cmdSc = new OleDbCommand("SELECT Schedule.ID FROM Schedule WHERE taskID = @taskID AND plannedStart = @date AND EmployeeID = @employeeID", connection);
             DateTime dateTimeIn = DateTime.Parse(date);
             date = dateTimeIn.ToString("MM/dd/yyyy");
             cmdSc.Parameters.AddWithValue("@taskID", taskID);
@@ -396,8 +395,8 @@ namespace EmployeeTracker
             //int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
             DateTime startDate = pickDate1.Value.Date;
             DateTime endDate = pickDate2.Value.Date;
-            TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
-            TimeSpan? timeOut = chkTime.Checked ? (TimeSpan?)pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
+            TimeSpan? timeIn = chkTime.Checked ? pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
+            TimeSpan? timeOut = chkTime.Checked ? pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
             // remove milliseconds from a TimeSpan
             TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
@@ -419,8 +418,8 @@ namespace EmployeeTracker
             command.Connection = connection;
             //command.Parameters.AddWithValue("@EmployeeID", employeeID);
             //command.Parameters.AddWithValue("@TaskID", taskID);
-            //command.Parameters.AddWithValue("@StartDate", startDate);
-            //command.Parameters.AddWithValue("@EndDate", endDate);
+            //command.Parameters.AddWithValue("@plannedStart", startDate);
+            //command.Parameters.AddWithValue("@plannedEnd", endDate);
             command.Parameters.AddWithValue("@TimeIn", timeInFormatted ?? DBNull.Value.ToString());
             command.Parameters.AddWithValue("@TimeOut", timeOutFormatted ?? DBNull.Value.ToString());
             command.Parameters.AddWithValue("@scheduleID", scheduleID);

@@ -38,7 +38,7 @@ namespace EmployeeTracker
                         cmd.CommandText = "SELECT Schedule.*, Task.taskName, Employee.fName, Employee.lName FROM Schedule, Task, Employee WHERE " +
                             "Schedule.taskId = Task.taskId " +
                             "AND Schedule.EmployeeID = Employee.EmployeeID " +
-                            "AND Format(Schedule.timeIn, 'M/D/yyyy') = ?";
+                            "AND Format(Schedule.plannedStart, 'M/D/yyyy') = ?";
 
 
                         // Format the date to match the format 'D/M/YYYY'
