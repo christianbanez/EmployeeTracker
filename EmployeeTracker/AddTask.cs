@@ -261,8 +261,8 @@ namespace EmployeeTracker
                 int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
                 DateTime startDate = pickDate1.Value.Date;
                 DateTime endDate = pickDate2.Value.Date;
-                TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
-                TimeSpan? timeOut = chkTime.Checked ? (TimeSpan?)pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
+                TimeSpan? timeIn = chkTime.Checked ? pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
+                TimeSpan? timeOut = chkTime.Checked ? pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
                 // remove milliseconds from a TimeSpan
                 TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
@@ -288,6 +288,15 @@ namespace EmployeeTracker
                 // command.Parameters.AddWithValue("@ScheduledDate", scheduledDate);
                 command.Parameters.AddWithValue("@timeIn", timeInFormatted ?? DBNull.Value.ToString());
                 command.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
+
+                if (chkTime.Checked)
+                {
+                    OleDbCommand cmd = new OleDbCommand("INSERT INTO Schedule (TimeIn, TimeOut) " +
+                       "VALUES (@timeIn, @timeOut)");
+                    cmd.Parameters.AddWithValue("@timeIn", timeInFormatted ?? DBNull.Value.ToString());
+                    cmd.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
+                }
+                
 
                 MessageBox.Show(employeeID + " " + taskID + " " + timeInFormatted + " " + timeOutFormatted);
                 //Application.Exit();
