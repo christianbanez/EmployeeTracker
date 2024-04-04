@@ -230,18 +230,6 @@ namespace EmployeeTracker
 
         private EmployeeListCTO listCTO;
 
-        private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            listCTO = new EmployeeListCTO();
-            listCTO.ShowDialog();
-        }
-
-        private void EmployeeList1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            listCTO = new EmployeeListCTO();
-            listCTO.ShowDialog();
-        }
-
         private void EmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (EmployeeList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
@@ -260,10 +248,7 @@ namespace EmployeeTracker
 
 
 
-        private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         private void btnExport_Click(object sender, EventArgs e)
         {
@@ -271,17 +256,18 @@ namespace EmployeeTracker
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
+                    OleDbConnection connection = new OleDbConnection(conn.conn);
                     try
                     {
-                        conn.Open();
-                        OleDbCommand cmd = conn.CreateCommand();
+                        connection.Open();
+                        OleDbCommand cmd = connection.CreateCommand();
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "SELECT * FROM Schedule";
                         DataTable dt = new DataTable();
                         OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
                         dp.Fill(dt);
 
-                        conn.Close();
+                        connection.Close();
                         using (XLWorkbook workbook = new XLWorkbook())
                         {
                             workbook.Worksheets.Add(dt, "Schedule");

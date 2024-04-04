@@ -14,7 +14,7 @@ namespace EmployeeTracker
 {
     public partial class UseCTO : Form
     {
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb");
+        GlobalConnection conn = new GlobalConnection();
         public int SelectedID { get; set; }
         private EmployeeListCTO addtask;
         public UseCTO(int selectedID)
@@ -31,7 +31,7 @@ namespace EmployeeTracker
         }
         private void useCTOsave_Click(object sender, EventArgs e)
         {
-
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             DateTime dateCTOused = datetimepickerUseDate.Value;
             
 
@@ -43,7 +43,7 @@ namespace EmployeeTracker
                     if (inputCTO != 0 || inputCTO != 0.0 )
                     {
 
-                        using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                        
                         {
                             connection.Open();
 
@@ -101,6 +101,7 @@ namespace EmployeeTracker
         }  
         private void InsertUsed(DateTime dateCTOused, double inputCTO, double totalBalance)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
                 connection.Open();

@@ -10,9 +10,9 @@ namespace EmployeeTracker
 {
     public partial class EmployeeListCTO : Form
     {
+        GlobalConnection conn = new GlobalConnection();
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
         private string SelectedName { get; set; }
 
         private delegate void DEmpty();
@@ -36,10 +36,13 @@ namespace EmployeeTracker
         }
         public void LoadSchedules()
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
+                
+
                 // Establish connection and query schedules for the selected employee ID
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb"))
+                
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM Schedule WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -53,9 +56,10 @@ namespace EmployeeTracker
                         // Bind the retrieved schedules to the DataGridView
                         dataGridViewSchedules.DataSource = scheduleTable;
                     }
+                    connection.Close();
                 }
                 //CTO EARNED
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
+ 
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -72,9 +76,10 @@ namespace EmployeeTracker
                         dataGridViewCTOearned.Columns["employeeID"].Visible = false;
                         dataGridViewCTOearned.Columns["ctoRendered"].Visible = false;
                     }
+                    connection.Close();
                 }
                 //CTO BALANCE
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
+
                 using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
                 
                 {
@@ -94,9 +99,10 @@ namespace EmployeeTracker
                     {
                         txtTotalCTOBalance.Text = "0"; // If no value found, set to 0
                     }
+                    connection.Close();
                 }
                 //DISPLAY CTO USED TO GRIDVIEW
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
+
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOused WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -110,9 +116,10 @@ namespace EmployeeTracker
                         // Bind the retrieved balance to the DataGridView
                         dataGridViewCTOused.DataSource = usedTable;
                     }
+                    connection.Close();
                 }
                 //CTO RENDERED
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\jsantiago3\Downloads\dbtk.accdb"))
+
                 using (OleDbCommand command = new OleDbCommand("SELECT SUM(ctoRendered) AS TotalCTORendered FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -130,11 +137,11 @@ namespace EmployeeTracker
                     {
                         txtTotalCTORendered.Text = "0"; // If no value found, set to 0
                     }
+                    connection.Close();
                 }
                 //CTO BALANCE
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
-                using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
 
+                using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
                     command.Parameters.AddWithValue("@EmployeeID", SelectedID);
@@ -152,6 +159,7 @@ namespace EmployeeTracker
                     {
                         txtTotalCTOBalance.Text = "0"; // If no value found, set to 0
                     }
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -174,10 +182,11 @@ namespace EmployeeTracker
         //Combo Box query
         private void PopulateComboBox()
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
                 // Establish connection and query database
-                using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb"))
+
                 using (OleDbCommand command = new OleDbCommand("SELECT taskID, taskName AS employeetask FROM Task", connection))
                 {
                     connection.Open();
@@ -212,7 +221,7 @@ namespace EmployeeTracker
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             DateTime timeIn = dateTimePickerTimeIn.Value;
             DateTime timeOut = dateTimePickerTimeOut.Value;
 
@@ -226,7 +235,7 @@ namespace EmployeeTracker
 
                         // SelectedID is already assigned in the constructor
                         int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
-
+                        
                         TimeSpan timeDifference = timeOut - timeIn;
                         double hoursNeeded = timeDifference.TotalHours / 10;
                         double timeDifference1 = timeDifference.TotalHours;
@@ -257,6 +266,7 @@ namespace EmployeeTracker
         //inserting the values of the form into database
         private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID, double ctoEarned, double timeDifference1, double totalCTObalance)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
                 // Establish connection and insert data
@@ -348,9 +358,10 @@ namespace EmployeeTracker
 
         private void useCTObtn_Click(object sender, EventArgs e)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
-                using(OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\asantocildes\source\repos\EmployeeTracker\dbtk.accdb"))
+                
                 using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -376,7 +387,10 @@ namespace EmployeeTracker
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-           
+            finally
+            {
+                connection.Close();
+            }
             
         }
 
@@ -393,6 +407,7 @@ namespace EmployeeTracker
 
         private void exportButton_Click_Click(object sender, EventArgs e)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
             {
                 // Set the default file name to the current ID

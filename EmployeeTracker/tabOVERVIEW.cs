@@ -58,13 +58,7 @@ namespace EmployeeTracker
             dataView(); //updates datagridview
         }
 
-
-        private void btnTask_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void tabOVERVIEW_Load(object sender, EventArgs e)
         {
             dataView();
         }
