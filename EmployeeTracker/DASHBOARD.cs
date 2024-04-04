@@ -8,18 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.Common;
 using ClosedXML.Excel;
+
+//using EmployeeTracker.dbConnection;
 
 namespace EmployeeTracker
 {
     public partial class frmDashboard : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
+        GlobalConnection conn = new GlobalConnection();
+
+        //OleDbConnection connection = new OleDbConnection();
+        //conn.DbConnection();
+
         public frmDashboard()
         {
             InitializeComponent();
             tabOVERVIEW tb = new tabOVERVIEW();
             AddTabs(tb);
+
         }
 
         private void AddTabs(UserControl userControl)
@@ -27,6 +36,8 @@ namespace EmployeeTracker
             userControl.Dock = DockStyle.Fill;
             panelTabs.Controls.Add(userControl);
             //this.Location = new System.Drawing.Point(1000, 1000);
+            panelCalPage.Hide();
+            panel5.Show();
             userControl.BringToFront();
         }
 
@@ -45,7 +56,11 @@ namespace EmployeeTracker
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             tabCALENDAR tb = new tabCALENDAR();
-            AddTabs(tb);
+            panelCalPage.Show();
+            panel5.Hide();
+            //tb.Show();
+            //tb.Dock = DockStyle.Fill;
+            //panelCalendar.Add(tb);
         }
 
         private void btnTeam_Click(object sender, EventArgs e)
@@ -54,13 +69,19 @@ namespace EmployeeTracker
             AddTabs(tb);
         }
 
-        void employeeView()
+        public void employeeView()
         {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
-                //adding values into database
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
+                //getting values from database
+                connection.Open();
+                OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM Employee";
                 cmd.ExecuteNonQuery();
@@ -112,13 +133,112 @@ namespace EmployeeTracker
             }
             finally
             {
-                conn.Close();
+                connection.Close();
             }
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
+        private void panel11_Paint(object sender, PaintEventArgs e)
+        {  
+            OleDbConnection connection = new OleDbConnection(conn.conn);
+            try
+            {
+                connection.Open();
+                OleDbCommand cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM Employee";
+                cmd.ExecuteNonQuery();
+
+                DataTable dt = new DataTable();
+
+                OleDbDataAdapter dp = new OleDbDataAdapter(cmd);
+                dp.Fill(dt);
+                EmployeeList1.DataSource = dt;
+                this.EmployeeList1.Columns[0].Visible = false;
+                this.EmployeeList1.Columns[1].Visible = false;
+                this.EmployeeList1.Columns[2].Visible = false;
+                this.EmployeeList1.Columns[3].Visible = false;
+                this.EmployeeList1.Columns[4].Visible = false;
+                this.EmployeeList1.Columns[5].Visible = false;
+                this.EmployeeList1.Columns[6].Visible = false;
+                this.EmployeeList1.Columns[7].Visible = false;
+                this.EmployeeList1.Columns[8].Visible = false;
+                this.EmployeeList1.Columns[9].Visible = false;
+                this.EmployeeList1.Columns[10].Visible = false;
+                this.EmployeeList1.Columns[11].Visible = false;
+                this.EmployeeList1.Columns[12].Visible = false;
+                this.EmployeeList1.Columns[13].Visible = false;
+                // EmployeeList.DataSource = dt.AsEnumerable().Select(obj => new {  }).ToList();
+
+                // Create a new column for the concatenated names
+                if (!dt.Columns.Contains("FullName"))
+                {
+                    // Add a new column for the concatenated full name
+                    dt.Columns.Add("FullName", typeof(string));
+                }
+                foreach (DataRow row in dt.Rows)
+                {
+                    string firstName = row["fName"].ToString();
+                    string lastName = row["lName"].ToString();
+
+                    // Concatenate first name and last name with a space in between
+                    string fullName = $"{firstName} {lastName}";
+
+                    // Set the concatenated full name to the new column
+                    row["FullName"] = fullName;
+                }
+
+                EmployeeList1.DataSource = dt; // Bind the DataTable to DataGridView
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+        }
+
+        private void btnCdOv_Click(object sender, EventArgs e)
         {
-            employeeView();
+            tabOVERVIEW tb = new tabOVERVIEW();
+            AddTabs(tb);
+        }
+
+        private void btnCdTd_Click(object sender, EventArgs e)
+        {
+            tabTODAY tb = new tabTODAY();
+            AddTabs(tb);
+        }
+
+        private void btnCdTm_Click(object sender, EventArgs e)
+        {
+            tabTEAM tb = new tabTEAM();
+            AddTabs(tb);
+        }
+
+        private void btnCdCd_Click(object sender, EventArgs e)
+        {
+            //tabCALENDAR tb = new tabCALENDAR();
+            //panelCalPage.Show();
+            //panel5.Hide();
+            btnCalendar_Click(sender, e);
+        }
+
+        private EmployeeListCTO listCTO;
+
+        private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (listCTO != null && !listCTO.IsDisposed)
+            {
+                listCTO.Close();
+            }
+
+            listCTO = new EmployeeListCTO();
+            listCTO.Show();
         }
 
         private void EmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)

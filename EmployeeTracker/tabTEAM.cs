@@ -8,12 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+
 
 namespace EmployeeTracker
 {
     public partial class tabTEAM : UserControl
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cbanez\source\repos\EmployeeTracker\dbtk.accdb");
+        //OleDbConnection connection = new OleDbConnection();
+        GlobalConnection conn = new GlobalConnection();
+  
 
         public tabTEAM()
         {
@@ -28,11 +32,12 @@ namespace EmployeeTracker
         //For updating datagridview
         void dataView()
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
                 //adding values into database
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
+                connection.Open();
+                OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM Employee";
 
@@ -42,7 +47,7 @@ namespace EmployeeTracker
                 dp.Fill(dt);
                 displayData.DataSource = dt;
 
-                conn.Close();
+                connection.Close();
             }
             catch (Exception ex)
             {
@@ -94,6 +99,7 @@ namespace EmployeeTracker
         //Delete Method
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             string mesDel = "Are you sure you want to delete?";
             string title = "Delete Record";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -104,14 +110,14 @@ namespace EmployeeTracker
                 if (result == DialogResult.Yes)
                 {   //to delete the data
                     string employeeID;
-                    conn.Open();
-                    OleDbCommand cmd = conn.CreateCommand();
+                    connection.Open();
+                    OleDbCommand cmd = connection.CreateCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "Delete * from Employee where EmployeeID = @EmployeeID ";
                     employeeID = displayData.CurrentRow.Cells["EmployeeID"].Value.ToString();
                     cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(employeeID));
                     cmd.ExecuteNonQuery();
-                    conn.Close();
+                    connection.Close();
                     MessageBox.Show("Successfully deleted", "Delete Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dataView();
                     //refresh();
@@ -120,7 +126,7 @@ namespace EmployeeTracker
                 else
                 {   //if the data is not deleted
                    //MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    conn.Close();
+                    connection.Close();
                 }
             }
             catch
@@ -128,7 +134,7 @@ namespace EmployeeTracker
                 MessageBox.Show("Record is not deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            conn.Close();
+            connection.Close();
         }
 
         //Search Method

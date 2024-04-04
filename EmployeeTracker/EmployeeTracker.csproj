@@ -50,10 +50,14 @@
       <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+
+    <Reference Include="System.Configuration" />
+
     <Reference Include="System.Core" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
@@ -128,6 +132,7 @@
     <Compile Include="EmployeeListCTO.Designer.cs">
       <DependentUpon>EmployeeListCTO.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalConnection.cs" />
     <Compile Include="EditPop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,14 +181,25 @@
     <Compile Include="tabTEAM.Designer.cs">
       <DependentUpon>tabTEAM.cs</DependentUpon>
     </Compile>
+
     <Compile Include="useCTO.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="useCTO.Designer.cs">
       <DependentUpon>useCTO.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="EmployeeListCTO.resx">
-      <DependentUpon>EmployeeListCTO.cs</DependentUpon>
+	  <EmbeddedResource Include="EmployeeListCTO.resx">
+		  <DependentUpon>EmployeeListCTO.cs</DependentUpon>
+	  </EmbeddedResource>
+    <Compile Include="CdDay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CdDay.Designer.cs">
+      <DependentUpon>CdDay.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddTask.resx">
+      <DependentUpon>AddTask.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="EditPop.resx">
       <DependentUpon>EditPop.cs</DependentUpon>
@@ -199,6 +215,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="tabOVERVIEW.resx">
       <DependentUpon>tabOVERVIEW.cs</DependentUpon>
@@ -212,8 +229,13 @@
     <EmbeddedResource Include="tabCALENDAR.resx">
       <DependentUpon>tabCALENDAR.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="useCTO.resx">
-      <DependentUpon>useCTO.cs</DependentUpon>
+
+	  <EmbeddedResource Include="useCTO.resx">
+		  <DependentUpon>useCTO.cs</DependentUpon>
+	  </EmbeddedResource>
+    <EmbeddedResource Include="CdDay.resx">
+      <DependentUpon>CdDay.cs</DependentUpon>
+
     </EmbeddedResource>
     <None Include="dbtkDataSet.xsc">
       <DependentUpon>dbtkDataSet.xsd</DependentUpon>
@@ -255,6 +277,8 @@
     <Content Include="dbtk.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\right-arrow-png-file.png" />
+    <None Include="Resources\left-arrow-png-file.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
