@@ -232,13 +232,14 @@ namespace EmployeeTracker
 
         private void EmployeeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (listCTO != null && !listCTO.IsDisposed)
-            {
-                listCTO.Close();
-            }
-
             listCTO = new EmployeeListCTO();
-            listCTO.Show();
+            listCTO.ShowDialog();
+        }
+
+        private void EmployeeList1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            listCTO = new EmployeeListCTO();
+            listCTO.ShowDialog();
         }
 
         private void EmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)

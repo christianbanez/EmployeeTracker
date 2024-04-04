@@ -25,12 +25,13 @@ namespace EmployeeTracker
             InitializeComponent();
         }
 
+        //For updating datagridview
         void dataView()
         {
-            OleDbConnection connection = new OleDbConnection(conn.conn);
-
+            
             try
             {
+                OleDbConnection connection = new OleDbConnection(conn.conn);
                 //adding values into database
                 connection.Open();
                 OleDbCommand cmd = connection.CreateCommand();
