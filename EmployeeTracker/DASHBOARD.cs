@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Data.Common;
-using ClosedXML.Excel;
 
 //using EmployeeTracker.dbConnection;
 
@@ -138,7 +130,7 @@ namespace EmployeeTracker
         }
 
         private void panel11_Paint(object sender, PaintEventArgs e)
-        {  
+        {
             OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {

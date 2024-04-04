@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -22,7 +16,7 @@ namespace EmployeeTracker
 
         private void tabCALENDAR_Load(object sender, EventArgs e)
         {
-            showDays(DateTime.Now.Month, DateTime.Now.Year);           
+            showDays(DateTime.Now.Month, DateTime.Now.Year);
         }
 
         public void btnNext_Click(object sender, EventArgs e)
@@ -49,7 +43,7 @@ namespace EmployeeTracker
 
         private void btnTask_Click(object sender, EventArgs e)
         {
-            AddTask addTask = new AddTask(null,null,null);
+            AddTask addTask = new AddTask(null, null, null);
             //addTask.DataUpdated += addTask_DataUpdated;
             addTask.pnlAssign.Hide();
             addTask.ShowDialog();

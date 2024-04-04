@@ -1,9 +1,8 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Windows.Forms;
-using ClosedXML.Excel;
 
 
 namespace EmployeeTracker
@@ -39,10 +38,10 @@ namespace EmployeeTracker
             OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
-                
+
 
                 // Establish connection and query schedules for the selected employee ID
-                
+
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM Schedule WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -59,7 +58,7 @@ namespace EmployeeTracker
                     connection.Close();
                 }
                 //CTO EARNED
- 
+
                 using (OleDbCommand command = new OleDbCommand("SELECT * FROM CTOearned WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -81,7 +80,7 @@ namespace EmployeeTracker
                 //CTO BALANCE
 
                 using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
-                
+
                 {
                     connection.Open();
                     command.Parameters.AddWithValue("@EmployeeID", SelectedID);
@@ -171,12 +170,12 @@ namespace EmployeeTracker
                 connection.Close();
             }
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             PopulateComboBox();
             LoadSchedules();
-            
+
         }
 
         //Combo Box query
@@ -235,7 +234,7 @@ namespace EmployeeTracker
 
                         // SelectedID is already assigned in the constructor
                         int taskID = Convert.ToInt32(selectedRow["taskID"]); // Retrieve taskID from the selectedRow
-                        
+
                         TimeSpan timeDifference = timeOut - timeIn;
                         double hoursNeeded = timeDifference.TotalHours / 10;
                         double timeDifference1 = timeDifference.TotalHours;
@@ -259,7 +258,7 @@ namespace EmployeeTracker
             {
                 MessageBox.Show("Error: Invalid time inputted", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
 
@@ -361,7 +360,7 @@ namespace EmployeeTracker
             OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
-                
+
                 using (OleDbCommand command = new OleDbCommand("SELECT ctoBalance AS totalCTOBalance FROM Employee WHERE EmployeeID = @EmployeeID", connection))
                 {
                     connection.Open();
@@ -391,7 +390,7 @@ namespace EmployeeTracker
             {
                 connection.Close();
             }
-            
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -402,7 +401,7 @@ namespace EmployeeTracker
         private void button1_Click(object sender, EventArgs e)
         {
             PopulateComboBox();
-            LoadSchedules();      
+            LoadSchedules();
         }
 
         private void exportButton_Click_Click(object sender, EventArgs e)

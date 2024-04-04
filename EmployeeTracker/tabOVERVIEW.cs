@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
 
 
 
@@ -18,7 +11,7 @@ namespace EmployeeTracker
     {
         //OleDbConnection connection = new OleDbConnection();
         GlobalConnection conn = new GlobalConnection();
-       
+
 
         public tabOVERVIEW()
         {
@@ -28,7 +21,7 @@ namespace EmployeeTracker
         //For updating datagridview
         void dataView()
         {
-            
+
             try
             {
                 OleDbConnection connection = new OleDbConnection(conn.conn);

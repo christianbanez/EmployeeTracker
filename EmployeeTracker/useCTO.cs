@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EmployeeTracker
@@ -22,28 +15,28 @@ namespace EmployeeTracker
             InitializeComponent();
             SelectedID = selectedID;
             Console.WriteLine("Selected ID: ", selectedID);
-            
+
         }
         private void UseCTO_Load(object sender, EventArgs e)
         {
-            
-           
+
+
         }
         private void useCTOsave_Click(object sender, EventArgs e)
         {
             OleDbConnection connection = new OleDbConnection(conn.conn);
             DateTime dateCTOused = datetimepickerUseDate.Value;
-            
+
 
             try
             {
                 if (useCTOtxt.Text != "")
                 {
                     double inputCTO = Convert.ToDouble(useCTOtxt.Text);
-                    if (inputCTO != 0 || inputCTO != 0.0 )
+                    if (inputCTO != 0 || inputCTO != 0.0)
                     {
 
-                        
+
                         {
                             connection.Open();
 
@@ -98,7 +91,7 @@ namespace EmployeeTracker
             {
                 connection.Close();
             }
-        }  
+        }
         private void InsertUsed(DateTime dateCTOused, double inputCTO, double totalBalance)
         {
             OleDbConnection connection = new OleDbConnection(conn.conn);

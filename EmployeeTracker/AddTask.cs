@@ -1,21 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Odbc;
 using System.Data.OleDb;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Threading;
-using System.ComponentModel.Design;
 
 
 namespace EmployeeTracker
@@ -95,7 +82,7 @@ namespace EmployeeTracker
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-                
+
             connection.Close();
             this.Close();
         }
@@ -171,7 +158,7 @@ namespace EmployeeTracker
 
         private void PopulateCmbxEmp()
         {
-            try             
+            try
             {
                 OleDbConnection connection = new OleDbConnection(conn.conn);
                 if (selectedItem != null)
@@ -216,7 +203,7 @@ namespace EmployeeTracker
 
                     connection.Close();
                 }
-                else 
+                else
                 {
                     connection.Open();
                     string query = "SELECT EmployeeID, fName FROM Employee";
