@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Configuration;
+
 
 namespace EmployeeTracker
 {
@@ -18,8 +20,8 @@ namespace EmployeeTracker
     {
         public delegate void DataUpdatedEventHandler();
         public event DataUpdatedEventHandler DataUpdated;
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
-        int state;
+        GlobalConnection conn = new GlobalConnection();
+        
         string pattern = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
         public EditPop()
@@ -127,8 +129,10 @@ namespace EmployeeTracker
 
 
         //Sace button for updating
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e, int state)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
+
             bool bValidateEmployeeID = ValidateEmployeeID();
             bool bValidfName = ValidatefName();
             bool bValidlName = ValidatelName();
@@ -150,8 +154,8 @@ namespace EmployeeTracker
                 try
                 {
                     //updating values into database
-                    conn.Open();
-                    OleDbCommand cmd = conn.CreateCommand();
+                    connection.Open();
+                    OleDbCommand cmd = connection.CreateCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "UPDATE Employee SET fName = @fName, lName = @lName, contactNum = @contact, age = @age, email = @email, role = @role, status = @status WHERE EmployeeID = @employeeID";
 
@@ -192,8 +196,9 @@ namespace EmployeeTracker
         }
 
         //Add button for inserting
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e, int state)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             bool bValidateEmployeeID = ValidateEmployeeID();
             bool bValidfName = ValidatefName();
             bool bValidlName = ValidatelName();
@@ -215,9 +220,9 @@ namespace EmployeeTracker
                 try
                 {
                     //adding values into database
-                    conn.Open();
+                    connection.Open();
 
-                    OleDbCommand cmd = conn.CreateCommand();
+                    OleDbCommand cmd = connection.CreateCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "INSERT INTO Employee(EmployeeID,fName,lName,contactNum,age,email,status,role,accDateCreated)VALUES(@EmployeeID, @fName, @lName, @Contact, @Age, @Email, @state, @role, Now())";
                     cmd.Parameters.AddWithValue("@EmployeeID", Convert.ToInt32(txtEmployeeID.Text));

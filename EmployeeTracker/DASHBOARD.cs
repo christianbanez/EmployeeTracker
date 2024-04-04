@@ -8,18 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.Common;
+
+//using EmployeeTracker.dbConnection;
 
 namespace EmployeeTracker
 {
     public partial class frmDashboard : Form
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        GlobalConnection conn = new GlobalConnection();
+
+        //OleDbConnection connection = new OleDbConnection();
+        //conn.DbConnection();
+
         public frmDashboard()
         {
             InitializeComponent();
             tabOVERVIEW tb = new tabOVERVIEW();
             AddTabs(tb);
-            
+
         }
 
         private void AddTabs(UserControl userControl)
@@ -60,18 +68,19 @@ namespace EmployeeTracker
             AddTabs(tb);
         }
 
-       public void employeeView()
-       {
+        public void employeeView()
+        {
 
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
                 //getting values from database
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
+                connection.Open();
+                OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM Employee";
                 cmd.ExecuteNonQuery();
@@ -125,16 +134,17 @@ namespace EmployeeTracker
             }
             finally
             {
-                conn.Close();
+                connection.Close();
             }
         }
 
         private void panel11_Paint(object sender, PaintEventArgs e)
-        {
+        {  
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
-            { 
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
+            {
+                connection.Open();
+                OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM Employee";
                 cmd.ExecuteNonQuery();
@@ -146,7 +156,7 @@ namespace EmployeeTracker
                 EmployeeList1.DataSource = dt;
                 this.EmployeeList1.Columns[0].Visible = false;
                 this.EmployeeList1.Columns[1].Visible = false;
-                this.EmployeeList1.Columns[2].Visible = false;                
+                this.EmployeeList1.Columns[2].Visible = false;
                 this.EmployeeList1.Columns[3].Visible = false;
                 this.EmployeeList1.Columns[4].Visible = false;
                 this.EmployeeList1.Columns[5].Visible = false;
@@ -168,8 +178,8 @@ namespace EmployeeTracker
                 }
                 foreach (DataRow row in dt.Rows)
                 {
-                    string firstName = row["fName"].ToString(); 
-                    string lastName = row["lName"].ToString(); 
+                    string firstName = row["fName"].ToString();
+                    string lastName = row["lName"].ToString();
 
                     // Concatenate first name and last name with a space in between
                     string fullName = $"{firstName} {lastName}";
@@ -186,7 +196,7 @@ namespace EmployeeTracker
             }
             finally
             {
-                conn.Close();
+                connection.Close();
             }
 
 

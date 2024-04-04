@@ -8,12 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+
+
 
 namespace EmployeeTracker
 {
     public partial class tabOVERVIEW : UserControl
     {
-        OleDbConnection conn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Jazmine Dizon\source\repos\EmployeeTracker\dbtk.accdb");
+        //OleDbConnection connection = new OleDbConnection();
+        GlobalConnection conn = new GlobalConnection();
+       
 
         public tabOVERVIEW()
         {
@@ -23,11 +28,13 @@ namespace EmployeeTracker
         //For updating datagridview
         void dataView()
         {
+            OleDbConnection connection = new OleDbConnection();
+
             try
             {
                 //adding values into database
-                conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
+                connection.Open();
+                OleDbCommand cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM Schedule";
 
@@ -37,7 +44,7 @@ namespace EmployeeTracker
                 dp.Fill(dt);
                 displayData.DataSource = dt;
 
-                conn.Close();
+                connection.Close();
             }
             catch (Exception ex)
             {

@@ -37,7 +37,12 @@
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OleDb, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.OleDb.8.0.0\lib\net462\System.Data.OleDb.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,6 +61,7 @@
     <Compile Include="AddTask.Designer.cs">
       <DependentUpon>AddTask.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalConnection.cs" />
     <Compile Include="EditPop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,7 @@
     <None Include="dbtkDataSet1.xss">
       <DependentUpon>dbtkDataSet1.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -189,9 +196,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dbtk.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\right-arrow-png-file.png" />
     <None Include="Resources\left-arrow-png-file.png" />
   </ItemGroup>
