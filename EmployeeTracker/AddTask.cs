@@ -14,6 +14,8 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Threading;
+using System.ComponentModel.Design;
 
 
 namespace EmployeeTracker
@@ -249,22 +251,22 @@ namespace EmployeeTracker
                 string selectedItem = selectedRow["fname"].ToString();
             }
         }
+
+
         private void btnAssign_Click(object sender, EventArgs e)
         {
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             try
             {
-                OleDbConnection connection = new OleDbConnection(conn.conn);
-
-
                 // gets selected employee, task, date, and time
                 int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
                 int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
                 DateTime startDate = pickDate1.Value.Date;
                 DateTime endDate = pickDate2.Value.Date;
-                TimeSpan? timeIn = chkTime.Checked ? pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
-                TimeSpan? timeOut = chkTime.Checked ? pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
-                // remove milliseconds from a TimeSpan
+                TimeSpan? timeIn = null;
+                TimeSpan? timeOut = null;
+
                 TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
                 {
                     return new TimeSpan(timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
@@ -273,44 +275,61 @@ namespace EmployeeTracker
                 timeIn = chkTime.Checked ? RemoveMilliseconds(pickTimeIn.Value.TimeOfDay) : (TimeSpan?)null;
                 timeOut = chkTime.Checked ? RemoveMilliseconds(pickTimeOut.Value.TimeOfDay) : (TimeSpan?)null;
 
-                connection.Open();
-
                 string timeInFormatted = startDate.ToString("MM/dd/yyyy") + " " + timeIn;
                 string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
 
-                OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut, PlannedStart, PlannedEnd) " +
-                       "VALUES (@EmployeeID, @taskID, @timeIn, @timeOut, @plannedStart, @plannedEnd)");
+                double timeDifference1 = (pickTimeOut.Value - pickTimeIn.Value).TotalHours;
+                double hoursNeeded = timeDifference1 / 10;
+                double ctoEarned = Math.Round(hoursNeeded, 2);
+                connection.Open();
 
-                command.Connection = connection;
+                if (chkTime.Checked)
+                {
+                    OleDbCommand cmd = new OleDbCommand("INSERT INTO CTOearned (dateEarned, ctoEarned, EmployeeID, ctoRendered) VALUES (@timeOut, @ctoEarned, @EmployeeID, @timeDifference1)", connection);
+                    cmd.Parameters.AddWithValue("@timeOut", timeOutFormatted);
+                    cmd.Parameters.AddWithValue("@ctoEarned", ctoEarned);
+                    cmd.Parameters.AddWithValue("@EmployeeID", employeeID); // Use the selected ID
+                    cmd.Parameters.AddWithValue("@timeDifference1", timeDifference1);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("CTO added successfully!");
+                }
+
+                OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut, PlannedStart, PlannedEnd) " +
+                       "VALUES (@EmployeeID, @taskID, @timeIn, @timeOut, @plannedStart, @plannedEnd)", connection);
 
                 command.Parameters.AddWithValue("@EmployeeID", employeeID);
                 command.Parameters.AddWithValue("@taskID", taskID);
+
+                // If checkbox is checked, insert the time values, otherwise insert DBNull.Value
+                command.Parameters.AddWithValue("@timeIn", chkTime.Checked ? (object)timeInFormatted ?? DBNull.Value : DBNull.Value);
+                command.Parameters.AddWithValue("@timeOut", chkTime.Checked ? (object)timeOutFormatted ?? DBNull.Value : DBNull.Value);
+
+                // Always insert plannedStart and plannedEnd
                 command.Parameters.AddWithValue("@plannedStart", startDate);
                 command.Parameters.AddWithValue("@plannedEnd", endDate);
-                command.Parameters.AddWithValue("@timeIn", timeInFormatted ?? DBNull.Value.ToString());
-                command.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
-
-                MessageBox.Show(employeeID + " " + taskID + " " + timeInFormatted + " " + timeOutFormatted);
-                //Application.Exit();
 
                 command.ExecuteNonQuery();
-
-                connection.Close();
 
                 DataUpdated?.Invoke();
 
                 MessageBox.Show("Assignment added successfully!");
                 cd.listBox1.ClearSelected();
-                RefreshPanel();         
+                RefreshPanel();
                 //cd.ReloadListBoxFromDatabase();
-                this.Close();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+            finally
+            {
+                connection.Close();
+                this.Close();
+            }
         }
+
 
 
         private void btnCancel2_Click(object sender, EventArgs e)
