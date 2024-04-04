@@ -28,10 +28,10 @@ namespace EmployeeTracker
         //For updating datagridview
         void dataView()
         {
-            OleDbConnection connection = new OleDbConnection();
-
+            
             try
             {
+                OleDbConnection connection = new OleDbConnection(conn.conn);
                 //adding values into database
                 connection.Open();
                 OleDbCommand cmd = connection.CreateCommand();
@@ -50,16 +50,6 @@ namespace EmployeeTracker
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void tabOVERVIEW_Load(object sender, EventArgs e)

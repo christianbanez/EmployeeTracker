@@ -115,7 +115,10 @@ namespace EmployeeTracker
         }
         private void PopulateCmbxTask()
         {
-            try{
+            try
+            {
+                OleDbConnection connection = new OleDbConnection(conn.conn);
+
                 MessageBox.Show("Selected Item: " + selectedItem);
                 if (selectedItem != null)
                 {
@@ -166,11 +169,10 @@ namespace EmployeeTracker
 
         private void PopulateCmbxEmp()
         {
-            try
-
-                    // Add parameter to the command
+            try             
             {
-                if(selectedItem != null)
+                OleDbConnection connection = new OleDbConnection(conn.conn);
+                if (selectedItem != null)
                 {
                     connection.Open();
                     // Split the employee name further into first name and last name
@@ -180,8 +182,8 @@ namespace EmployeeTracker
 
                     if (names.Length >= 2)
                     {
-                        firstName = names[0]; // Contains "cruz"
-                        lastName = string.Join(" ", names.Skip(1)); // Contains "jana"
+                        firstName = names[0];
+                        lastName = string.Join(" ", names.Skip(1));
                         //MessageBox.Show("Values here: " + firstName + " " + lastName);
                     }
                     else if (names.Length == 1)
@@ -213,7 +215,7 @@ namespace EmployeeTracker
                     connection.Close();
                 }
                 else 
-                { 
+                {
                     connection.Open();
                     string query = "SELECT EmployeeID, fName FROM Employee";
                     OleDbCommand command = new OleDbCommand(query, connection);
@@ -251,6 +253,9 @@ namespace EmployeeTracker
         {
             try
             {
+                OleDbConnection connection = new OleDbConnection(conn.conn);
+
+
                 // gets selected employee, task, date, and time
                 int employeeID = Convert.ToInt32(cmbxEmp.SelectedValue);
                 int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
@@ -314,7 +319,7 @@ namespace EmployeeTracker
 
         private void btnSvCal_Click(object sender, EventArgs e)
         {
-            //fetching taskID here
+            OleDbConnection connection = new OleDbConnection(conn.conn);
             OleDbCommand cmd = new OleDbCommand("SELECT Task.taskID FROM Task WHERE taskName = @taskName", connection);
             cmd.Parameters.AddWithValue("@taskName", selectedItem);
             //MessageBox.Show(selectedItem);

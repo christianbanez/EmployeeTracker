@@ -26,10 +26,10 @@ namespace EmployeeTracker
         //List<string> tasks; // List to store tasks/events for the day
         public void DisplayTask()
         {
-            OleDbConnection connection = new OleDbConnection(conn.conn);
+            //OleDbConnection connection = new OleDbConnection(connection);
             try
             {
-                using (conn)
+                OleDbConnection connection = new OleDbConnection(conn.conn);
                 {
                     connection.Open();
                     using (OleDbCommand cmd = connection.CreateCommand())
@@ -98,39 +98,39 @@ namespace EmployeeTracker
 
         private AddTask addTask;
 
-        public void ReloadListBoxFromDatabase()
-        {
-            // Connection string for your database
+        //public void ReloadListBoxFromDatabase()
+        //{
+        //    // Connection string for your database
 
-            // Query to retrieve data from the database
-            string query = "SELECT Schedule.*, Task.taskName FROM Schedule, Task WHERE " +
-                            "Schedule.taskId = Task.taskId " +
-                            "AND Format(Schedule.timeIn, 'M/D/yyyy') = ?";
+        //    // Query to retrieve data from the database
+        //    string query = "SELECT Schedule.*, Task.taskName FROM Schedule, Task WHERE " +
+        //                    "Schedule.taskId = Task.taskId " +
+        //                    "AND Format(Schedule.timeIn, 'M/D/yyyy') = ?";
 
-            using (conn)
-            {
-                // Open the connection
-                conn.Open();
+        //    using (conn)
+        //    {
+        //        // Open the connection
+        //        conn.Open();
 
-                // Create a command
-                using (OleDbCommand command = new OleDbCommand(query, conn))
-                {
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        // Clear existing items in the ListBox
-                        listBox1.Items.Clear();
+        //        // Create a command
+        //        using (OleDbCommand command = new OleDbCommand(query, conn))
+        //        {
+        //            using (OleDbDataReader reader = command.ExecuteReader())
+        //            {
+        //                // Clear existing items in the ListBox
+        //                listBox1.Items.Clear();
 
-                        // Read the data and add it to the ListBox
-                        while (reader.Read())
-                        {
-                            listBox1.Items.Add(reader["taskName"].ToString());
-                        }
-                    }
-                }
+        //                // Read the data and add it to the ListBox
+        //                while (reader.Read())
+        //                {
+        //                    listBox1.Items.Add(reader["taskName"].ToString());
+        //                }
+        //            }
+        //        }
 
-                conn.Close();
-            }
-        }
+        //        conn.Close();
+        //    }
+        //}
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
         }
