@@ -62,14 +62,10 @@ namespace EmployeeTracker
                             double totalEarned = TotalCTOearned == DBNull.Value ? 0.0 : Convert.ToDouble(TotalCTOearned);
                             double totalUsed = TotalCTOused == DBNull.Value ? 0.0 : Convert.ToDouble(TotalCTOused);
 
-
                             if (totalEarned >= (inputCTO + totalUsed))
                             {
                                 double totalBalance = totalEarned - (inputCTO + totalUsed);
                                 InsertUsed(dateCTOused, inputCTO, totalBalance);
-                                //testform.RefreshDataGrid();
-
-
                             }
                             else
                             {
@@ -87,8 +83,6 @@ namespace EmployeeTracker
                 {
                     MessageBox.Show("Error: Please input number", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
             }
             catch (Exception ex)
             {
