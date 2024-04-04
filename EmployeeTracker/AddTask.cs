@@ -261,6 +261,12 @@ namespace EmployeeTracker
                 int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
                 DateTime startDate = pickDate1.Value.Date;
                 DateTime endDate = pickDate2.Value.Date;
+
+                TimeSpan timeDifference = pickTimeOut.Value.TimeOfDay - pickTimeIn.Value.TimeOfDay;
+                double hoursNeeded = timeDifference.TotalHours / 10;
+                double timeDifference1 = timeDifference.TotalHours;
+                double ctoEarned = Math.Round(hoursNeeded, 2);
+
                 TimeSpan? timeIn = chkTime.Checked ? pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
                 TimeSpan? timeOut = chkTime.Checked ? pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
@@ -294,6 +300,13 @@ namespace EmployeeTracker
                        "VALUES (@timeIn, @timeOut)");
                     cmd.Parameters.AddWithValue("@timeIn", timeInFormatted ?? DBNull.Value.ToString());
                     cmd.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
+
+                    OleDbCommand cmd1 = new OleDbCommand("INSERT INTO CTOearned(dateEarned, ctoEarned, EmployeeID, ctoRendered) " +
+                        "VALUES (@timeOut, @ctoEarned, @EmployeeID, @timeDifference1)");
+                    cmd1.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
+                    cmd1.Parameters.AddWithValue("@ctoEarned", ctoEarned);
+                    cmd1.Parameters.AddWithValue("@EmployeeID", employeeID); // Use the selected ID
+                    cmd1.Parameters.AddWithValue("@timeDifference1", timeDifference1);
                 }
                 
 
