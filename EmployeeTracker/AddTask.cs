@@ -261,8 +261,8 @@ namespace EmployeeTracker
                 int taskID = Convert.ToInt32(cmbxTask.SelectedValue);
                 DateTime startDate = pickDate1.Value.Date;
                 DateTime endDate = pickDate2.Value.Date;
-                TimeSpan? timeIn = chkTime.Checked ? (TimeSpan?)pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
-                TimeSpan? timeOut = chkTime.Checked ? (TimeSpan?)pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
+                TimeSpan? timeIn = chkTime.Checked ? pickTimeIn.Value.TimeOfDay : (TimeSpan?)null;
+                TimeSpan? timeOut = chkTime.Checked ? pickTimeOut.Value.TimeOfDay : (TimeSpan?)null;
 
                 // remove milliseconds from a TimeSpan
                 TimeSpan RemoveMilliseconds(TimeSpan timeSpan)
@@ -278,14 +278,15 @@ namespace EmployeeTracker
                 string timeInFormatted = startDate.ToString("MM/dd/yyyy") + " " + timeIn;
                 string timeOutFormatted = endDate.ToString("MM/dd/yyyy") + " " + timeOut;
 
-                OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut) " +
-                       "VALUES (@EmployeeID, @taskID, @timeIn, @timeOut)");
+                OleDbCommand command = new OleDbCommand("INSERT INTO Schedule (EmployeeID, TaskID, TimeIn, TimeOut, PlannedStart, PlannedEnd) " +
+                       "VALUES (@EmployeeID, @taskID, @timeIn, @timeOut, @plannedStart, @plannedEnd)");
 
                 command.Connection = connection;
 
                 command.Parameters.AddWithValue("@EmployeeID", employeeID);
                 command.Parameters.AddWithValue("@taskID", taskID);
-                // command.Parameters.AddWithValue("@ScheduledDate", scheduledDate);
+                command.Parameters.AddWithValue("@plannedStart", startDate);
+                command.Parameters.AddWithValue("@plannedEnd", endDate);
                 command.Parameters.AddWithValue("@timeIn", timeInFormatted ?? DBNull.Value.ToString());
                 command.Parameters.AddWithValue("@timeOut", timeOutFormatted ?? DBNull.Value.ToString());
 
