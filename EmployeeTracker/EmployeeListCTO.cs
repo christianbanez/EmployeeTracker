@@ -194,9 +194,9 @@ namespace EmployeeTracker
                     {
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-                        cmbxAssign.DataSource = dataTable;
+                        /*cmbxAssign.DataSource = dataTable;
                         cmbxAssign.DisplayMember = "employeetask";
-                        cmbxAssign.ValueMember = "taskID";
+                        cmbxAssign.ValueMember = "taskID";*/
                     }
                 }
             }
@@ -211,19 +211,19 @@ namespace EmployeeTracker
         }
 
         // Assign to: combox Box Display
-        private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
+        /*private void cmbxAssign_SelectedIndexChanged(object sender, EventArgs e)
+        {*/
+            /*//DataRowView selectedRow = cmbxAssign.SelectedItem as DataRowView;
             if (selectedRow != null)
             {
                 string selectedItem = selectedRow["employeetask"].ToString();
-            }
-        }
-        private void btnAdd_Click(object sender, EventArgs e)
+            }*/
+        //}
+       /* private void btnAdd_Click(object sender, EventArgs e)
         {
             OleDbConnection connection = new OleDbConnection(conn.conn);
-            DateTime timeIn = dateTimePickerTimeIn.Value;
-            DateTime timeOut = dateTimePickerTimeOut.Value;
+            *//*DateTime timeIn = dateTimePickerTimeIn.Value;
+            DateTime timeOut = dateTimePickerTimeOut.Value;*//*
 
             if (timeOut > timeIn)
             {
@@ -260,11 +260,11 @@ namespace EmployeeTracker
                 MessageBox.Show("Error: Invalid time inputted", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-        }
+        }*/
 
 
         //inserting the values of the form into database
-        private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID, double ctoEarned, double timeDifference1, double totalCTObalance)
+       /* private void InsertTask(DateTime timeIn, DateTime timeOut, int taskID, double ctoEarned, double timeDifference1, double totalCTObalance)
         {
             OleDbConnection connection = new OleDbConnection(conn.conn);
             try
@@ -341,8 +341,8 @@ namespace EmployeeTracker
             {
                 connection.Close();
             }
-        }
-        private void btnCancel_Click(object sender, EventArgs e)
+        }*/
+       /* private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -354,7 +354,7 @@ namespace EmployeeTracker
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
+        }*/
 
         private void useCTObtn_Click(object sender, EventArgs e)
         {
