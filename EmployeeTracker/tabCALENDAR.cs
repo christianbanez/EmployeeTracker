@@ -102,25 +102,22 @@ namespace EmployeeTracker
 
             for (int i = 1; i < week; i++)
             {
-                CdDay cd = new CdDay(" ");
-                cd.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom; // Set anchor for resizing
+                CdDay cd = new CdDay(" ")
+                {
+                    Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom // Set anchor for resizing
+                };
                 tableLayoutPanel1.Controls.Add(cd);
             }
 
             for (int i = 1; i <= day; i++)
             {
-                CdDay cd = new CdDay(i + " ");
-                cd.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom; // Set anchor for resizing
+                CdDay cd = new CdDay(i + " ")
+                {
+                    Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom // Set anchor for resizing
+                };
                 tableLayoutPanel1.Controls.Add(cd);
 
             }
-
-            // Adjust row and column styles for proper layout
-            //float percentRow = 100.0f / tableLayoutPanel1.RowCount;
-            //float percentColumn = 100.0f / tableLayoutPanel1.ColumnCount;
-
-            // Add special row style for weekdays labels
-            //tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
             // Set column styles for equal sizing
             for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)

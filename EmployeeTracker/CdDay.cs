@@ -200,7 +200,7 @@ namespace EmployeeTracker
             // Checks if an item is selected
             if (listBox1.SelectedItem != null)
             {
-                MessageBox.Show("Item Found: " + selectedItem);
+                //MessageBox.Show("Item Found: " + selectedItem);
                 // Retrieve the selected task name
                 string selectedTask = listBox1.SelectedItem.ToString();
                 selectedItem = listBox1.SelectedItem.ToString();

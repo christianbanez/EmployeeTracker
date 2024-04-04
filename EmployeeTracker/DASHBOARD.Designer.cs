@@ -52,6 +52,7 @@
             this.EmployeeList = new System.Windows.Forms.DataGridView();
             this.panelCalPage = new System.Windows.Forms.Panel();
             this.panelCalendar = new System.Windows.Forms.Panel();
+            this.tabCALENDAR1 = new EmployeeTracker.tabCALENDAR();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCdCd = new System.Windows.Forms.Button();
             this.btnCdTm = new System.Windows.Forms.Button();
@@ -62,7 +63,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
-            this.tabCALENDAR1 = new EmployeeTracker.tabCALENDAR();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -268,6 +268,7 @@
             this.EmployeeList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.EmployeeList.Size = new System.Drawing.Size(214, 451);
             this.EmployeeList.TabIndex = 0;
+            this.EmployeeList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList_CellContentClick);
             // 
             // panelCalPage
             // 
@@ -292,6 +293,15 @@
             this.panelCalendar.Name = "panelCalendar";
             this.panelCalendar.Size = new System.Drawing.Size(1108, 675);
             this.panelCalendar.TabIndex = 0;
+            // 
+            // tabCALENDAR1
+            // 
+            this.tabCALENDAR1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCALENDAR1.Location = new System.Drawing.Point(0, 32);
+            this.tabCALENDAR1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabCALENDAR1.Name = "tabCALENDAR1";
+            this.tabCALENDAR1.Size = new System.Drawing.Size(1108, 643);
+            this.tabCALENDAR1.TabIndex = 15;
             // 
             // panel7
             // 
@@ -398,7 +408,7 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.EmployeeList1.DefaultCellStyle = dataGridViewCellStyle7;
             this.EmployeeList1.GridColor = System.Drawing.SystemColors.Control;
-            this.EmployeeList1.Location = new System.Drawing.Point(0, 39);
+            this.EmployeeList1.Location = new System.Drawing.Point(3, 39);
             this.EmployeeList1.Name = "EmployeeList1";
             this.EmployeeList1.ReadOnly = true;
             this.EmployeeList1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -407,8 +417,9 @@
             this.EmployeeList1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmployeeList1.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.EmployeeList1.Size = new System.Drawing.Size(214, 451);
+            this.EmployeeList1.Size = new System.Drawing.Size(208, 451);
             this.EmployeeList1.TabIndex = 2;
+            this.EmployeeList1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList_CellContentClick);
             // 
             // label2
             // 
@@ -440,16 +451,6 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "Export";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // tabCALENDAR1
-            // 
-            this.tabCALENDAR1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabCALENDAR1.Location = new System.Drawing.Point(0, 32);
-            this.tabCALENDAR1.Margin = new System.Windows.Forms.Padding(2);
-            this.tabCALENDAR1.Name = "tabCALENDAR1";
-            this.tabCALENDAR1.Size = new System.Drawing.Size(1108, 643);
-            this.tabCALENDAR1.TabIndex = 15;
-            this.EmployeeList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmployeeList_CellContentClick);
             // 
             // frmDashboard
             // 
